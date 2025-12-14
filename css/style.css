@@ -293,3 +293,23 @@ footer {
 .progress-bar {
     transition: width 1.5s ease-in-out; /* Adiciona uma animação suave para o efeito visual */
 }
+
+/* --- Ajuste para as cores das Badges (Tecnologias) --- */
+
+.tecnologias .badge {
+    /* Cor de fundo para as badges: use um cinza claro ou um tom da sua paleta */
+    background-color: #e9ecef !important; 
+    /* Cor do texto: cinza escuro para melhor contraste */
+    color: #495057 !important; 
+    
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+}
+
+/* Se você quiser destacar a badge 'Flutter' com a cor primária (azul) */
+.tecnologias .badge.bg-primary {
+    background-color: var(--cor-primaria) !important;
+    color: white !important;
+}
