@@ -114,25 +114,28 @@ h2::after {
 /* Estilo da Foto de Perfil */
 /* Adicione ou verifique este bloco no seu arquivo css/style.css */
 /* Estilo da Foto de Perfil */
+/* Estilo da Foto de Perfil */
 .perfil-img {
-    /* Define largura e altura fixas */
+    /* 1. Define o tamanho exato do círculo */
     width: 250px; 
     height: 250px;
     
-    /* Crucial para o corte circular */
+    /* 2. Garante o formato circular */
     border-radius: 50%; 
     
-    /* Garante que a imagem preencha o círculo sem distorcer */
+    /* 3. Faz com que a imagem cubra todo o círculo sem esticar */
     object-fit: cover;
     
-    /* Define a borda cinza (ou use uma variável, se preferir) */
-    border: 10px solid #A9A9A9; /* Exemplo de cinza para a borda */
+    /* 4. A BORDA EXTERNA: Mude de azul para cinza (#A9A9A9) */
+    /* Usando '10px' para ser mais robusto */
+    border: 10px solid #A9A9A9; 
     
-    /* Adiciona sombra para dar profundidade */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    /* 5. Garante que ela seja exibida como um bloco centralizado */
+    display: block; 
+    margin: 0 auto 20px auto; 
     
-    /* Espaçamento abaixo da foto */
-    margin-bottom: 20px;
+    /* 6. Remove a borda azul do Bootstrap (se houver) */
+    box-shadow: none !important;
 }
 
 
