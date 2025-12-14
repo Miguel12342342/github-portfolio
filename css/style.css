@@ -43,15 +43,16 @@ h2 {
     display: inline-block; /* Para que a linha de baixo funcione */
 }
 
+/* CORREÇÃO: Linha centralizada abaixo do título H2 */
 h2::after {
     content: '';
     position: absolute;
-    width: 60%;
+    width: 60px; /* Tamanho fixo e menor para elegância */
     height: 3px;
     background-color: var(--cor-primaria);
     bottom: 0;
-    left: 20%;
-    transform: translateX(-10%);
+    left: 50%; 
+    transform: translateX(-50%); /* Centraliza */
 }
 
 
@@ -112,22 +113,12 @@ h2::after {
 }
 
 /* Estilo da Foto de Perfil */
-/* Adicione ou verifique este bloco no seu arquivo css/style.css */
-/* Estilo da Foto de Perfil */
-/* Estilo da Foto de Perfil */
-/* Estilo da Foto de Perfil */
-/* Este código garante o 'cover' e ajusta o círculo para caber sua foto */
 #apresentacao .perfil-img {
-    width: 220px;       /* O contêiner da imagem tem 220px de largura */
-    height: 220px;      /* O contêiner da imagem tem 220px de altura */
-    
+    width: 220px; 
+    height: 220px; 
     border-radius: 50%; 
-    
-    /* CRUCIAL: Força a imagem a preencher (cover) o contêiner de 220x220px */
     object-fit: cover; 
-    
     border: 10px solid #A9A9A9 !important; 
-    
     display: block; 
     margin: 0 auto 20px auto; 
     box-shadow: none !important;
@@ -154,9 +145,21 @@ h2::after {
     transform: translateY(-2px); /* Efeito de elevação */
 }
 
-/* Seções de fundo alternado (para contraste) */
-#habilidades, #contato, .bg-light {
+/* Fundo alternado: #habilidades e #contato ficam com cinza claro */
+#habilidades, #contato {
     background-color: var(--cor-fundo-claro) !important;
+}
+
+/* GARANTINDO O BRANCO NO SOBRE MIM (para contraste) */
+#sobre {
+    background-color: var(--cor-branco) !important;
+}
+
+/* Estilo para listas em "Sobre Mim" */
+#sobre ul {
+    list-style: disc; /* Garante que os pontos apareçam */
+    padding-left: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -167,10 +170,10 @@ h2::after {
 .projeto-card {
     border: none;
     border-radius: 15px;
-    overflow: hidden; /* Garante que a imagem se ajuste ao card */
+    overflow: hidden; 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: var(--transicao-padrao);
-    height: 100%; /* Garante altura uniforme se estiver em grid */
+    height: 100%; 
 }
 
 .projeto-card:hover {
@@ -179,16 +182,30 @@ h2::after {
 }
 
 .projeto-card .card-img-top {
-    /* Define o tempo de transição da imagem (suavidade do zoom) */
     transition: var(--transicao-padrao);
     height: 200px; /* Mantém a altura fixa */
     object-fit: cover;
 }
 
-/* Aplica o Zoom quando o mouse passar por cima do CARD (pai) */
+/* REFINAMENTO: Aplica o Zoom SUAVE (1.08) */
 .projeto-card:hover .card-img-top {
-    /* Aumenta o tamanho da imagem em 5% (1.05) */
-    transform: scale(1.25);
+    transform: scale(1.08); 
+}
+
+/* --- Ajuste para as cores das Badges (Tecnologias) --- */
+.tecnologias .badge {
+    background-color: #e9ecef !important; 
+    color: #495057 !important; 
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+}
+
+/* Destaca a badge 'Flutter' com a cor primária (azul) */
+.tecnologias .badge.bg-primary {
+    background-color: var(--cor-primaria) !important;
+    color: white !important;
 }
 
 
@@ -196,31 +213,65 @@ h2::after {
   6. SEÇÃO DE HABILIDADES/TECNOLOGIAS
   ==================================*/
 
-/* Estilo para ícones ou tags de habilidade */
 .skill-item {
-    text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: left; /* Alinha o texto das habilidades à esquerda */
 }
 
-.skill-icon {
-    font-size: 3rem;
-    color: var(--cor-primaria);
-    margin-bottom: 10px;
+.skill-item i {
+    margin-right: 8px;
+    color: var(--cor-primaria); /* Usa a cor principal para os ícones */
 }
 
-.skill-tag {
-    display: inline-block;
-    background-color: var(--cor-primaria);
-    color: var(--cor-branco);
-    padding: 5px 15px;
-    margin: 5px;
-    border-radius: 20px;
-    font-size: 0.9rem;
+/* Estilo da Barra de Progresso do Bootstrap */
+.progress {
+    height: 10px;
+    border-radius: 5px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    transition: width 1.5s ease-in-out; /* Adiciona uma animação suave para o efeito visual */
 }
 
 
 /*==================================
-  7. RODAPÉ (FOOTER)
+  7. SEÇÃO DE CONTATO (ESTILO ADICIONADO)
+  ==================================*/
+
+.contact-item {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.contact-item i {
+    font-size: 2.5rem;
+    color: var(--cor-primaria);
+    margin-bottom: 10px;
+    display: block; 
+}
+
+.contact-item p {
+    font-weight: 600;
+    color: var(--cor-texto);
+}
+
+.contact-item a {
+    color: var(--cor-secundaria);
+    transition: var(--transicao-padrao);
+    text-decoration: none; 
+}
+
+.contact-item a:hover {
+    color: var(--cor-primaria);
+    text-decoration: underline;
+}
+
+
+/*==================================
+  8. RODAPÉ (FOOTER)
   ==================================*/
 
 footer {
@@ -243,7 +294,7 @@ footer {
 
 
 /*==================================
-  8. RESPONSIVIDADE (MEDIA QUERIES)
+  9. RESPONSIVIDADE (MEDIA QUERIES)
   ==================================*/
 
 @media (max-width: 992px) { /* Tablets e menores */
@@ -274,51 +325,3 @@ footer {
         height: 180px;
     }
 }
-
-/* Estilos para a Seção de Habilidades */
-#habilidades {
-    background-color: #f8f9fa; /* Um cinza claro para destacar a seção */
-}
-
-.skill-item {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.skill-item i {
-    margin-right: 8px;
-    color: var(--cor-primaria); /* Usa a cor principal para os ícones */
-}
-
-/* Estilo da Barra de Progresso do Bootstrap */
-.progress {
-    height: 10px;
-    border-radius: 5px;
-    background-color: #e9ecef;
-}
-
-.progress-bar {
-    transition: width 1.5s ease-in-out; /* Adiciona uma animação suave para o efeito visual */
-}
-
-/* --- Ajuste para as cores das Badges (Tecnologias) --- */
-
-.tecnologias .badge {
-    /* Cor de fundo para as badges: use um cinza claro ou um tom da sua paleta */
-    background-color: #e9ecef !important; 
-    /* Cor do texto: cinza escuro para melhor contraste */
-    color: #495057 !important; 
-    
-    margin-right: 5px;
-    margin-bottom: 5px;
-    padding: 6px 10px;
-    font-size: 0.85rem;
-}
-
-/* Se você quiser destacar a badge 'Flutter' com a cor primária (azul) */
-.tecnologias .badge.bg-primary {
-    background-color: var(--cor-primaria) !important;
-    color: white !important;
-}
-
