@@ -178,9 +178,17 @@ h2::after {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.card-img-top {
-    height: 200px;
+.projeto-card .card-img-top {
+    /* Define o tempo de transição da imagem (suavidade do zoom) */
+    transition: var(--transicao-padrao);
+    height: 200px; /* Mantém a altura fixa */
     object-fit: cover;
+}
+
+/* Aplica o Zoom quando o mouse passar por cima do CARD (pai) */
+.projeto-card:hover .card-img-top {
+    /* Aumenta o tamanho da imagem em 5% (1.05) */
+    transform: scale(1.05);
 }
 
 
