@@ -1,0 +1,257 @@
+/*==================================
+  1. DEFINIÇÕES GLOBAIS E FONTES
+  ==================================*/
+
+/* Importação da Fonte (Exemplo: Poppins do Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* Definição de Cores e Medidas Usando Variáveis CSS */
+:root {
+    /* Cores */
+    --cor-primaria: #007bff;        /* Azul: Destaque, botões principais */
+    --cor-secundaria: #6c757d;      /* Cinza: Texto secundário, fundo de cards */
+    --cor-fundo-claro: #f8f9fa;     /* Fundo das seções alternadas */
+    --cor-fundo-escuro: #343a40;    /* Fundo do Footer/Header escuro */
+    --cor-texto: #333333;           /* Cor principal do texto */
+    --cor-branco: #ffffff;
+    
+    /* Tamanhos/Medidas */
+    --padding-secao: 80px 0;        /* Padding padrão (cima/baixo) */
+    --transicao-padrao: 0.3s ease-in-out; 
+}
+
+/* Estilo Base do Corpo */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--cor-texto);
+    line-height: 1.6;
+    background-color: var(--cor-branco);
+}
+
+/* Estilo para Todas as Seções */
+section {
+    padding: var(--padding-secao);
+}
+
+/* Estilo Padrão para Títulos de Seção */
+h2 {
+    font-weight: 700;
+    color: var(--cor-primaria);
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 10px;
+    display: inline-block; /* Para que a linha de baixo funcione */
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 3px;
+    background-color: var(--cor-primaria);
+    bottom: 0;
+    left: 20%;
+    transform: translateX(-10%);
+}
+
+
+/*==================================
+  2. ESTILO DA BARRA DE NAVEGAÇÃO (NAVBAR)
+  ==================================*/
+
+.navbar {
+    background-color: var(--cor-fundo-escuro) !important; /* Cor de fundo escura */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Cor do texto nos links da Navbar */
+.navbar-nav .nav-link {
+    color: var(--cor-branco) !important;
+    font-weight: 400;
+    margin-left: 15px;
+    transition: var(--transicao-padrao);
+}
+
+/* Efeito ao passar o mouse */
+.navbar-nav .nav-link:hover {
+    color: var(--cor-primaria) !important;
+}
+
+/* Logo ou Nome do Portfólio */
+.navbar-brand {
+    color: var(--cor-branco) !important;
+    font-weight: 700;
+}
+
+
+/*==================================
+  3. SEÇÃO DE APRESENTAÇÃO (HERO)
+  ==================================*/
+
+#apresentacao {
+    min-height: 85vh; /* Ocupa a maior parte da tela */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--cor-fundo-claro);
+    padding: 100px 0;
+}
+
+#apresentacao h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--cor-texto);
+    margin-bottom: 10px;
+}
+
+#apresentacao .lead {
+    font-size: 1.5rem;
+    color: var(--cor-primaria);
+    margin-bottom: 30px;
+}
+
+/* Estilo da Foto de Perfil */
+.perfil-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--cor-primaria);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+
+/*==================================
+  4. ESTILO DE COMPONENTES/AÇÕES
+  ==================================*/
+
+/* Estilo Customizado de Botão Primário */
+.btn-primary {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transicao-padrao);
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Um tom mais escuro */
+    border-color: #0056b3;
+    transform: translateY(-2px); /* Efeito de elevação */
+}
+
+/* Seções de fundo alternado (para contraste) */
+#habilidades, #contato, .bg-light {
+    background-color: var(--cor-fundo-claro) !important;
+}
+
+
+/*==================================
+  5. SEÇÃO DE PROJETOS (CARDS)
+  ==================================*/
+
+.card-projeto {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden; /* Garante que a imagem se ajuste ao card */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transicao-padrao);
+    height: 100%; /* Garante altura uniforme se estiver em grid */
+}
+
+.card-projeto:hover {
+    transform: translateY(-7px); /* Destaque no hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+
+/*==================================
+  6. SEÇÃO DE HABILIDADES/TECNOLOGIAS
+  ==================================*/
+
+/* Estilo para ícones ou tags de habilidade */
+.skill-item {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.skill-icon {
+    font-size: 3rem;
+    color: var(--cor-primaria);
+    margin-bottom: 10px;
+}
+
+.skill-tag {
+    display: inline-block;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    padding: 5px 15px;
+    margin: 5px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+
+/*==================================
+  7. RODAPÉ (FOOTER)
+  ==================================*/
+
+footer {
+    background-color: var(--cor-fundo-escuro) !important;
+    color: var(--cor-branco) !important;
+    padding: 20px 0;
+}
+
+/* Links sociais no rodapé */
+.social-icon {
+    color: var(--cor-branco);
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: var(--transicao-padrao);
+}
+
+.social-icon:hover {
+    color: var(--cor-primaria);
+}
+
+
+/*==================================
+  8. RESPONSIVIDADE (MEDIA QUERIES)
+  ==================================*/
+
+@media (max-width: 992px) { /* Tablets e menores */
+    :root {
+        --padding-secao: 60px 0;
+    }
+
+    #apresentacao h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) { /* Celulares */
+    #apresentacao {
+        min-height: 70vh;
+    }
+
+    #apresentacao h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .perfil-img {
+        width: 180px;
+        height: 180px;
+    }
+}
