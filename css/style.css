@@ -183,7 +183,7 @@ h2::after {
 
 .projeto-card .card-img-top {
     transition: var(--transicao-padrao);
-    height: 300px; /* Mantém a altura fixa */
+    height: 500px; /* Mantém a altura fixa */
     object-fit: cover;
 }
 
