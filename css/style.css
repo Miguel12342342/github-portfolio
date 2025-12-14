@@ -116,23 +116,21 @@ h2::after {
 /* Estilo da Foto de Perfil */
 /* Estilo da Foto de Perfil */
 /* Estilo da Foto de Perfil */
-.perfil-img {
-    /* 1. Define o tamanho exato do elemento */
-    width: 250px; 
-    height: 250px;
+/* Este código garante o 'cover' e ajusta o círculo para caber sua foto */
+#apresentacao .perfil-img {
+    width: 220px;       /* O contêiner da imagem tem 220px de largura */
+    height: 220px;      /* O contêiner da imagem tem 220px de altura */
     
-    /* 2. Garante o formato circular */
     border-radius: 50%; 
     
-    /* 3. CRUCIAL: Faz a imagem cobrir o espaço total do elemento (250px x 250px) */
-    object-fit: cover;
+    /* CRUCIAL: Força a imagem a preencher (cover) o contêiner de 220x220px */
+    object-fit: cover; 
     
-    /* 4. A BORDA EXTERNA: Ajustando para o cinza (#A9A9A9) */
-    border: 10px solid #A9A9A9; 
+    border: 10px solid #A9A9A9 !important; 
     
-    /* 5. Garante centralização */
     display: block; 
     margin: 0 auto 20px auto; 
+    box-shadow: none !important;
 }
 
 
