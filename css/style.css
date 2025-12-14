@@ -164,7 +164,7 @@ h2::after {
   5. SEÇÃO DE PROJETOS (CARDS)
   ==================================*/
 
-.card-projeto {
+.projeto-card {
     border: none;
     border-radius: 15px;
     overflow: hidden; /* Garante que a imagem se ajuste ao card */
@@ -173,7 +173,7 @@ h2::after {
     height: 100%; /* Garante altura uniforme se estiver em grid */
 }
 
-.card-projeto:hover {
+.projeto-card:hover {
     transform: translateY(-7px); /* Destaque no hover */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
@@ -313,3 +313,4 @@ footer {
     background-color: var(--cor-primaria) !important;
     color: white !important;
 }
+
