@@ -266,3 +266,30 @@ footer {
         height: 180px;
     }
 }
+
+/* Estilos para a Seção de Habilidades */
+#habilidades {
+    background-color: #f8f9fa; /* Um cinza claro para destacar a seção */
+}
+
+.skill-item {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.skill-item i {
+    margin-right: 8px;
+    color: var(--cor-primaria); /* Usa a cor principal para os ícones */
+}
+
+/* Estilo da Barra de Progresso do Bootstrap */
+.progress {
+    height: 10px;
+    border-radius: 5px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    transition: width 1.5s ease-in-out; /* Adiciona uma animação suave para o efeito visual */
+}
