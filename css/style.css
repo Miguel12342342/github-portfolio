@@ -188,7 +188,7 @@ h2::after {
 /* Aplica o Zoom quando o mouse passar por cima do CARD (pai) */
 .projeto-card:hover .card-img-top {
     /* Aumenta o tamanho da imagem em 5% (1.05) */
-    transform: scale(1.05);
+    transform: scale(1.25);
 }
 
 
