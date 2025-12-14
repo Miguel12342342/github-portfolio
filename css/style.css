@@ -112,13 +112,26 @@ h2::after {
 }
 
 /* Estilo da Foto de Perfil */
+/* Adicione ou verifique este bloco no seu arquivo css/style.css */
+/* Estilo da Foto de Perfil */
 .perfil-img {
-    width: 250px;
+    /* Define largura e altura fixas */
+    width: 250px; 
     height: 250px;
-    border-radius: 50%;
+    
+    /* Crucial para o corte circular */
+    border-radius: 50%; 
+    
+    /* Garante que a imagem preencha o círculo sem distorcer */
     object-fit: cover;
-    border: 5px solid var(--cor-primaria);
+    
+    /* Define a borda cinza (ou use uma variável, se preferir) */
+    border: 10px solid #A9A9A9; /* Exemplo de cinza para a borda */
+    
+    /* Adiciona sombra para dar profundidade */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    
+    /* Espaçamento abaixo da foto */
     margin-bottom: 20px;
 }
 
