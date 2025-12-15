@@ -264,12 +264,18 @@ body.dark-mode .navbar .nav-link:hover {
     transform: translateY(-2px); 
 }
 
-/* Fundo alternado: #habilidades e #contato */
-#habilidades, #contato {
+/* Fundo alternado: #habilidades*/
+#habilidades{
     background-color: var(--cor-fundo-claro) !important;
     transition: background-color var(--transicao-padrao);
     padding-top: 200px !important; 
-    padding-bottom: 200px !important;
+    padding-bottom: 400px !important;
+}
+/* Fundo alternado: #contato */
+#contato {
+    background-color: var(--cor-fundo-claro) !important;
+    transition: background-color var(--transicao-padrao);
+    padding-top: 200px !important; 
 }
 
 /* GARANTINDO O BRANCO NO SOBRE MIM (para contraste) */
