@@ -67,4 +67,38 @@ document.addEventListener('DOMContentLoaded', function() {
         // Inicia a observação
         observer.observe(skillsSection);
     }
-});
+// ======================================================
+    // 3. EFEITO MÁQUINA DE ESCREVER (TYPEWRITER EFFECT)
+    // ======================================================
+    const typewriterElement = document.querySelector('.typewriter');
+    // Texto que será digitado
+    const textToType = 'Desenvolvedor Flutter Junior/Pleno'; 
+    let charIndex = 0; // Índice do caractere atual
+    const typingSpeed = 100; // Velocidade de digitação (milissegundos por caractere)
+
+    function typeWriter() {
+        if (charIndex < textToType.length) {
+            // Adiciona o próximo caractere ao elemento
+            typewriterElement.textContent += textToType.charAt(charIndex);
+            charIndex++;
+            // Agenda a próxima chamada recursiva
+            setTimeout(typeWriter, typingSpeed);
+        }
+    }
+
+    // Adiciona o cursor piscante (opcional, mas recomendado para o efeito)
+    if (typewriterElement) {
+        // Adiciona um cursor visualmente discreto no CSS
+        typewriterElement.style.borderRight = '2px solid'; 
+        // Inicia a animação após um pequeno atraso (para dar tempo do usuário ver)
+        setTimeout(typeWriter, 500); 
+    }
+    
+    // Opcional: Para fazer o cursor piscar (melhor no CSS)
+    // No CSS, adicione:
+    // .typewriter { animation: blink-caret 0.75s step-end infinite; }
+    // @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: inherit; } }
+}); 
+// Este é o final do seu document.addEventListener('DOMContentLoaded', function() { ... });
+
+

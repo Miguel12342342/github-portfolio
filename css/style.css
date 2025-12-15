@@ -494,3 +494,22 @@ body.dark-mode footer .social-icon {
         font-size: 1.8rem;
     }
 }
+/*==================================
+  10. EFEITOS VISUAIS
+  ==================================*/
+
+/* Cursor Piscante para Efeito Máquina de Escrever */
+.typewriter {
+    /* Garante que o texto seja tratado como um bloco para a borda do cursor */
+    display: inline-block; 
+    /* Esta é a cor do cursor (usando a cor do texto alternativo) */
+    border-right-color: var(--text-alt-color) !important; 
+    /* Aplica a animação de piscar */
+    animation: blink-caret 0.75s step-end infinite;
+}
+
+/* Animação Keyframes */
+@keyframes blink-caret {
+    from, to { border-right-color: transparent }
+    50% { border-right-color: inherit; } /* O inherit garante que use a cor definida acima */
+}
