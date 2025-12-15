@@ -247,6 +247,12 @@ body.dark-mode .navbar .nav-link:hover {
     background-color: var(--cor-fundo-claro) !important;
 }
 
+/* Para que o crescimento da barra de progresso seja suave */
+.progress-bar {
+    transition: width 1.5s ease-out; /* 1.5 segundos de duração, animação suave */
+    width: 0%; /* Garante que comece em 0% antes do JavaScript ser executado */
+}
+
 /* GARANTINDO O BRANCO NO SOBRE MIM (para contraste) */
 #sobre {
     background-color: var(--cor-branco) !important;
