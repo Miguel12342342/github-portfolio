@@ -274,15 +274,21 @@ body.dark-mode .navbar .nav-link:hover {
 #sobre {
     background-color: var(--cor-branco) !important;
     transition: background-color var(--transicao-padrao);
+    
+    /* Aumenta o padding para a seção ocupar mais espaço verticalmente */
+    padding-top: 150px !important; 
+    padding-bottom: 150px !important;
 }
 
-/* Estilo para listas em "Sobre Mim" */
-#sobre ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin-bottom: 20px;
+/* NOVO: Estilo para os parágrafos dentro da seção Sobre Mim */
+#sobre p {
+    /* Aumenta a fonte para 1.15rem ou 1.2rem para melhor legibilidade */
+    font-size: 1.15rem; 
+    line-height: 1.8; /* Aumenta o espaçamento entre linhas para melhor leitura */
+    color: var(--cor-texto); /* Garante a cor correta em ambos os modos */
 }
 
+/* ... (o restante dos estilos) ... */
 
 /*==================================
   5. SEÇÃO DE PROJETOS (CARDS)
