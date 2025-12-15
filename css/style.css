@@ -350,19 +350,52 @@ body.dark-mode .navbar .nav-link:hover {
   6. SEÇÃO DE HABILIDADES/TECNOLOGIAS
   ==================================*/
 
+/*==================================
+  6. SEÇÃO DE HABILIDADES/TECNOLOGIAS
+  ==================================*/
+
+#habilidades .container,
+#habilidades .row {
+    text-align: initial !important; 
+}
+
 .skill-item {
     margin-bottom: 15px;
     font-size: 1.1rem;
     font-weight: 500;
-    text-align: left;
+    /* Linha anterior era: text-align: left; */
+    /* NOVO: Removemos o text-align: left para permitir a centralização se não for necessário */
+    text-align: initial; 
 }
 
-.skill-item i {
-    margin-right: 8px;
-    color: var(--cor-primaria);
-    transition: color var(--transicao-padrao);
+/* NOVO: Centraliza o texto e os itens da coluna de habilidades */
+#habilidades .container {
+    text-align: center; /* Centraliza o conteúdo principal dentro do container */
 }
 
+#habilidades .text-primary {
+    text-align: left !important;
+}
+
+/* NOVO: Garante que os títulos das colunas (Desenvolvimento Mobile, etc.) estejam centralizados */
+#habilidades h5 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* NOVO: Garante que os itens individuais de habilidade (texto e barra) fiquem centralizados */
+.skill-item {
+    /* Centraliza o próprio item (se ele for um bloco) */
+    display: inline-block; 
+    text-align: left; /* Mantém o texto interno (ex: "Flutter/Dart") alinhado à esquerda dentro do seu bloco */
+}
+
+/* Correção para garantir que as barras preencham o espaço das colunas (Bootstrap) */
+.skill-col { /* Se você estiver usando uma classe como 'skill-col' nas suas colunas */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza as colunas se elas não estiverem usando 100% do espaço */
+}
 /* Estilo da Barra de Progresso do Bootstrap */
 .progress {
     height: 10px;
