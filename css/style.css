@@ -111,6 +111,38 @@ body.dark-mode .card-text {
     opacity: 0.8;
 }
 
+/*==================================
+  DARK MODE: GARANTINDO CORES CLARAS PARA ÍCONES
+  ==================================*/
+
+/* 1. Altera a cor dos ícones no botão de download (CV) e outros ícones globais */
+body.dark-mode i {
+    color: var(--cor-texto) !important; 
+    /* Usamos !important aqui APENAS para forçar a cor sobre o Font Awesome 
+       e outros estilos de botões que podem ter especificidade maior. */
+}
+
+/* 2. Ajuste específico para o botão de Dark Mode, se necessário */
+body.dark-mode #darkModeToggle i {
+    color: var(--cor-texto); /* Garante que o ícone de Sol/Lua fique claro */
+}
+
+/* 3. Ajuste para ícones dentro de botões (como o botão de GitHub) */
+body.dark-mode .btn i {
+    color: inherit; /* Herda a cor do botão, que é configurada no .btn */
+}
+
+/* Garante que os botões (como o do CV) usem a cor de destaque primária no Dark Mode */
+body.dark-mode .btn-primary {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    color: var(--cor-branco); /* Mantém o texto dentro do botão primário escuro (para contraste) */
+}
+/* Se você quer o texto e ícone do botão primário CLARO no Dark Mode, use: */
+body.dark-mode .btn-primary {
+    color: var(--cor-fundo-escuro) !important; /* Texto/ícone escuro dentro do botão claro */
+}
+
 .navbar {
     background-color: var(--cor-fundo-escuro) !important; /* Cor de fundo escura */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
