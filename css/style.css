@@ -7,11 +7,11 @@
 /* Definição de Cores e Variáveis (Unificadas para o Novo Design) */
 :root {
     /* Cores Padrão (Light Mode) */
-    --cor-primaria: #007bff; /* Azul: Destaque, botões */
-    --cor-secundaria: #6c757d; /* Cinza: Texto secundário */
-    --cor-fundo-claro: #f8f9fa; /* Fundo das seções alternadas */
-    --cor-fundo-escuro: #343a40; /* Fundo do Hero, Navbar, Footer */
-    --cor-texto: #333333; /* Cor principal do texto */
+    --cor-primaria: #007bff; 
+    --cor-secundaria: #6c757d; 
+    --cor-fundo-claro: #f8f9fa; 
+    --cor-fundo-escuro: #343a40; 
+    --cor-texto: #333333; 
     --cor-branco: #ffffff;
     
     /* VARIÁVEIS DO HERO SECTION (Mapeamento para Light Mode) */
@@ -52,7 +52,7 @@ body {
     color: var(--cor-texto);
     line-height: 1.6;
     background-color: var(--cor-branco);
-    transition: background-color var(--transicao-padrao), color var(--transicao-padrao); /* Adicionado para suavizar o Dark Mode */
+    transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
 }
 
 /* Estilo para Todas as Seções */
@@ -111,7 +111,7 @@ body.dark-mode .card-text {
   ==================================*/
 
 .navbar {
-    background-color: var(--cor-fundo-escuro) !important; /* Cor de fundo escura */
+    background-color: var(--cor-fundo-escuro) !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color var(--transicao-padrao);
 }
@@ -182,8 +182,14 @@ body.dark-mode .navbar .nav-link:hover {
 
 /* Imagem de Perfil Circular */
 .perfil-img-circle {
-    width: 250px;
-    height: 250px;
+    /* NOVO: Usando vw para escalar a imagem com a tela */
+    width: 13vw; 
+    height: 13vw;
+    min-width: 150px; 
+    max-width: 250px; 
+    min-height: 150px; 
+    max-height: 250px;
+    
     border-radius: 50%;
     object-fit: cover;
     border: 5px solid var(--cor-primaria);
@@ -192,12 +198,18 @@ body.dark-mode .navbar .nav-link:hover {
 /* Títulos e Parágrafos */
 .hero-section h1 {
     color: var(--text-heading) !important; 
-    font-size: 3.5rem;
+    /* NOVO: Usando vw para escalar o H1 */
+    font-size: 3.5vw;
+    /* Adiciona fallback de tamanho mínimo */
+    min-font-size: 2.5rem; 
 }
 
 .hero-section .text-light-alt {
     color: var(--text-alt-color) !important;
-    font-size: 1.5rem;
+    /* NOVO: Usando vw para escalar o texto secundário */
+    font-size: 1.5vw;
+    /* Adiciona fallback de tamanho mínimo */
+    min-font-size: 1.2rem;
 }
 
 /* Botões Customizados */
@@ -244,7 +256,7 @@ body.dark-mode .navbar .nav-link:hover {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3; /* Um tom mais escuro */
+    background-color: #0056b3;
     border-color: #0056b3;
     transform: translateY(-2px); 
 }
@@ -289,7 +301,7 @@ body.dark-mode .navbar .nav-link:hover {
 
 .projeto-card .card-img-top {
     transition: var(--transicao-padrao);
-    height: 250px; /* Reduzido de 500px para um visual mais equilibrado */
+    height: 250px;
     object-fit: cover;
 }
 
@@ -415,7 +427,7 @@ body.dark-mode footer .social-icon {
         --padding-secao: 60px 0;
     }
 
-    /* Ajuste para o Hero Section em tablets */
+    /* O vw já faz o trabalho, mas garantimos que não haja excesso de grandeza */
     .hero-section h1 {
         font-size: 3rem;
     }
@@ -428,7 +440,7 @@ body.dark-mode footer .social-icon {
         flex-direction: column;
     }
     .hero-section .justify-content-md-start {
-        justify-content: center !important; /* Centraliza botões e ícones sociais */
+        justify-content: center !important; 
     }
 
     .hero-section {
@@ -436,16 +448,22 @@ body.dark-mode footer .social-icon {
         min-height: auto;
     }
     
+    /* Forçamos o tamanho em REM (fixo) para garantir leitura no mobile */
     .hero-section h1 {
-        font-size: 2.5rem;
+        font-size: 2.5rem !important; 
+    }
+    
+    .hero-section .text-light-alt {
+        font-size: 1.2rem !important;
+    }
+
+    /* Forçamos o tamanho fixo da imagem no mobile */
+    .perfil-img-circle {
+        width: 150px !important; 
+        height: 150px !important;
     }
 
     h2 {
         font-size: 1.8rem;
-    }
-    
-    .perfil-img-circle {
-        width: 180px;
-        height: 180px;
     }
 }
