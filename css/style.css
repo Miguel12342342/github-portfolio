@@ -143,6 +143,20 @@ body.dark-mode .btn-primary {
     color: var(--cor-fundo-escuro) !important; /* Texto/ícone escuro dentro do botão claro */
 }
 
+body.dark-mode .navbar {
+    background-color: var(--cor-fundo-escuro) !important; /* Garante que o fundo da navbar fique escuro */
+}
+
+/* A CORREÇÃO: Força a cor dos links de navegação para a cor clara do texto */
+body.dark-mode .navbar .nav-link {
+    color: var(--cor-texto) !important; /* Usamos a variável de texto claro */
+}
+
+/* Garante a cor correta ao passar o mouse */
+body.dark-mode .navbar .nav-link:hover {
+    color: var(--cor-primaria) !important; /* Usa o azul de destaque ao passar o mouse */
+}
+
 .navbar {
     background-color: var(--cor-fundo-escuro) !important; /* Cor de fundo escura */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
