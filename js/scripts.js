@@ -1,26 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ======================================================
+   // ======================================================
     // 1. SCROLL SUAVE PARA LINKS DE NAVEGAÇÃO
     // ======================================================
-    // Seleciona todos os links na navegação que apontam para uma seção (ID com #)
     document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault(); // Impede o comportamento de salto padrão
+            e.preventDefault(); // Impede o salto e a mudança imediata de URL
             
-            // Pega o ID da seção (ex: #sobre, #habilidades)
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
+                // Rola suavemente para a seção
                 window.scrollTo({
-                    top: targetElement.offsetTop - 70, // Rola para o topo do elemento menos 70px (para compensar a altura da navbar fixa)
-                    behavior: 'smooth' // Ativa o scroll suave
+                    top: targetElement.offsetTop - 70, 
+                    behavior: 'smooth' 
                 });
+                
+                // NOVO CÓDIGO: Atualiza a URL na barra de endereço após a rolagem.
+                // Usamos um pequeno timeout para dar tempo da rolagem começar.
+                setTimeout(() => {
+                    // Adiciona o #hash ao URL sem recarregar a página
+                    history.pushState(null, null, targetId); 
+                }, 500); // 500ms é um bom tempo para a rolagem iniciar
             }
         });
     });
-
     // ======================================================
     // 2. ANIMAÇÃO DAS BARRAS DE HABILIDADE (AO ROLAR)
     // ======================================================
