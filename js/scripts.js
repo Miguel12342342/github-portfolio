@@ -1,28 +1,41 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-   // ======================================================
-    // 1. SCROLL SUAVE PARA LINKS DE NAVEGAÇÃO
+    // ======================================================
+    // 1. SCROLL SUAVE (VERSÃO OTIMIZADA COM ANCORAGEM MANUAL)
     // ======================================================
     document.querySelectorAll('a.nav-link[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault(); // Impede o salto e a mudança imediata de URL
+            
+            e.preventDefault(); // Impede o comportamento de salto padrão
             
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                // Rola suavemente para a seção
+                // 1. Rola para a seção com animação suave
+                // O .offsetTop - 70 é para compensar a navbar fixa
                 window.scrollTo({
                     top: targetElement.offsetTop - 70, 
                     behavior: 'smooth' 
                 });
                 
-                // NOVO CÓDIGO: Atualiza a URL na barra de endereço após a rolagem.
-                // Usamos um pequeno timeout para dar tempo da rolagem começar.
-                setTimeout(() => {
-                    // Adiciona o #hash ao URL sem recarregar a página
-                    history.pushState(null, null, targetId); 
-                }, 500); // 500ms é um bom tempo para a rolagem iniciar
+                // 2. ATUALIZA A URL IMEDIATAMENTE APÓS A ROLAGEM COMEÇAR
+                // Isso garante que a URL mude mesmo com o preventDefault
+                if (history.pushState) {
+                    history.pushState(null, null, targetId);
+                } else {
+                    // Fallback para navegadores antigos
+                    window.location.hash = targetId; 
+                }
+
+                // Opcional: Fecha o menu hamburguer após o clique (apenas em telas pequenas)
+                const navbarCollapse = document.getElementById('navbarNav');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                        toggle: false
+                    });
+                    bsCollapse.hide();
+                }
             }
         });
     });
