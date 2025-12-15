@@ -268,7 +268,8 @@ body.dark-mode .navbar .nav-link:hover {
 #habilidades, #contato {
     background-color: var(--cor-fundo-claro) !important;
     transition: background-color var(--transicao-padrao);
-    padding-bottom: 100px !important;
+    padding-top: 200px !important; 
+    padding-bottom: 200px !important;
 }
 
 /* GARANTINDO O BRANCO NO SOBRE MIM (para contraste) */
