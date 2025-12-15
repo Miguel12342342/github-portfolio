@@ -276,16 +276,26 @@ body.dark-mode .navbar .nav-link:hover {
     transition: background-color var(--transicao-padrao);
     
     /* Aumenta o padding para a seção ocupar mais espaço verticalmente */
-    padding-top: 150px !important; 
-    padding-bottom: 150px !important;
+    padding-top: 200px !important; 
+    padding-bottom: 200px !important;
 }
 
 /* NOVO: Estilo para os parágrafos dentro da seção Sobre Mim */
 #sobre p {
-    /* Aumenta a fonte para 1.15rem ou 1.2rem para melhor legibilidade */
-    font-size: 1.15rem; 
-    line-height: 1.8; /* Aumenta o espaçamento entre linhas para melhor leitura */
-    color: var(--cor-texto); /* Garante a cor correta em ambos os modos */
+    /* AUMENTO AGRESSIVO: De 1.15rem para 1.3rem ou 1.4rem */
+    font-size: 1.3rem; 
+    line-height: 1.8; 
+    color: var(--cor-texto);
+    /* Adiciona uma margem inferior maior para separar os parágrafos */
+    margin-bottom: 30px; 
+}
+
+/* Estilo para listas em "Sobre Mim" */
+#sobre ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    font-size: 1.3rem; /* Aplica o mesmo tamanho para listas */
 }
 
 /* ... (o restante dos estilos) ... */
