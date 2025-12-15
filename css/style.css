@@ -182,13 +182,15 @@ body.dark-mode .navbar .nav-link:hover {
 
 /* Imagem de Perfil Circular */
 .perfil-img-circle {
-    /* NOVO: Usando vw para escalar a imagem com a tela */
-    width: 13vw; 
-    height: 13vw;
-    min-width: 150px; 
-    max-width: 250px; 
-    min-height: 150px; 
-    max-height: 250px;
+    /* CORREÇÃO: Aumentamos o fator VW de 13vw para 16vw para uma imagem maior */
+    width: 16vw; 
+    height: 16vw;
+    
+    /* CORREÇÃO: Aumentamos o tamanho MÍNIMO (mobile/desktop pequeno) e MÁXIMO (4K) */
+    min-width: 180px; /* Não fica menor que 180px */
+    max-width: 300px; /* Não fica maior que 300px (em telas muito grandes) */
+    min-height: 180px; 
+    max-height: 300px;
     
     border-radius: 50%;
     object-fit: cover;
@@ -198,19 +200,20 @@ body.dark-mode .navbar .nav-link:hover {
 /* Títulos e Parágrafos */
 .hero-section h1 {
     color: var(--text-heading) !important; 
-    /* NOVO: Usando vw para escalar o H1 */
-    font-size: 3.5vw;
-    /* Adiciona fallback de tamanho mínimo */
-    min-font-size: 2.5rem; 
+    /* CORREÇÃO: Aumentamos o fator VW de 3.5vw para 4.5vw para um título maior */
+    font-size: 4.5vw;
+    /* CORREÇÃO: Aumentamos o tamanho MÍNIMO */
+    min-font-size: 3rem; 
 }
 
 .hero-section .text-light-alt {
     color: var(--text-alt-color) !important;
-    /* NOVO: Usando vw para escalar o texto secundário */
-    font-size: 1.5vw;
-    /* Adiciona fallback de tamanho mínimo */
-    min-font-size: 1.2rem;
+    /* CORREÇÃO: Aumentamos o fator VW de 1.5vw para 2vw */
+    font-size: 2vw;
+    /* CORREÇÃO: Aumentamos o tamanho MÍNIMO */
+    min-font-size: 1.4rem;
 }
+
 
 /* Botões Customizados */
 .custom-btn-outline {
@@ -450,17 +453,17 @@ body.dark-mode footer .social-icon {
     
     /* Forçamos o tamanho em REM (fixo) para garantir leitura no mobile */
     .hero-section h1 {
-        font-size: 2.5rem !important; 
+        font-size: 2.8rem !important; /* Um pouco maior que o 2.5rem anterior */
     }
     
     .hero-section .text-light-alt {
-        font-size: 1.2rem !important;
+        font-size: 1.4rem !important;
     }
 
     /* Forçamos o tamanho fixo da imagem no mobile */
     .perfil-img-circle {
-        width: 150px !important; 
-        height: 150px !important;
+        width: 180px !important; /* Mantém o novo mínimo */
+        height: 180px !important;
     }
 
     h2 {
