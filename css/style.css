@@ -55,10 +55,61 @@ h2::after {
     transform: translateX(-50%); /* Centraliza */
 }
 
+/* DEFINIÇÕES PARA O DARK MODE */
+body.dark-mode {
+    /* Inverte o fundo: de branco/claro para preto/escuro */
+    --cor-fundo-claro: #121212;   /* Fundo das seções */
+    --cor-fundo-escuro: #1f1f1f;  /* Header, Footer e Navbar */
+
+    /* Inverte o texto: de escuro para claro/cinza */
+    --cor-texto: #e0e0e0;
+
+    /* Cores de destaque (mantemos o azul, mas ajustamos o contraste) */
+    --cor-primaria: #4dd0e1;      /* Azul Ciano para destaque em Dark Mode */
+    --cor-secundaria: #bb86fc;    /* Um roxo para contraste em Dark Mode */
+    --cor-branco: #121212;
+}
+
+/* Aplica as cores do Dark Mode ao Body */
+body.dark-mode {
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-texto);
+}
+
+/* Garante que os títulos também usem a cor de texto nova */
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h5 {
+    color: var(--cor-texto) !important; 
+}
+
+/* Ajusta os cards e progress bars para Dark Mode */
+body.dark-mode .projeto-card, body.dark-mode .progress {
+    background-color: var(--cor-fundo-escuro) !important;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Ajusta o texto do card */
+body.dark-mode .card-text {
+    color: var(--cor-texto);
+}
+
 
 /*==================================
   2. ESTILO DA BARRA DE NAVEGAÇÃO (NAVBAR)
   ==================================*/
+
+/* Estilo do botão de alternância (DarkMode) */
+#darkModeToggle {
+    background-color: var(--cor-secundaria);
+    border: none;
+    color: var(--cor-branco);
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: var(--transicao-padrao);
+}
+
+#darkModeToggle:hover {
+    opacity: 0.8;
+}
 
 .navbar {
     background-color: var(--cor-fundo-escuro) !important; /* Cor de fundo escura */
