@@ -19,15 +19,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // 1. Carregar a preferência do usuário (localStorage)
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        applyMode(true);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && savedTheme === null) {
-        // 2. Se não houver preferência salva, verificar o modo do sistema operacional
-        applyMode(true);
-    } else {
-        applyMode(false); // Inicia no modo claro por padrão
-    }
+        const savedTheme = localStorage.getItem('theme');
+
+        if (savedTheme === 'light') {
+            // Se o usuário explicitamente salvou 'light', respeite.
+            applyMode(false);
+        } else {
+            // Se o tema salvo for 'dark', ou se for nulo (primeira visita),
+            // aplique o Dark Mode por padrão.
+            applyMode(true);
+            
+            // Opcional: Se for a primeira visita, salve 'dark' como padrão para futuras visitas
+            if (savedTheme === null) {
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        // ... (O resto do código para o toggleButton.addEventListener permanece o mesmo)
 
     // 3. Adicionar o listener para alternar
     toggleButton.addEventListener('click', () => {
