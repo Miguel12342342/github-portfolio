@@ -2,22 +2,48 @@
   1. DEFINIÇÕES GLOBAIS E FONTES
   ==================================*/
 
-/* Importação da Fonte (Exemplo: Poppins do Google Fonts) */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-/* Definição de Cores e Medidas Usando Variáveis CSS */
+/* Definição de Cores e Variáveis (Unificadas para o Novo Design) */
 :root {
-    /* Cores */
-    --cor-primaria: #007bff;        /* Azul: Destaque, botões principais */
-    --cor-secundaria: #6c757d;      /* Cinza: Texto secundário, fundo de cards */
-    --cor-fundo-claro: #f8f9fa;     /* Fundo das seções alternadas */
-    --cor-fundo-escuro: #343a40;    /* Fundo do Footer/Header escuro */
-    --cor-texto: #333333;           /* Cor principal do texto */
+    /* Cores Padrão (Light Mode) */
+    --cor-primaria: #007bff; /* Azul: Destaque, botões */
+    --cor-secundaria: #6c757d; /* Cinza: Texto secundário */
+    --cor-fundo-claro: #f8f9fa; /* Fundo das seções alternadas */
+    --cor-fundo-escuro: #343a40; /* Fundo do Hero, Navbar, Footer */
+    --cor-texto: #333333; /* Cor principal do texto */
     --cor-branco: #ffffff;
     
+    /* VARIÁVEIS DO HERO SECTION (Mapeamento para Light Mode) */
+    --background-dark: var(--cor-fundo-escuro); 
+    --text-light: var(--cor-branco);         
+    --text-heading: var(--cor-branco);       
+    --text-alt-color: #d0d0d0;              
+    
     /* Tamanhos/Medidas */
-    --padding-secao: 80px 0;        /* Padding padrão (cima/baixo) */
+    --padding-secao: 80px 0;
     --transicao-padrao: 0.3s ease-in-out; 
+}
+
+/* DEFINIÇÕES PARA O DARK MODE */
+body.dark-mode {
+    /* Inverte o fundo: de branco/claro para preto/escuro */
+    --cor-fundo-claro: #121212; 
+    --cor-fundo-escuro: #1f1f1f; 
+
+    /* Inverte o texto: de escuro para claro/cinza */
+    --cor-texto: #e0e0e0;
+    --cor-branco: #121212;
+
+    /* Cores de destaque para Dark Mode */
+    --cor-primaria: #4dd0e1; 
+    --cor-secundaria: #bb86fc; 
+
+    /* VARIÁVEIS DO HERO SECTION (Mapeamento para Dark Mode) */
+    --background-dark: var(--cor-fundo-escuro); 
+    --text-light: var(--cor-texto);          
+    --text-heading: var(--cor-texto);        
+    --text-alt-color: #999999;               
 }
 
 /* Estilo Base do Corpo */
@@ -26,6 +52,7 @@ body {
     color: var(--cor-texto);
     line-height: 1.6;
     background-color: var(--cor-branco);
+    transition: background-color var(--transicao-padrao), color var(--transicao-padrao); /* Adicionado para suavizar o Dark Mode */
 }
 
 /* Estilo para Todas as Seções */
@@ -40,34 +67,20 @@ h2 {
     margin-bottom: 40px;
     position: relative;
     padding-bottom: 10px;
-    display: inline-block; /* Para que a linha de baixo funcione */
+    display: inline-block;
 }
 
-/* CORREÇÃO: Linha centralizada abaixo do título H2 */
+/* Linha centralizada abaixo do título H2 */
 h2::after {
     content: '';
     position: absolute;
-    width: 60px; /* Tamanho fixo e menor para elegância */
+    width: 60px;
     height: 3px;
     background-color: var(--cor-primaria);
     bottom: 0;
     left: 50%; 
-    transform: translateX(-50%); /* Centraliza */
-}
-
-/* DEFINIÇÕES PARA O DARK MODE */
-body.dark-mode {
-    /* Inverte o fundo: de branco/claro para preto/escuro */
-    --cor-fundo-claro: #121212;   /* Fundo das seções */
-    --cor-fundo-escuro: #1f1f1f;  /* Header, Footer e Navbar */
-
-    /* Inverte o texto: de escuro para claro/cinza */
-    --cor-texto: #e0e0e0;
-
-    /* Cores de destaque (mantemos o azul, mas ajustamos o contraste) */
-    --cor-primaria: #4dd0e1;      /* Azul Ciano para destaque em Dark Mode */
-    --cor-secundaria: #bb86fc;    /* Um roxo para contraste em Dark Mode */
-    --cor-branco: #121212;
+    transform: translateX(-50%);
+    transition: background-color var(--transicao-padrao);
 }
 
 /* Aplica as cores do Dark Mode ao Body */
@@ -76,8 +89,8 @@ body.dark-mode {
     color: var(--cor-texto);
 }
 
-/* Garante que os títulos também usem a cor de texto nova */
-body.dark-mode h1, body.dark-mode h2, body.dark-mode h5 {
+/* Garante que os títulos também usem a cor de texto nova (Ajuste para títulos que não são primários) */
+body.dark-mode h1, body.dark-mode h5 {
     color: var(--cor-texto) !important; 
 }
 
@@ -97,69 +110,10 @@ body.dark-mode .card-text {
   2. ESTILO DA BARRA DE NAVEGAÇÃO (NAVBAR)
   ==================================*/
 
-/* Estilo do botão de alternância (DarkMode) */
-#darkModeToggle {
-    background-color: var(--cor-secundaria);
-    border: none;
-    color: var(--cor-branco);
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: var(--transicao-padrao);
-}
-
-#darkModeToggle:hover {
-    opacity: 0.8;
-}
-
-/*==================================
-  DARK MODE: GARANTINDO CORES CLARAS PARA ÍCONES
-  ==================================*/
-
-/* 1. Altera a cor dos ícones no botão de download (CV) e outros ícones globais */
-body.dark-mode i {
-    color: var(--cor-texto) !important; 
-    /* Usamos !important aqui APENAS para forçar a cor sobre o Font Awesome 
-       e outros estilos de botões que podem ter especificidade maior. */
-}
-
-/* 2. Ajuste específico para o botão de Dark Mode, se necessário */
-body.dark-mode #darkModeToggle i {
-    color: var(--cor-texto); /* Garante que o ícone de Sol/Lua fique claro */
-}
-
-/* 3. Ajuste para ícones dentro de botões (como o botão de GitHub) */
-body.dark-mode .btn i {
-    color: inherit; /* Herda a cor do botão, que é configurada no .btn */
-}
-
-/* Garante que os botões (como o do CV) usem a cor de destaque primária no Dark Mode */
-body.dark-mode .btn-primary {
-    background-color: var(--cor-primaria);
-    border-color: var(--cor-primaria);
-    color: var(--cor-branco); /* Mantém o texto dentro do botão primário escuro (para contraste) */
-}
-/* Se você quer o texto e ícone do botão primário CLARO no Dark Mode, use: */
-body.dark-mode .btn-primary {
-    color: var(--cor-fundo-escuro) !important; /* Texto/ícone escuro dentro do botão claro */
-}
-
-body.dark-mode .navbar {
-    background-color: var(--cor-fundo-escuro) !important; /* Garante que o fundo da navbar fique escuro */
-}
-
-/* A CORREÇÃO: Força a cor dos links de navegação para a cor clara do texto */
-body.dark-mode .navbar .nav-link {
-    color: var(--cor-texto) !important; /* Usamos a variável de texto claro */
-}
-
-/* Garante a cor correta ao passar o mouse */
-body.dark-mode .navbar .nav-link:hover {
-    color: var(--cor-primaria) !important; /* Usa o azul de destaque ao passar o mouse */
-}
-
 .navbar {
     background-color: var(--cor-fundo-escuro) !important; /* Cor de fundo escura */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color var(--transicao-padrao);
 }
 
 /* Cor do texto nos links da Navbar */
@@ -179,46 +133,99 @@ body.dark-mode .navbar .nav-link:hover {
 .navbar-brand {
     color: var(--cor-branco) !important;
     font-weight: 700;
+    transition: color var(--transicao-padrao);
+}
+
+/* Estilo do botão de alternância (DarkMode) */
+#darkModeToggle {
+    background-color: var(--cor-secundaria);
+    border: none;
+    color: var(--cor-branco);
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: var(--transicao-padrao);
+}
+
+#darkModeToggle:hover {
+    opacity: 0.8;
+}
+
+/* Dark Mode: Navbar e Links */
+body.dark-mode .navbar {
+    background-color: var(--cor-fundo-escuro) !important;
+}
+
+body.dark-mode .navbar .nav-link, 
+body.dark-mode .navbar-brand {
+    color: var(--cor-texto) !important; 
+}
+
+body.dark-mode .navbar .nav-link:hover {
+    color: var(--cor-primaria) !important; 
 }
 
 
 /*==================================
-  3. SEÇÃO DE APRESENTAÇÃO (HERO)
+  3. SEÇÃO DE APRESENTAÇÃO (HERO) - NOVO ESTILO
   ==================================*/
 
-#apresentacao {
-    min-height: 85vh; /* Ocupa a maior parte da tela */
-    display: flex;
+/* Hero Section Fundo Escuro */
+.hero-section {
+    background-color: var(--background-dark); 
+    color: var(--text-light); 
+    min-height: 100vh;
+    display: flex; 
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: var(--cor-fundo-claro);
-    padding: 100px 0;
+    padding-top: 100px !important;
+    transition: background-color var(--transicao-padrao);
 }
 
-#apresentacao h1 {
+/* Imagem de Perfil Circular */
+.perfil-img-circle {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--cor-primaria);
+}
+
+/* Títulos e Parágrafos */
+.hero-section h1 {
+    color: var(--text-heading) !important; 
     font-size: 3.5rem;
-    font-weight: 700;
-    color: var(--cor-texto);
-    margin-bottom: 10px;
 }
 
-#apresentacao .lead {
+.hero-section .text-light-alt {
+    color: var(--text-alt-color) !important;
     font-size: 1.5rem;
-    color: var(--cor-primaria);
-    margin-bottom: 30px;
 }
 
-/* Estilo da Foto de Perfil */
-#apresentacao .perfil-img {
-    width: 220px; 
-    height: 220px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 10px solid #A9A9A9 !important; 
-    display: block; 
-    margin: 0 auto 20px auto; 
-    box-shadow: none !important;
+/* Botões Customizados */
+.custom-btn-outline {
+    border-color: var(--text-light);
+    color: var(--text-light);
+    transition: background-color 0.3s;
+}
+
+.custom-btn-outline:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    border-color: var(--cor-primaria);
+}
+
+.custom-btn {
+    background-color: var(--text-light) !important;
+    color: var(--background-dark) !important;
+}
+
+/* Ícones Sociais no Hero */
+.social-icon-hero {
+    color: var(--text-light);
+    transition: color 0.3s;
+}
+
+.social-icon-hero:hover {
+    color: var(--cor-primaria);
 }
 
 
@@ -239,28 +246,24 @@ body.dark-mode .navbar .nav-link:hover {
 .btn-primary:hover {
     background-color: #0056b3; /* Um tom mais escuro */
     border-color: #0056b3;
-    transform: translateY(-2px); /* Efeito de elevação */
+    transform: translateY(-2px); 
 }
 
-/* Fundo alternado: #habilidades e #contato ficam com cinza claro */
+/* Fundo alternado: #habilidades e #contato */
 #habilidades, #contato {
     background-color: var(--cor-fundo-claro) !important;
-}
-
-/* Para que o crescimento da barra de progresso seja suave */
-.progress-bar {
-    transition: width 1.5s ease-out; /* 1.5 segundos de duração, animação suave */
-    width: 0%; /* Garante que comece em 0% antes do JavaScript ser executado */
+    transition: background-color var(--transicao-padrao);
 }
 
 /* GARANTINDO O BRANCO NO SOBRE MIM (para contraste) */
 #sobre {
     background-color: var(--cor-branco) !important;
+    transition: background-color var(--transicao-padrao);
 }
 
 /* Estilo para listas em "Sobre Mim" */
 #sobre ul {
-    list-style: disc; /* Garante que os pontos apareçam */
+    list-style: disc;
     padding-left: 20px;
     margin-bottom: 20px;
 }
@@ -280,22 +283,21 @@ body.dark-mode .navbar .nav-link:hover {
 }
 
 .projeto-card:hover {
-    transform: translateY(-7px); /* Destaque no hover */
+    transform: translateY(-7px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .projeto-card .card-img-top {
     transition: var(--transicao-padrao);
-    height: 500px !important;  /* Mantém a altura fixa */
+    height: 250px; /* Reduzido de 500px para um visual mais equilibrado */
     object-fit: cover;
 }
 
-/* REFINAMENTO: Aplica o Zoom SUAVE (1.08) */
 .projeto-card:hover .card-img-top {
     transform: scale(1.08); 
 }
 
-/* --- Ajuste para as cores das Badges (Tecnologias) --- */
+/* Ajuste para as cores das Badges (Tecnologias) */
 .tecnologias .badge {
     background-color: #e9ecef !important; 
     color: #495057 !important; 
@@ -303,12 +305,13 @@ body.dark-mode .navbar .nav-link:hover {
     margin-bottom: 5px;
     padding: 6px 10px;
     font-size: 0.85rem;
+    transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
 }
 
-/* Destaca a badge 'Flutter' com a cor primária (azul) */
+/* Destaque primário */
 .tecnologias .badge.bg-primary {
     background-color: var(--cor-primaria) !important;
-    color: white !important;
+    color: var(--cor-branco) !important;
 }
 
 
@@ -320,12 +323,13 @@ body.dark-mode .navbar .nav-link:hover {
     margin-bottom: 15px;
     font-size: 1.1rem;
     font-weight: 500;
-    text-align: left; /* Alinha o texto das habilidades à esquerda */
+    text-align: left;
 }
 
 .skill-item i {
     margin-right: 8px;
-    color: var(--cor-primaria); /* Usa a cor principal para os ícones */
+    color: var(--cor-primaria);
+    transition: color var(--transicao-padrao);
 }
 
 /* Estilo da Barra de Progresso do Bootstrap */
@@ -336,7 +340,7 @@ body.dark-mode .navbar .nav-link:hover {
 }
 
 .progress-bar {
-    transition: width 1.5s ease-in-out; /* Adiciona uma animação suave para o efeito visual */
+    transition: width 1.5s ease-in-out; 
 }
 
 
@@ -354,6 +358,7 @@ body.dark-mode .navbar .nav-link:hover {
     color: var(--cor-primaria);
     margin-bottom: 10px;
     display: block; 
+    transition: color var(--transicao-padrao);
 }
 
 .contact-item p {
@@ -381,6 +386,7 @@ footer {
     background-color: var(--cor-fundo-escuro) !important;
     color: var(--cor-branco) !important;
     padding: 20px 0;
+    transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
 }
 
 /* Links sociais no rodapé */
@@ -395,6 +401,10 @@ footer {
     color: var(--cor-primaria);
 }
 
+body.dark-mode footer, 
+body.dark-mode footer .social-icon {
+    color: var(--cor-texto) !important;
+}
 
 /*==================================
   9. RESPONSIVIDADE (MEDIA QUERIES)
@@ -405,17 +415,28 @@ footer {
         --padding-secao: 60px 0;
     }
 
-    #apresentacao h1 {
+    /* Ajuste para o Hero Section em tablets */
+    .hero-section h1 {
         font-size: 3rem;
     }
 }
 
-@media (max-width: 768px) { /* Celulares */
-    #apresentacao {
-        min-height: 70vh;
+@media (max-width: 767.98px) { /* Celulares */
+    
+    /* Hero Section: Empilhamento */
+    .hero-section .d-flex {
+        flex-direction: column;
+    }
+    .hero-section .justify-content-md-start {
+        justify-content: center !important; /* Centraliza botões e ícones sociais */
     }
 
-    #apresentacao h1 {
+    .hero-section {
+        padding-top: 100px !important;
+        min-height: auto;
+    }
+    
+    .hero-section h1 {
         font-size: 2.5rem;
     }
 
@@ -423,7 +444,7 @@ footer {
         font-size: 1.8rem;
     }
     
-    .perfil-img {
+    .perfil-img-circle {
         width: 180px;
         height: 180px;
     }
