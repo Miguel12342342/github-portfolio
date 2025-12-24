@@ -328,7 +328,7 @@ body.dark-mode .navbar .nav-link:hover {
 
 .projeto-card .card-img-top {
     transition: var(--transicao-padrao);
-    height: 250px;
+    height: 450px;
     object-fit: cover;
 }
 
