@@ -3,40 +3,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const icon = toggleButton.querySelector('i');
 
-    // Função para aplicar o modo (incluindo o ícone)
+    // Aplica o modo (dark ou light) e salva a preferência
     const applyMode = (isDark) => {
         if (isDark) {
             body.classList.add('dark-mode');
             icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun'); // Ícone de sol para indicar que pode voltar ao light
+            icon.classList.add('fa-sun');
             localStorage.setItem('theme', 'dark');
         } else {
             body.classList.remove('dark-mode');
             icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon'); // Ícone de lua para indicar que pode ir para o dark
+            icon.classList.add('fa-moon');
             localStorage.setItem('theme', 'light');
         }
     };
 
-    // 1. Carregar a preferência do usuário (localStorage)
-        const savedTheme = localStorage.getItem('theme');
+    // Carrega a preferência salva, com sistema operacional como fallback
+    const savedTheme = localStorage.getItem('theme');
 
-        if (savedTheme === 'light') {
-            // Se o usuário explicitamente salvou 'light', respeite.
-            applyMode(false);
-        } else {
-            // Se o tema salvo for 'dark', ou se for nulo (primeira visita),
-            // aplique o Dark Mode por padrão.
-            applyMode(true);
-            
-            // Opcional: Se for a primeira visita, salve 'dark' como padrão para futuras visitas
-            if (savedTheme === null) {
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-        // ... (O resto do código para o toggleButton.addEventListener permanece o mesmo)
+    if (savedTheme) {
+        // Respeita o que o usuário salvou explicitamente
+        applyMode(savedTheme === 'dark');
+    } else {
+        // Primeira visita: respeita a preferência do sistema operacional
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyMode(prefersDark);
+    }
 
-    // 3. Adicionar o listener para alternar
+    // Alterna o modo ao clicar no botão
     toggleButton.addEventListener('click', () => {
         const isDark = body.classList.toggle('dark-mode');
         applyMode(isDark);
