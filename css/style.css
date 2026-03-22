@@ -2,17 +2,17 @@
   1. DEFINIÇÕES GLOBAIS E FONTES
   ==================================*/
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&family=Poppins:wght@300;400;600;700&display=swap');
 
 /* Definição de Cores e Variáveis */
 :root {
     /* Cores Padrão (Light Mode) */
     --cor-primaria: #007bff; 
     --cor-secundaria: #6c757d; 
-    --cor-fundo-claro: #f8f9fa; 
-    --cor-fundo-escuro: #343a40; 
+    --cor-fundo-claro: #f8f9fa; /* Seção habilidades, contato */
+    --cor-fundo-escuro: #343a40; /* Navbar, Footer, Hero */
     --cor-texto: #333333; 
-    --cor-branco: #ffffff;
+    --cor-branco: #ffffff; /* Seção Sobre, Cards */
     --cor-primaria-hover: #0056b3;
     
     /* VARIÁVEIS DO HERO SECTION */
@@ -21,6 +21,16 @@
     --text-heading: var(--cor-branco);       
     --text-alt-color: #d0d0d0;              
     
+    /* Variáveis baseadas em Tema */
+    --card-bg: var(--cor-branco);
+    --navbar-bg: rgba(52, 58, 64, 0.9);
+    --navbar-text: var(--cor-branco);
+    --footer-bg: var(--cor-fundo-escuro);
+    --footer-text: var(--cor-branco);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --shadow-color-hover: rgba(0, 123, 255, 0.3);
+
     /* Tamanhos/Medidas */
     --padding-secao: 80px 0;
     --transicao-padrao: 0.3s ease-in-out; 
@@ -29,9 +39,9 @@
 /* DEFINIÇÕES PARA O DARK MODE */
 body.dark-mode {
     --cor-fundo-claro: #121212; 
-    --cor-fundo-escuro: #1f1f1f; 
+    --cor-fundo-escuro: #1a1a1a; 
     --cor-texto: #e0e0e0;
-    --cor-branco: #121212;
+    --cor-branco: #171717; /* Define fundo principal escuro */
     --cor-primaria: #4dd0e1; 
     --cor-secundaria: #bb86fc; 
     --cor-primaria-hover: #00b8d4;
@@ -41,20 +51,44 @@ body.dark-mode {
     --text-light: var(--cor-texto);          
     --text-heading: var(--cor-texto);        
     --text-alt-color: #999999;               
+    
+    /* Variáveis baseadas em Tema */
+    --card-bg: #222222;
+    --navbar-bg: rgba(26, 26, 26, 0.9);
+    --navbar-text: var(--cor-texto);
+    --footer-bg: #1a1a1a;
+    --footer-text: var(--cor-texto);
+    --glass-bg: rgba(30, 30, 30, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --shadow-color-hover: rgba(77, 208, 225, 0.2);
 }
 
 /* Estilo Base do Corpo */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: var(--cor-texto);
     line-height: 1.6;
     background-color: var(--cor-branco);
     transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
 /* Estilo para Todas as Seções */
 section {
     padding: var(--padding-secao);
+    position: relative;
+    z-index: 1;
 }
 
 /* Estilo Padrão para Títulos de Seção */
@@ -86,21 +120,12 @@ body.dark-mode {
     color: var(--cor-texto);
 }
 
-/* Garante que os títulos também usem a cor de texto nova */
-body.dark-mode h1, body.dark-mode h5 {
-    color: var(--cor-texto) !important; 
+/* As variáveis de tema fazem o trabalho global agora. */
+/* Progress bar no dark mode */
+body.dark-mode .progress {
+    background-color: #333;
 }
 
-/* Ajusta os cards e progress bars para Dark Mode */
-body.dark-mode .projeto-card, body.dark-mode .progress {
-    background-color: var(--cor-fundo-escuro) !important;
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-}
-
-/* Ajusta o texto do card */
-body.dark-mode .card-text {
-    color: var(--cor-texto);
-}
 
 
 /*==================================
@@ -108,15 +133,18 @@ body.dark-mode .card-text {
   ==================================*/
 
 .navbar {
-    background-color: var(--cor-fundo-escuro) !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color var(--transicao-padrao);
+    background-color: var(--navbar-bg) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: background-color var(--transicao-padrao), border var(--transicao-padrao);
 }
 
 /* Cor do texto nos links da Navbar */
 .navbar-nav .nav-link {
-    color: var(--cor-branco) !important;
-    font-weight: 400;
+    color: var(--navbar-text) !important;
+    font-weight: 500;
     margin-left: 15px;
     transition: var(--transicao-padrao);
 }
@@ -128,37 +156,25 @@ body.dark-mode .card-text {
 
 /* Logo ou Nome do Portfólio */
 .navbar-brand {
-    color: var(--cor-branco) !important;
+    color: var(--navbar-text) !important;
     font-weight: 700;
+    font-size: 1.4rem;
     transition: color var(--transicao-padrao);
 }
 
 /* Estilo do botão de alternância (DarkMode) */
 #darkModeToggle {
-    background-color: var(--cor-secundaria);
-    border: none;
-    color: var(--cor-branco);
-    padding: 5px 10px;
-    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid var(--cor-secundaria);
+    color: var(--navbar-text);
+    padding: 6px 12px;
+    border-radius: 8px;
     transition: var(--transicao-padrao);
 }
 
 #darkModeToggle:hover {
-    opacity: 0.8;
-}
-
-/* Dark Mode: Navbar e Links */
-body.dark-mode .navbar {
-    background-color: var(--cor-fundo-escuro) !important;
-}
-
-body.dark-mode .navbar .nav-link, 
-body.dark-mode .navbar-brand {
-    color: var(--cor-texto) !important; 
-}
-
-body.dark-mode .navbar .nav-link:hover {
-    color: var(--cor-primaria) !important; 
+    background-color: var(--cor-secundaria);
+    color: #fff;
 }
 
 
@@ -167,7 +183,7 @@ body.dark-mode .navbar .nav-link:hover {
   ==================================*/
 
 .hero-section {
-    background-color: var(--background-dark); 
+    background-color: transparent !important; 
     color: var(--text-light); 
     min-height: 100vh;
     display: flex; 
@@ -248,19 +264,19 @@ body.dark-mode .navbar .nav-link:hover {
 
 /* Fundo alternado: #habilidades */
 #habilidades {
-    background-color: var(--cor-fundo-claro) !important;
+    background-color: transparent !important;
     transition: background-color var(--transicao-padrao);
 }
 
 /* Fundo alternado: #contato */
 #contato {
-    background-color: var(--cor-fundo-claro) !important;
+    background-color: transparent !important;
     transition: background-color var(--transicao-padrao);
 }
 
 /* Seção Sobre Mim */
 #sobre {
-    background-color: var(--cor-branco) !important;
+    background-color: transparent !important;
     transition: background-color var(--transicao-padrao);
 }
 
@@ -286,17 +302,38 @@ body.dark-mode .navbar .nav-link:hover {
   ==================================*/
 
 .projeto-card {
-    border: none;
-    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
     overflow: hidden; 
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: var(--transicao-padrao);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    background-color: var(--card-bg);
+    color: var(--cor-texto);
+    transition: all 0.4s ease-out;
     height: 100%; 
 }
 
+/* Garante que os textos do card acompanhem o tema escuro (o Bootstrap costuma fixar a cor) */
+.projeto-card h5, 
+.projeto-card .card-text {
+    color: var(--cor-texto) !important;
+}
+
+/* Corrige o botão "Código" que é dark por padrão no Bootstrap */
+body.dark-mode .projeto-card .btn-outline-dark {
+    color: var(--cor-texto);
+    border-color: var(--cor-texto);
+}
+
+body.dark-mode .projeto-card .btn-outline-dark:hover {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+    color: #121212;
+}
+
 .projeto-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px var(--shadow-color-hover);
+    border-color: var(--cor-primaria);
 }
 
 .projeto-card .card-img-top {
@@ -395,27 +432,26 @@ body.dark-mode .navbar .nav-link:hover {
   ==================================*/
 
 footer {
-    background-color: var(--cor-fundo-escuro) !important;
-    color: var(--cor-branco) !important;
-    padding: 20px 0;
+    background-color: var(--footer-bg) !important;
+    color: var(--footer-text) !important;
+    padding: 30px 0;
+    position: relative;
+    z-index: 1;
     transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
 }
 
 /* Links sociais no rodapé */
 .social-icon {
-    color: var(--cor-branco);
+    color: var(--footer-text);
     font-size: 1.5rem;
     margin: 0 10px;
-    transition: var(--transicao-padrao);
+    transition: all var(--transicao-padrao);
+    display: inline-block;
 }
 
 .social-icon:hover {
     color: var(--cor-primaria);
-}
-
-body.dark-mode footer, 
-body.dark-mode footer .social-icon {
-    color: var(--cor-texto) !important;
+    transform: translateY(-5px);
 }
 
 /*==================================
@@ -478,4 +514,40 @@ body.dark-mode footer .social-icon {
 @keyframes blink-caret {
     from, to { border-right-color: transparent }
     50% { border-right-color: inherit; }
+}
+
+/*==================================
+  11. SCROLL ANIMATIONS
+  ==================================*/
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*==================================
+  12. ADVANCED EFFECTS
+  ==================================*/
+#tsparticles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
 }

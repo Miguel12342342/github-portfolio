@@ -130,4 +130,50 @@ document.addEventListener('DOMContentLoaded', function() {
     if (footerYear) {
         footerYear.textContent = new Date().getFullYear();
     }
+
+    // ======================================================
+    // 5. TSPARTICLES (GRAVIDADE ZERO)
+    // ======================================================
+    if (typeof tsParticles !== 'undefined') {
+        tsParticles.load({
+            id: "tsparticles",
+            options: {
+                fullScreen: { enable: false },
+                particles: {
+                    number: { value: 60, density: { enable: true } },
+                    color: { value: ["#4dd0e1", "#007bff", "#bb86fc"] },
+                    links: { enable: true, color: "#888888", distance: 150, opacity: 0.2, width: 1 },
+                    move: { enable: true, speed: 1.2, direction: "none", random: false, straight: false, outModes: { default: "bounce" } },
+                    size: { value: { min: 1, max: 3 } },
+                    opacity: { value: { min: 0.1, max: 0.5 } }
+                },
+                interactivity: {
+                    detectsOn: "window",
+                    events: { onHover: { enable: true, mode: "grab" } },
+                    modes: { grab: { distance: 140, links: { opacity: 0.5 } } }
+                },
+                detectRetina: true
+            }
+        });
+    }
+
+    // ======================================================
+    // 6. SCROLL ANIMATIONS (FADE-IN-UP)
+    // ======================================================
+    const fadeElements = document.querySelectorAll('.fade-in-up');
+    if (fadeElements.length > 0) {
+        const fadeObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+    }
 });
