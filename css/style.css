@@ -7,29 +7,29 @@
 /* Definição de Cores e Variáveis */
 :root {
     /* Cores Padrão (Light Mode) */
-    --cor-primaria: #007bff; 
-    --cor-secundaria: #6c757d; 
-    --cor-fundo-claro: #f8f9fa; /* Seção habilidades, contato */
-    --cor-fundo-escuro: #343a40; /* Navbar, Footer, Hero */
-    --cor-texto: #333333; 
-    --cor-branco: #ffffff; /* Seção Sobre, Cards */
+    --cor-primaria: #0066cc; 
+    --cor-secundaria: #5a6268; 
+    --cor-fundo-claro: #e9ecef; /* Mais cinza para destacar os glass panels */
+    --cor-fundo-escuro: #343a40; 
+    --cor-texto: #1a1a1a; /* Texto mais escuro e legível */
+    --cor-branco: #f4f6f9; /* Fundo base ligeiramente cinza claro invés de 100% branco */
     --cor-primaria-hover: #0056b3;
     
-    /* VARIÁVEIS DO HERO SECTION */
-    --background-dark: var(--cor-fundo-escuro); 
-    --text-light: var(--cor-branco);         
-    --text-heading: var(--cor-branco);       
-    --text-alt-color: #d0d0d0;              
+    /* VARIÁVEIS GLOBAIS DE TEMA (Modo Claro) */
+    --background-dark: var(--cor-branco); 
+    --text-light: var(--cor-texto);         
+    --text-heading: var(--cor-texto);       
+    --text-alt-color: #555555;              
     
     /* Variáveis baseadas em Tema */
-    --card-bg: var(--cor-branco);
-    --navbar-bg: rgba(52, 58, 64, 0.9);
-    --navbar-text: var(--cor-branco);
-    --footer-bg: var(--cor-fundo-escuro);
-    --footer-text: var(--cor-branco);
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.3);
-    --shadow-color-hover: rgba(0, 123, 255, 0.3);
+    --card-bg: #ffffff; /* Card fica 100% branco se destacando do fundo cinza */
+    --navbar-bg: rgba(244, 246, 249, 0.9);
+    --navbar-text: var(--cor-texto);
+    --footer-bg: #e9ecef;
+    --footer-text: var(--cor-texto);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --shadow-color-hover: rgba(0, 102, 204, 0.3);
 
     /* Tamanhos/Medidas */
     --padding-secao: 80px 0;
@@ -67,13 +67,19 @@ body.dark-mode {
 body {
     font-family: 'Inter', sans-serif;
     color: var(--cor-texto);
-    line-height: 1.6;
+    line-height: 1.7;
     background-color: var(--cor-branco);
     transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
+    letter-spacing: -0.5px;
+}
+
+h1.display-4 {
+    letter-spacing: -2px;
+    font-weight: 800;
 }
 
 .text-gradient {
@@ -528,6 +534,160 @@ footer {
 .fade-in-up.is-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ==================================
+   13. BENTO BOX GRID (SENIOR LAYOUT)
+   ================================== */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.bento-item {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid var(--glass-border) !important;
+}
+
+.bento-item h5 {
+    letter-spacing: -0.5px;
+}
+
+.bento-item:hover {
+    transform: translateY(-8px) scale(1.03);
+    background: var(--card-bg);
+    border-color: var(--cor-primaria) !important;
+    box-shadow: 0 20px 40px var(--shadow-color-hover);
+}
+
+/* Status Pulse Badge */
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+}
+
+/* Formulário de Contato */
+.custom-input {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--cor-texto) !important;
+    padding: 12px 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    background-color: var(--card-bg) !important;
+    color: var(--cor-texto) !important;
+    border-color: var(--cor-primaria) !important;
+    box-shadow: 0 0 0 4px var(--shadow-color-hover) !important;
+    outline: none;
+}
+
+.custom-input::placeholder {
+    color: var(--text-alt-color);
+}
+
+/* ==================================
+   14. CUSTOM MAGNETIC CURSOR
+   ================================== */
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--cor-primaria);
+}
+
+.cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--cor-secundaria);
+    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s;
+}
+
+/* Efeito sensorial no hover */
+.cursor-outline.hover-active {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(77, 208, 225, 0.2); /* Cor primária com opacidade */
+    border-color: transparent;
+    backdrop-filter: blur(2px);
+    mix-blend-mode: difference;
+}
+
+/* Ocultar cursor padrão nativo em dispositivos com mouse (não-touch) */
+@media (pointer: fine) {
+    body, a, button, .projeto-card, .btn, .nav-link, .custom-input {
+        cursor: none !important;
+    }
+}
+
+/* ==================================
+   15. 3D TILT EFFECT & HARDWARE ACCEL
+   ================================== */
+.projeto-card, .bento-item {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* ==================================
+   16. RESPONSIVE THEME BUTTONS
+   ================================== */
+.btn-theme-outline {
+    color: var(--cor-texto) !important;
+    background-color: transparent !important;
+    border: 2px solid var(--cor-texto) !important;
+    transition: all var(--transicao-padrao) !important;
+}
+
+.btn-theme-outline:hover {
+    background-color: var(--cor-texto) !important;
+    color: var(--card-bg) !important;
+}
+
+.btn-theme-solid {
+    color: var(--card-bg) !important;
+    background-color: var(--cor-texto) !important;
+    border: 2px solid var(--cor-texto) !important;
+    transition: all var(--transicao-padrao) !important;
+}
+
+.btn-theme-solid:hover {
+    background-color: transparent !important;
+    color: var(--cor-texto) !important;
+}
+
+/* ==================================
+   17. PARALLAX HARDWARE ACCEL
+   ================================== */
+section .container, #tsparticles {
+    will-change: transform, opacity;
 }
 
 /*==================================

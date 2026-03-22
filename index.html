@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/webp" href="img/miguel.webp">
     <meta name="description" content="Portfólio de Miguel Angelo, Desenvolvedor Flutter Mobile com 3 anos de experiência em Android e iOS. Especialista em BLoC, Provider, Firebase e API REST.">
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Meu Portfólio | Miguel Angelo">
     <meta property="og:description" content="Desenvolvedor Flutter Mobile construindo apps nativos de alta performance para Android e iOS.">
-    <meta property="og:image" content="https://miguel12342342.github.io/img/miguel.jpg">
+    <meta property="og:image" content="https://miguel12342342.github.io/img/miguel.webp">
     <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
@@ -45,6 +46,11 @@
                             <a class="nav-link" href="#contato">Contato</a>
                         </li>
                         <li class="nav-item ms-2">
+                            <button id="langToggle" class="btn btn-dark fw-bold" aria-label="Change Language">
+                                🇺🇸 EN
+                            </button>
+                        </li>
+                        <li class="nav-item ms-2">
                             <button id="darkModeToggle" class="btn btn-dark" aria-label="Alternar tema claro e escuro">
                                  <i class="fas fa-moon" aria-hidden="true"></i> 
                             </button>
@@ -61,20 +67,20 @@
     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center text-center text-md-start position-relative" style="z-index: 1;">
         
         <div class="p-4" style="z-index: 2;">
-            <img src="img/miguel.jpg" class="perfil-img-circle mb-4 mb-md-0 shadow-lg" alt="Foto de Perfil de Miguel Angelo">
+            <img src="img/miguel.webp" class="perfil-img-circle mb-4 mb-md-0 shadow-lg" alt="Foto de Perfil de Miguel Angelo">
         </div>
 
         <div class="p-4 p-md-5 ms-md-4 glass-panel fade-in-up" style="z-index: 2;">
-            <p class="display-6 mb-1 text-light-alt fade-in-up">Olá, eu sou</p>
-            <h1 class="display-4 fw-bold text-white fade-in-up"><span class="text-gradient">Miguel Angelo</span></h1>
-            <p class="mb-4 lead text-alt-color typewriter fade-in-up"></p>
+            <p class="display-6 mb-1 fade-in-up" style="color: var(--text-alt-color);" data-i18n="hero_hello">Olá, eu sou</p>
+            <h1 class="display-4 fw-bold fade-in-up" style="color: var(--text-heading);"><span class="text-gradient">Miguel Angelo</span></h1>
+            <p class="mb-4 lead typewriter fade-in-up" style="color: var(--text-alt-color);"></p>
             
             <div class="d-flex justify-content-center justify-content-md-start mb-3 fade-in-up">
-                <a href="docs/FlutterDeveloper_MiguelAngelo_br.pdf" class="btn btn-outline-light btn-lg me-3 custom-btn-outline" target="_blank" rel="noopener noreferrer" download>
-                    Download CV
+                <a href="docs/FlutterDeveloper_MiguelAngelo_br.pdf" class="btn btn-theme-outline btn-lg me-3" target="_blank" rel="noopener noreferrer" download>
+                    <span data-i18n="hero_download">Download CV</span>
                 </a>
-                <a href="#contato" class="btn btn-dark btn-lg custom-btn">
-                    Contato
+                <a href="#contato" class="btn btn-theme-solid btn-lg">
+                    <span data-i18n="hero_contact">Contato</span>
                 </a>
             </div>
             
@@ -195,7 +201,7 @@
             <div class="col-md-6 col-lg-4 mb-4 fade-in-up">
                 <div class="card projeto-card shadow-sm">
                     <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub">
-                        <img src="img/youtube.png" class="card-img-top" alt="Captura de tela do aplicativo Youtube Clone em Flutter" loading="lazy">
+                        <img src="img/youtube.webp" class="card-img-top" alt="Captura de tela do aplicativo Youtube Clone em Flutter" loading="lazy">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">Youtube</h5>
@@ -217,7 +223,7 @@
             <div class="col-md-6 col-lg-4 mb-4 fade-in-up">
                 <div class="card projeto-card shadow-sm">
                     <a href="https://github.com/Miguel12342342/alcool_Gasolina" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub">
-                    <img src="img/alcool_ou_gasolina.png" class="card-img-top" alt="Captura de tela do aplicativo Álcool ou Gasolina" loading="lazy">
+                    <img src="img/alcool_ou_gasolina.webp" class="card-img-top" alt="Captura de tela do aplicativo Álcool ou Gasolina" loading="lazy">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">Álcool ou Gasolina?</h5>
@@ -239,7 +245,7 @@
             <div class="col-md-6 col-lg-4 mb-4 fade-in-up">
                 <div class="card projeto-card shadow-sm">
                      <a href="https://github.com/Miguel12342342/Joken_po" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub">
-                    <img src="img/jonken.png" class="card-img-top" alt="Captura de tela do Jogo Jokenpô" loading="lazy">
+                    <img src="img/jonken.webp" class="card-img-top" alt="Captura de tela do Jogo Jokenpô" loading="lazy">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">Jokenpô: Pedra, Papel e Tesoura</h5>
@@ -261,7 +267,7 @@
             <div class="col-md-6 col-lg-4 mb-4 fade-in-up">
                 <div class="card projeto-card shadow-sm">
                     <a href="https://github.com/Miguel12342342/frases_do_dia" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub">
-                    <img src="img/frases_do_dia.png" class="card-img-top" alt="Captura de tela do aplicativo Frases do Dia" loading="lazy">
+                    <img src="img/frases_do_dia.webp" class="card-img-top" alt="Captura de tela do aplicativo Frases do Dia" loading="lazy">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title">Frases do Dia</h5>
@@ -291,23 +297,51 @@
                     Tenho interesse em novas oportunidades de Desenvolvimento Flutter. Sinta-se à vontade para me contatar.
                 </p>
 
-                <div class="row justify-content-center">                                            
-                    <div class="col-md-4 contact-item fade-in-up">
-                        <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
-                        <p class="mb-0">GitHub</p>
-                        <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer">/Miguel12342342</a>
+                <div class="row text-start mt-5">                                            
+                    <!-- Informações de Contato -->
+                    <div class="col-md-5 mb-5 mb-md-0 contact-info fade-in-up">
+                        <div class="contact-item d-flex align-items-center mb-4 p-0">
+                            <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="social-icon me-3 m-0" aria-label="GitHub"><i class="fab fa-github fa-2x" aria-hidden="true"></i></a>
+                            <div>
+                                <h5 class="mb-0 fw-bold">GitHub</h5>
+                                <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="text-decoration-none">/Miguel12342342</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item d-flex align-items-center mb-4 p-0">
+                            <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="social-icon me-3 m-0" aria-label="LinkedIn"><i class="fab fa-linkedin fa-2x" aria-hidden="true"></i></a>
+                            <div>
+                                <h5 class="mb-0 fw-bold">LinkedIn</h5>
+                                <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="text-decoration-none">/miguelpagys</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item d-flex align-items-center p-0">
+                            <a href="mailto:miguelpagy@gmail.com" class="social-icon me-3 m-0" aria-label="Email"><i class="fas fa-envelope fa-2x" aria-hidden="true"></i></a>
+                            <div>
+                                <h5 class="mb-0 fw-bold">Email</h5>
+                                <a href="mailto:miguelpagy@gmail.com" class="text-decoration-none">miguelpagy@gmail.com</a>
+                            </div>
+                        </div>
                     </div>
 
-                     <div class="col-md-4 contact-item fade-in-up">
-                         <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-                        <p class="mb-0">LinkedIn</p>
-                        <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer">/miguelpagys</a>
-                    </div>
-
-                      <div class="col-md-4 contact-item fade-in-up">
-                         <a href="mailto:miguelpagy@gmail.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
-                        <p class="mb-0">Email</p>
-                        <a href="mailto:miguelpagy@gmail.com">miguelpagy@gmail.com</a>
+                    <!-- Formulário de Contato -->
+                    <div class="col-md-7 fade-in-up">
+                        <form id="contactForm" class="glass-panel p-4 p-md-5 text-start shadow-lg">
+                            <div class="mb-3">
+                                <label for="name" class="form-label" data-i18n="form_name">Nome</label>
+                                <input type="text" class="form-control custom-input" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label" data-i18n="form_email">Email</label>
+                                <input type="email" class="form-control custom-input" id="email" name="email" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="form-label" data-i18n="form_message">Mensagem</label>
+                                <textarea class="form-control custom-input" id="message" name="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 fw-bold btn-lg" data-i18n="form_send">Enviar Mensagem</button>
+                        </form>
                     </div>
                 </div>
 
@@ -330,6 +364,10 @@
         </div>
     </footer>
 
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <!-- tsParticles -->
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/tsparticles.engine.min.js"></script>
@@ -338,6 +376,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-links@3.1.0/tsparticles.preset.links.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.1.0/tsparticles.bundle.min.js"></script>
     <script src="js/darkMode.js"></script>
+    <script src="js/i18n.js"></script>
     <script src="js/scripts.js"></script> 
     
 </body>
