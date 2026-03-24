@@ -12,94 +12,78 @@
     <meta property="og:image" content="https://miguel12342342.github.io/img/miguel.webp">
     <meta property="og:type" content="website">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Meu Portfólio | Miguel Angelo</title>
 </head>
 <body>
     
-    <header>
-        <nav class="navbar navbar-expand-lg fixed-top py-3" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand" href="#apresentacao">Miguel Angelo</a>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#apresentacao">Início</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#sobre">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#habilidades">Habilidades</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#projetos">Projetos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contato">Contato</a>
-                        </li>
-                        <li class="nav-item ms-2">
-                            <button id="langToggle" class="btn btn-dark fw-bold" aria-label="Change Language">
-                                🇺🇸 EN
-                            </button>
-                        </li>
-                        <li class="nav-item ms-2">
-                            <button id="darkModeToggle" class="btn btn-dark" aria-label="Alternar tema claro e escuro">
-                                 <i class="fas fa-moon" aria-hidden="true"></i> 
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <header class="site-header" id="mainNav">
+        <div class="wrapper flex-between align-center">
+            <a class="logo" href="#apresentacao">Miguel Angelo</a>
+            
+            <button id="menu-toggle" class="menu-toggle" aria-label="Abrir Menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            
+            <nav class="site-nav" id="navbarNav">
+                <ul class="nav-links">
+                    <li><a href="#apresentacao" aria-current="page">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#habilidades">Habilidades</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li>
+                        <button id="langToggle" class="btn btn-outline-dark fw-bold" aria-label="Change Language">
+                            🇺🇸 EN
+                        </button>
+                    </li>
+                    <li>
+                        <button id="darkModeToggle" class="btn btn-outline-dark" aria-label="Alternar tema claro e escuro">
+                             <i class="fas fa-moon" aria-hidden="true"></i> 
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <div id="tsparticles"></div>
 
-    <section id="apresentacao" class="container-fluid py-5 hero-section position-relative">
-    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center text-center text-md-start position-relative" style="z-index: 1;">
-        
-        <div class="p-4" style="z-index: 2;">
-            <img src="img/miguel.webp" class="perfil-img-circle mb-4 mb-md-0 shadow-lg" alt="Foto de Perfil de Miguel Angelo">
-        </div>
+    <section id="apresentacao" class="hero-section padding-section">
+        <div class="wrapper hero-content relative-z">
+            
+            <div class="hero-image z-up">
+                <img src="img/miguel.webp" class="perfil-img-circle shadow-lg" alt="Foto de Perfil de Miguel Angelo" loading="lazy">
+            </div>
 
-        <div class="p-4 p-md-5 ms-md-4 glass-panel fade-in-up" style="z-index: 2;">
-            <p class="display-6 mb-1 fade-in-up" style="color: var(--text-alt-color);" data-i18n="hero_hello">Olá, eu sou</p>
-            <h1 class="display-4 fw-bold fade-in-up" style="color: var(--text-heading);"><span class="text-gradient">Miguel Angelo</span></h1>
-            <p class="mb-4 lead typewriter fade-in-up" style="color: var(--text-alt-color);"></p>
-            
-            <div class="d-flex justify-content-center justify-content-md-start mb-3 fade-in-up">
-                <a href="docs/FlutterDeveloper_MiguelAngelo_br.pdf" class="btn btn-theme-outline btn-lg me-3" target="_blank" rel="noopener noreferrer" download>
-                    <span data-i18n="hero_download">Download CV</span>
-                </a>
-                <a href="#contato" class="btn btn-theme-solid btn-lg">
-                    <span data-i18n="hero_contact">Contato</span>
-                </a>
-            </div>
-            
-            <div class="social-icons mt-4 d-flex justify-content-center justify-content-md-start fade-in-up">
-                <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="social-icon-hero me-3" aria-label="LinkedIn"><i class="fab fa-linkedin fa-2x" aria-hidden="true"></i></a>
-                <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="social-icon-hero" aria-label="GitHub"><i class="fab fa-github fa-2x" aria-hidden="true"></i></a>
+            <div class="hero-text glass-panel fade-in-up flex-column z-up">
+                <p class="subheading fade-in-up" data-i18n="hero_hello">Olá, eu sou</p>
+                <h1 class="title fade-in-up"><span class="text-gradient">Miguel Angelo</span></h1>
+                <p class="subtitle typewriter fade-in-up"></p>
+                
+                <div class="hero-actions flex-row justify-center fade-in-up">
+                    <a href="docs/FlutterDeveloper_MiguelAngelo_br.pdf" class="btn btn-outline" target="_blank" rel="noopener noreferrer" download>
+                        <span data-i18n="hero_download">Download CV</span>
+                    </a>
+                    <a href="#contato" class="btn btn-solid">
+                        <span data-i18n="hero_contact">Contato</span>
+                    </a>
+                </div>
+                
+                <div class="social-icons flex-row justify-center mt-2 fade-in-up">
+                    <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="social-icon-hero" aria-label="LinkedIn"><i class="fab fa-linkedin fa-2x" aria-hidden="true"></i></a>
+                    <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="social-icon-hero" aria-label="GitHub"><i class="fab fa-github fa-2x" aria-hidden="true"></i></a>
+                </div>
             </div>
         </div>
-    </div>
     </section>
 
-    <section id="sobre" class="pt-5 pb-5"> 
-    <div class="container">
-        <div class="text-center">
-            <h2 class="mb-5"><i class="fas fa-user-circle text-primary"></i> Sobre Mim</h2>
-        </div>
-        
-        <div class="row">
-            <div class="col-lg-10 mx-auto text-light-alt fade-in-up">
+    <section id="sobre" class="padding-section"> 
+        <div class="wrapper flex-column text-center">
+            <h2 class="section-title"><i class="fas fa-user-circle text-primary"></i> Sobre Mim</h2>
+            
+            <div class="content-text text-start fade-in-up w-100 max-w-content">
                 <p>
                     Sou <strong>Miguel Angelo</strong>, <strong>Desenvolvedor Flutter Mobile</strong>, com <strong>3 anos de experiência</strong> focada na construção de <strong>soluções móveis nativas de alta performance</strong> (Android/iOS). Minha paixão é <strong>transformar requisitos complexos em interfaces envolventes</strong> e arquiteturas escaláveis. Domino o ciclo de vida completo: do design de UX/UI até a implantação e manutenção contínua nas lojas de aplicativos.
                 </p>
@@ -108,7 +92,7 @@
                     <strong>Destaques da minha atuação e impacto técnico:</strong>
                 </p>
                 
-                <ul>
+                <ul class="mb-4">
                     <li><strong>Integração de APIs REST:</strong> Conexão eficiente com backends complexos, reduzindo a latência no consumo de grandes volumes de dados via JSON e garantindo performance fluida.</li>
                     <li><strong>Arquitetura Escalonável:</strong> Proficiência sólida em <strong>BLoC e Provider</strong>, entregando código altamente modular, sustentável e fácil de testar.</li>
                     <li><strong>Soluções em Tempo Real:</strong> Implementação ágil de infraestruturas cloud com <strong>Firebase (Firestore e Authentication)</strong> para acelerar o lançamento de funcionalidades chave.</li>
@@ -120,246 +104,229 @@
                 </p>
             </div>
         </div>
-    </div>
     </section>
     
-    <section id="habilidades" class="container py-5">
-        <div class="row fade-in-up">
-            <div class="col-lg-10 mx-auto text-center">
-                <h2 class="mb-5">🛠️ Habilidades Técnicas</h2>
-                <div class="row text-start">
+    <section id="habilidades" class="padding-section">
+        <div class="wrapper flex-column text-center">
+            <h2 class="section-title">🛠️ Habilidades Técnicas</h2>
+            
+            <div class="grid-2-col w-100 text-start fade-in-up mt-4">
 
-                    <div class="col-md-6 mb-4">
-                        <h5 class="text-primary mb-3">Desenvolvimento Mobile</h5> 
-                        
-                        <div class="skill-item fade-in-up" style="transition-delay: 0.1s">
-                            <i class="fab fa-dev"></i> Flutter/Dart
-                            <div class="progress mt-1">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item fade-in-up" style="transition-delay: 0.2s">
-                            <i class="fas fa-code"></i> Consumo de API REST/JSON
-                            <div class="progress mt-1">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item fade-in-up" style="transition-delay: 0.3s">
-                            <i class="fas fa-layer-group"></i> Gerenciamento de Estado (BLoC/Provider)
-                            <div class="progress mt-1">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 0%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-4">
-                        <h5 class="text-primary mb-3">Ferramentas e Outras Tecnologias</h5>
-
-                        <div class="skill-item fade-in-up" style="transition-delay: 0.4s">
-                            <i class="fab fa-git-alt"></i> Git/GitHub
-                            <div class="progress mt-1">
-                                <div class="progress-bar bg-secondary" role="progressbar" style="width: 0%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item fade-in-up" style="transition-delay: 0.5s">
-                            <i class="fas fa-database"></i> Firebase (Firestore, Auth)
-                            <div class="progress mt-1">
-                                <div class="progress-bar bg-secondary" role="progressbar" style="width: 0%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item fade-in-up" style="transition-delay: 0.6s">
-                            <i class="fab fa-html5"></i> HTML, CSS, JavaScript
-                            <div class="progress mt-1">
-                                <div class="progress-bar bg-secondary" role="progressbar" style="width: 0%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                <div class="skill-column flex-column">
+                    <h5 class="text-primary mt-2">Desenvolvimento Mobile</h5> 
+                    
+                    <div class="skill-item">
+                        <span><i class="fab fa-dev"></i> Flutter/Dart</span>
+                        <div class="progress" aria-valuenow="90">
+                            <div class="progress-bar"></div>
                         </div>
                     </div>
                     
+                    <div class="skill-item">
+                        <span><i class="fas fa-code"></i> Consumo de API REST/JSON</span>
+                        <div class="progress" aria-valuenow="85">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <span><i class="fas fa-layer-group"></i> Gerenciamento de Estado (BLoC/Provider)</span>
+                        <div class="progress" aria-valuenow="80">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
                 </div>
-                <p class="mt-4">
-                    <strong>Estou sempre aprendendo novas ferramentas e busco aprimorar meu conhecimento em arquitetura de software e testes unitários.</strong>
-                </p>
+
+                <div class="skill-column flex-column">
+                    <h5 class="text-primary mt-2">Ferramentas e Outras Tecnologias</h5>
+
+                    <div class="skill-item">
+                        <span><i class="fab fa-git-alt"></i> Git/GitHub</span>
+                        <div class="progress" aria-valuenow="95">
+                            <div class="progress-bar bg-secondary"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <span><i class="fas fa-database"></i> Firebase (Firestore, Auth)</span>
+                        <div class="progress" aria-valuenow="75">
+                            <div class="progress-bar bg-secondary"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <span><i class="fab fa-html5"></i> HTML, CSS, JavaScript</span>
+                        <div class="progress" aria-valuenow="70">
+                            <div class="progress-bar bg-secondary"></div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
+            <p class="mt-4 bold-text fade-in-up">
+                Estou sempre aprendendo novas ferramentas e busco aprimorar meu conhecimento em arquitetura de software e testes unitários.
+            </p>
         </div>
     </section>
 
-    <section id="projetos" class="container py-5">
+    <section id="projetos" class="padding-section">
         
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="mb-5">📂 Meus Projetos</h2>
-                <p class="lead mb-5">Confira abaixo os principais aplicativos e projetos de código aberto que desenvolvi com Flutter e Dart.</p>
-            </div>
-        </div>
-        
-        <div class="row">
+        <div class="wrapper flex-column text-center">
+            <h2 class="section-title">📂 Meus Projetos</h2>
+            <p class="section-subtitle fade-in-up">Confira abaixo os principais aplicativos e projetos de código aberto que desenvolvi com Flutter e Dart.</p>
             
-            <div class="col-md-6 col-lg-4 mb-4 fade-in-up">
-                <div class="card projeto-card shadow-sm">
-                    <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub">
-                        <img src="img/youtube.webp" class="card-img-top" alt="Captura de tela do aplicativo Youtube Clone em Flutter" loading="lazy">
+            <div class="grid-3-col w-100 mt-4">
+                
+                <div class="projeto-card fade-in-up">
+                    <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub" aria-label="Link para projeto Youtube Clone no Github">
+                        <img src="img/youtube.webp" class="card-img" alt="Captura de tela do aplicativo Youtube Clone em Flutter" loading="lazy">
                     </a>
-                    <div class="card-body">
+                    <div class="card-body text-start">
                         <h5 class="card-title">Youtube</h5>
                         <p class="card-text">
                             Desenvolvimento de uma plataforma de streaming de vídeo inspirada no YouTube, focada em uma experiência de usuário fluida e interface responsiva utilizando o framework Flutter. O projeto consome dados reais via API do YouTube, permitindo a busca e visualização de vídeos em tempo real.
                         </p>
-                        <p class="tecnologias">
+                        <div class="tecnologias">
                             <span class="badge bg-primary">Flutter</span>
-                            <span class="badge bg-secondary">Dart</span>
-                            <span class="badge bg-secondary">API</span>
-                        </p>
-                        <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm me-2">
-                            <i class="fab fa-github"></i> Código
+                            <span class="badge">Dart</span>
+                            <span class="badge">API</span>
+                        </div>
+                        <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark mt-2 w-auto">
+                            <i class="fab fa-github no-gap"></i> Código
                         </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-6 col-lg-4 mb-4 fade-in-up">
-                <div class="card projeto-card shadow-sm">
-                    <a href="https://github.com/Miguel12342342/alcool_Gasolina" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub">
-                    <img src="img/alcool_ou_gasolina.webp" class="card-img-top" alt="Captura de tela do aplicativo Álcool ou Gasolina" loading="lazy">
+                <div class="projeto-card fade-in-up">
+                    <a href="https://github.com/Miguel12342342/alcool_Gasolina" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub" aria-label="Link para projeto Alcool ou Gasolina no Github">
+                    <img src="img/alcool_ou_gasolina.webp" class="card-img" alt="Captura de tela do aplicativo Álcool ou Gasolina" loading="lazy">
                     </a>
-                    <div class="card-body">
+                    <div class="card-body text-start">
                         <h5 class="card-title">Álcool ou Gasolina?</h5>
                         <p class="card-text">
                             Aplicativo utilitário que calcula e compara o custo-benefício entre álcool e gasolina, auxiliando o usuário a tomar a melhor decisão na hora de abastecer.
                         </p>
-                        <p class="tecnologias">
+                        <div class="tecnologias">
                             <span class="badge bg-primary">Flutter</span>
-                            <span class="badge bg-secondary">Dart</span>
-                            <span class="badge bg-secondary">Cálculo</span>
-                        </p>
-                        <a href="https://github.com/Miguel12342342/alcool_Gasolina" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm me-2">
-                            <i class="fab fa-github"></i> Código
+                            <span class="badge">Dart</span>
+                            <span class="badge">Cálculo</span>
+                        </div>
+                        <a href="https://github.com/Miguel12342342/alcool_Gasolina" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark mt-2 w-auto">
+                            <i class="fab fa-github no-gap"></i> Código
                         </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-6 col-lg-4 mb-4 fade-in-up">
-                <div class="card projeto-card shadow-sm">
-                     <a href="https://github.com/Miguel12342342/Joken_po" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub">
-                    <img src="img/jonken.webp" class="card-img-top" alt="Captura de tela do Jogo Jokenpô" loading="lazy">
+                <div class="projeto-card fade-in-up">
+                     <a href="https://github.com/Miguel12342342/Joken_po" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub" aria-label="Link para projeto Joken_po no Github">
+                    <img src="img/jonken.webp" class="card-img" alt="Captura de tela do Jogo Jokenpô" loading="lazy">
                     </a>
-                    <div class="card-body">
-                        <h5 class="card-title">Jokenpô: Pedra, Papel e Tesoura</h5>
+                    <div class="card-body text-start">
+                        <h5 class="card-title">Jokenpô</h5>
                         <p class="card-text">
-                            Implementação do clássico jogo Jokenpô. Focado na lógica de jogo e na atualização de placares, demonstrando o uso de gerenciamento de estado simples no Flutter.
+                            Implementação do clássico jogo Jokenpô (Pedra, Papel e Tesoura). Focado na lógica de jogo e na atualização de placares, demonstrando o uso de gerenciamento de estado simples no Flutter.
                         </p>
-                        <p class="tecnologias">
+                        <div class="tecnologias">
                             <span class="badge bg-primary">Flutter</span>
-                            <span class="badge bg-secondary">Dart</span>
-                            <span class="badge bg-secondary">Lógica de Jogo</span>
-                        </p>
-                        <a href="https://github.com/Miguel12342342/Joken_po" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm me-2">
-                            <i class="fab fa-github"></i> Código
+                            <span class="badge">Dart</span>
+                            <span class="badge">Lógica</span>
+                        </div>
+                        <a href="https://github.com/Miguel12342342/Joken_po" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark mt-2 w-auto">
+                            <i class="fab fa-github no-gap"></i> Código
                         </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-6 col-lg-4 mb-4 fade-in-up">
-                <div class="card projeto-card shadow-sm">
-                    <a href="https://github.com/Miguel12342342/frases_do_dia" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub">
-                    <img src="img/frases_do_dia.webp" class="card-img-top" alt="Captura de tela do aplicativo Frases do Dia" loading="lazy">
+                <div class="projeto-card fade-in-up">
+                    <a href="https://github.com/Miguel12342342/frases_do_dia" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub" aria-label="Link para projeto frases do dia no Github">
+                    <img src="img/frases_do_dia.webp" class="card-img" alt="Captura de tela do aplicativo Frases do Dia" loading="lazy">
                     </a>
-                    <div class="card-body">
+                    <div class="card-body text-start">
                         <h5 class="card-title">Frases do Dia</h5>
                         <p class="card-text">
                             Aplicativo que exibe frases motivacionais aleatórias. Demonstra o uso de listas, manipulação de texto e atualização de UI (User Interface) em tempo real.
                         </p>
-                        <p class="tecnologias">
+                        <div class="tecnologias">
                             <span class="badge bg-primary">Flutter</span>
-                            <span class="badge bg-secondary">Listas</span>
-                            <span class="badge bg-secondary">Randomização</span>
-                        </p>
-                        <a href="https://github.com/Miguel12342342/frases_do_dia" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-sm me-2">
-                            <i class="fab fa-github"></i> Código
+                            <span class="badge">Listas</span>
+                            <span class="badge">Randomização</span>
+                        </div>
+                        <a href="https://github.com/Miguel12342342/frases_do_dia" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark mt-2 w-auto">
+                            <i class="fab fa-github no-gap"></i> Código
                         </a>
                     </div>
                 </div>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="contato" class="container py-5">
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <h2 class="mb-5">✉️ Entre em Contato</h2>
-                <p class="lead mb-5">
-                    Tenho interesse em novas oportunidades de Desenvolvimento Flutter. Sinta-se à vontade para me contatar.
-                </p>
-
-                <div class="row text-start mt-5">                                            
-                    <!-- Informações de Contato -->
-                    <div class="col-md-5 mb-5 mb-md-0 contact-info fade-in-up">
-                        <div class="contact-item d-flex align-items-center mb-4 p-0">
-                            <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="social-icon me-3 m-0" aria-label="GitHub"><i class="fab fa-github fa-2x" aria-hidden="true"></i></a>
-                            <div>
-                                <h5 class="mb-0 fw-bold">GitHub</h5>
-                                <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="text-decoration-none">/Miguel12342342</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-item d-flex align-items-center mb-4 p-0">
-                            <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="social-icon me-3 m-0" aria-label="LinkedIn"><i class="fab fa-linkedin fa-2x" aria-hidden="true"></i></a>
-                            <div>
-                                <h5 class="mb-0 fw-bold">LinkedIn</h5>
-                                <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="text-decoration-none">/miguelpagys</a>
-                            </div>
-                        </div>
-
-                        <div class="contact-item d-flex align-items-center p-0">
-                            <a href="mailto:miguelpagy@gmail.com" class="social-icon me-3 m-0" aria-label="Email"><i class="fas fa-envelope fa-2x" aria-hidden="true"></i></a>
-                            <div>
-                                <h5 class="mb-0 fw-bold">Email</h5>
-                                <a href="mailto:miguelpagy@gmail.com" class="text-decoration-none">miguelpagy@gmail.com</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Formulário de Contato -->
-                    <div class="col-md-7 fade-in-up">
-                        <form id="contactForm" class="glass-panel p-4 p-md-5 text-start shadow-lg">
-                            <div class="mb-3">
-                                <label for="name" class="form-label" data-i18n="form_name">Nome</label>
-                                <input type="text" class="form-control custom-input" id="name" name="name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label" data-i18n="form_email">Email</label>
-                                <input type="email" class="form-control custom-input" id="email" name="email" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="message" class="form-label" data-i18n="form_message">Mensagem</label>
-                                <textarea class="form-control custom-input" id="message" name="message" rows="4" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 fw-bold btn-lg" data-i18n="form_send">Enviar Mensagem</button>
-                        </form>
-                    </div>
-                </div>
 
             </div>
         </div>
     </section>
 
-    <footer class="text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <p class="mb-0">Desenvolvido com paixão por Miguel Angelo | <span id="footer-year"></span></p>
-                    <div class="mt-2">
-                        <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
-                        <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-                        <a href="mailto:miguelpagy@gmail.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
-                    </div>
+    <section id="contato" class="padding-section">
+        <div class="wrapper flex-column text-center">
+            <h2 class="section-title">✉️ Entre em Contato</h2>
+            <p class="section-subtitle fade-in-up">
+                Tenho interesse em novas oportunidades de Desenvolvimento Flutter. Sinta-se à vontade para me contatar.
+            </p>
+
+            <div class="grid-2-col contact-grid w-100 text-start mt-4">                                            
+                
+                <div class="contact-info flex-column fade-in-up">
+                    
+                    <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="contact-item flex-row align-center">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                        <div class="contact-details flex-column">
+                            <h5>GitHub</h5>
+                            <span class="contact-link">/Miguel12342342</span>
+                        </div>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="contact-item flex-row align-center">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        <div class="contact-details flex-column">
+                            <h5>LinkedIn</h5>
+                            <span class="contact-link">/miguelpagys</span>
+                        </div>
+                    </a>
+
+                    <a href="mailto:miguelpagy@gmail.com" class="contact-item flex-row align-center">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <div class="contact-details flex-column">
+                            <h5>Email</h5>
+                            <span class="contact-link">miguelpagy@gmail.com</span>
+                        </div>
+                    </a>
+
                 </div>
+
+                <div class="contact-form-container fade-in-up">
+                    <form id="contactForm" class="glass-panel form-flex flex-column">
+                        <div class="form-group flex-column">
+                            <label for="name" data-i18n="form_name">Nome</label>
+                            <input type="text" class="custom-input" id="name" name="name" required>
+                        </div>
+                        <div class="form-group flex-column">
+                            <label for="email" data-i18n="form_email">Email</label>
+                            <input type="email" class="custom-input" id="email" name="email" required>
+                        </div>
+                        <div class="form-group flex-column">
+                            <label for="message" data-i18n="form_message">Mensagem</label>
+                            <textarea class="custom-input" id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 btn-lg" data-i18n="form_send">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="site-footer text-center">
+        <div class="wrapper flex-column">
+            <p>Desenvolvido com paixão por Miguel Angelo | <span id="footer-year"></span></p>
+            <div class="footer-socials flex-row justify-center mt-2">
+                <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                <a href="mailto:miguelpagy@gmail.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
             </div>
         </div>
     </footer>
@@ -368,13 +335,13 @@
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <!-- tsParticles -->
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/tsparticles.engine.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/basic@3.1.0/tsparticles.basic.min.js"></script>
     <!-- Incluindo Particles completo por conveniência -->
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-links@3.1.0/tsparticles.preset.links.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.1.0/tsparticles.bundle.min.js"></script>
+    
     <script src="js/darkMode.js"></script>
     <script src="js/i18n.js"></script>
     <script src="js/scripts.js"></script> 

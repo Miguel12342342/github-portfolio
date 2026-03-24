@@ -108,22 +108,22 @@ function applyTranslations(lang) {
     };
 
     // Navbar
-    setInner('.nav-link[href="#apresentacao"]', 'nav_home');
-    setInner('.nav-link[href="#sobre"]', 'nav_about');
-    setInner('.nav-link[href="#habilidades"]', 'nav_skills');
-    setInner('.nav-link[href="#projetos"]', 'nav_projects');
-    setInner('.nav-link[href="#contato"]', 'nav_contact');
+    setInner('.nav-links a[href="#apresentacao"]', 'nav_home');
+    setInner('.nav-links a[href="#sobre"]', 'nav_about');
+    setInner('.nav-links a[href="#habilidades"]', 'nav_skills');
+    setInner('.nav-links a[href="#projetos"]', 'nav_projects');
+    setInner('.nav-links a[href="#contato"]', 'nav_contact');
 
     // Hero
-    setInner('.hero-section .text-light-alt', 'hero_hello');
-    setInner('.hero-section a[download]', 'hero_cv');
-    setInner('.hero-section a[href="#contato"]', 'hero_contact');
+    setInner('.hero-section .subheading', 'hero_hello');
+    setInner('.hero-section a[download] span', 'hero_cv');
+    setInner('.hero-section a[href="#contato"] span', 'hero_contact');
 
     // About
     const aboutTitle = document.querySelector('#sobre h2');
     if (aboutTitle) aboutTitle.innerHTML = `<i class="fas fa-user-circle text-primary"></i> ${translations[lang]['about_title']}`;
 
-    const aboutPs = document.querySelectorAll('#sobre .text-light-alt p');
+    const aboutPs = document.querySelectorAll('#sobre .content-text > p');
     if (aboutPs.length >= 3) {
         aboutPs[0].innerHTML = translations[lang]['about_p1'];
         aboutPs[1].innerHTML = translations[lang]['about_p2'];
@@ -149,16 +149,16 @@ function applyTranslations(lang) {
     }
 
     // Skill items labels
-    const skillItemsText = document.querySelectorAll('.skill-item');
-    if(skillItemsText.length >= 6) {
-        skillItemsText[1].childNodes[2].nodeValue = " " + translations[lang]['skills_api'];
-        skillItemsText[2].childNodes[2].nodeValue = " " + translations[lang]['skills_state'];
+    const skillItemsSpans = document.querySelectorAll('.skill-item span');
+    if(skillItemsSpans.length >= 6) {
+        skillItemsSpans[1].innerHTML = `<i class="fas fa-code"></i> ${translations[lang]['skills_api']}`;
+        skillItemsSpans[2].innerHTML = `<i class="fas fa-layer-group"></i> ${translations[lang]['skills_state']}`;
     }
 
     // Projects
     const projHeading = document.querySelector('#projetos h2');
     if (projHeading) projHeading.innerHTML = translations[lang]['proj_title'];
-    const projDesc = document.querySelector('#projetos .lead');
+    const projDesc = document.querySelector('#projetos .section-subtitle');
     if (projDesc) projDesc.innerHTML = translations[lang]['proj_subtitle'];
 
     const cardTexts = document.querySelectorAll('.projeto-card .card-text');
@@ -170,12 +170,12 @@ function applyTranslations(lang) {
     }
 
     const cardBtns = document.querySelectorAll('.projeto-card .btn-outline-dark');
-    cardBtns.forEach(btn => btn.innerHTML = translations[lang]['btn_code']);
+    cardBtns.forEach(btn => btn.innerHTML = translations[lang]['btn_code'].replace('fa-github"', 'fa-github no-gap"'));
 
     // Contact
     const contactHeading = document.querySelector('#contato h2');
     if (contactHeading) contactHeading.innerHTML = translations[lang]['contact_title'];
-    const contactDesc = document.querySelector('#contato .lead');
+    const contactDesc = document.querySelector('#contato .section-subtitle');
     if (contactDesc) contactDesc.innerHTML = translations[lang]['contact_desc'];
 
     setInner('label[for="name"]', 'form_name');

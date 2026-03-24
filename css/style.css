@@ -1,713 +1,633 @@
-/*==================================
-  1. DEFINIÇÕES GLOBAIS E FONTES
-  ==================================*/
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&family=Poppins:wght@300;400;600;700&display=swap');
-
-/* Definição de Cores e Variáveis */
 :root {
-    /* Cores Padrão (Light Mode) */
-    --cor-primaria: #0066cc; 
-    --cor-secundaria: #5a6268; 
-    --cor-fundo-claro: #e9ecef; /* Mais cinza para destacar os glass panels */
-    --cor-fundo-escuro: #343a40; 
-    --cor-texto: #1a1a1a; /* Texto mais escuro e legível */
-    --cor-branco: #f4f6f9; /* Fundo base ligeiramente cinza claro invés de 100% branco */
-    --cor-primaria-hover: #0056b3;
-    
-    /* VARIÁVEIS GLOBAIS DE TEMA (Modo Claro) */
-    --background-dark: var(--cor-branco); 
-    --text-light: var(--cor-texto);         
-    --text-heading: var(--cor-texto);       
-    --text-alt-color: #555555;              
-    
-    /* Variáveis baseadas em Tema */
-    --card-bg: #ffffff; /* Card fica 100% branco se destacando do fundo cinza */
-    --navbar-bg: rgba(244, 246, 249, 0.9);
-    --navbar-text: var(--cor-texto);
-    --footer-bg: #e9ecef;
-    --footer-text: var(--cor-texto);
-    --glass-bg: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(0, 0, 0, 0.1);
-    --shadow-color-hover: rgba(0, 102, 204, 0.3);
-
-    /* Tamanhos/Medidas */
-    --padding-secao: 80px 0;
-    --transicao-padrao: 0.3s ease-in-out; 
+  --color-primary: #0066cc;
+  --color-primary-hover: #0056b3;
+  --color-secondary: #5a6268;
+  --color-bg-light: #e9ecef;
+  --color-bg-dark: #343a40;
+  --color-text-dark: #1a1a1a;
+  --color-text-light: #f4f6f9;
+  --color-text-alt: #555555;
+  
+  --bg-body: var(--color-text-light);
+  --text-main: var(--color-text-dark);
+  --text-heading: var(--color-text-dark);
+  --text-alt: var(--color-text-alt);
+  
+  --bg-nav: rgba(244, 246, 249, 0.9);
+  --bg-card: #ffffff;
+  --bg-footer: #e9ecef;
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --border-glass: rgba(0, 0, 0, 0.1);
+  --border-card: rgba(0, 0, 0, 0.1);
+  
+  --font-base: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  
+  --transition: 0.3s ease-in-out;
+  --wrapper-max-width: 1200px;
 }
 
-/* DEFINIÇÕES PARA O DARK MODE */
 body.dark-mode {
-    --cor-fundo-claro: #121212; 
-    --cor-fundo-escuro: #1a1a1a; 
-    --cor-texto: #e0e0e0;
-    --cor-branco: #171717; /* Define fundo principal escuro */
-    --cor-primaria: #4dd0e1; 
-    --cor-secundaria: #bb86fc; 
-    --cor-primaria-hover: #00b8d4;
-
-    /* VARIÁVEIS DO HERO SECTION (Dark Mode) */
-    --background-dark: var(--cor-fundo-escuro); 
-    --text-light: var(--cor-texto);          
-    --text-heading: var(--cor-texto);        
-    --text-alt-color: #999999;               
-    
-    /* Variáveis baseadas em Tema */
-    --card-bg: #222222;
-    --navbar-bg: rgba(26, 26, 26, 0.9);
-    --navbar-text: var(--cor-texto);
-    --footer-bg: #1a1a1a;
-    --footer-text: var(--cor-texto);
-    --glass-bg: rgba(30, 30, 30, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.05);
-    --shadow-color-hover: rgba(77, 208, 225, 0.2);
+  --bg-body: #171717;
+  --text-main: #e0e0e0;
+  --text-heading: #e0e0e0;
+  --text-alt: #999999;
+  
+  --color-primary: #4dd0e1;
+  --color-primary-hover: #00b8d4;
+  --color-secondary: #bb86fc;
+  
+  --bg-nav: rgba(26, 26, 26, 0.9);
+  --bg-card: #222222;
+  --bg-footer: #1a1a1a;
+  --bg-glass: rgba(30, 30, 30, 0.7);
+  --border-glass: rgba(255, 255, 255, 0.05);
+  --border-card: rgba(255, 255, 255, 0.1);
 }
 
-/* Estilo Base do Corpo */
+/* Reset and Base Mobile First */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%; /* Permite que o browser (usuário) dite o 'rem' base. Não use px */
+  scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
-    color: var(--cor-texto);
-    line-height: 1.7;
-    background-color: var(--cor-branco);
-    transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
+  font-family: var(--font-base);
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.6;
+  transition: background-color var(--transition), color var(--transition);
+  overflow-x: hidden;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition);
+}
+
+ul {
+  list-style: none;
+}
+
+/* Tipografia em Rem baseado na escolha Mobile-First */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', sans-serif;
-    letter-spacing: -0.5px;
+  font-family: var(--font-heading);
+  color: var(--text-heading);
+  line-height: 1.2;
 }
 
-h1.display-4 {
-    letter-spacing: -2px;
-    font-weight: 800;
-}
+h1 { font-size: 2.5rem; letter-spacing: -0.05em; font-weight: 800; }
+h2 { font-size: 2rem; font-weight: 700; margin-bottom: 2rem; position: relative; padding-bottom: 0.5rem; display: inline-block; }
+h2::after { content: ''; position: absolute; width: 4rem; height: 0.2rem; background: var(--color-primary); bottom: 0; left: 0; transition: background var(--transition); }
+h5 { font-size: 1.25rem; font-weight: 600; }
 
+.section-title { width: 100%; }
+
+/* Gradiente */
 .text-gradient {
-    background: linear-gradient(90deg, var(--cor-primaria) 0%, var(--cor-secundaria) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
 }
 
-/* Estilo para Todas as Seções */
-section {
-    padding: var(--padding-secao);
-    position: relative;
-    z-index: 1;
+.text-primary { color: var(--color-primary); }
+.bold-text { font-weight: 700; }
+.mt-2 { margin-top: 1rem; }
+.mt-4 { margin-top: 2rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* Layout Utilities (Flexbox / Grid) Mobile-First */
+.wrapper {
+  width: 100%;
+  max-width: var(--wrapper-max-width);
+  margin: 0 auto;
 }
 
-/* Estilo Padrão para Títulos de Seção */
-h2 {
-    font-weight: 700;
-    color: var(--cor-primaria);
-    margin-bottom: 40px;
-    position: relative;
-    padding-bottom: 10px;
-    display: inline-block;
+.padding-section {
+  padding: 4rem 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
-/* Linha centralizada abaixo do título H2 */
-h2::after {
-    content: '';
-    position: absolute;
-    width: 60px;
-    height: 3px;
-    background-color: var(--cor-primaria);
-    bottom: 0;
-    left: 50%; 
-    transform: translateX(-50%);
-    transition: background-color var(--transicao-padrao);
+.flex-row { display: flex; flex-direction: row; gap: 1rem; flex-wrap: wrap; }
+.flex-column { display: flex; flex-direction: column; gap: 1rem; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.justify-center { justify-content: center; }
+.align-center { align-items: center; }
+.text-center { text-align: center; }
+.text-start { text-align: left; }
+.w-100 { width: 100%; }
+.max-w-content { max-width: 900px; margin: 0 auto; }
+
+/* Grid Mobile default -> Stacks */
+.grid-2-col, .grid-3-col {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr; 
 }
 
-/* Aplica as cores do Dark Mode ao Body */
-body.dark-mode {
-    background-color: var(--cor-fundo-claro);
-    color: var(--cor-texto);
+/* Glassmorphism */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 1.25rem;
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.05);
 }
 
-/* As variáveis de tema fazem o trabalho global agora. */
-/* Progress bar no dark mode */
-body.dark-mode .progress {
-    background-color: #333;
+/* Header & Nav */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  padding: 1rem;
+  background: var(--bg-nav);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-glass);
+  z-index: 100;
+  transition: all var(--transition);
 }
 
-
-
-/*==================================
-  2. ESTILO DA BARRA DE NAVEGAÇÃO (NAVBAR)
-  ==================================*/
-
-.navbar {
-    background-color: var(--navbar-bg) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--glass-border);
-    transition: background-color var(--transicao-padrao), border var(--transicao-padrao);
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  min-height: 44px; /* Touch target (Acessibilidade) */
+  min-width: 44px;
+  display: flex;
+  align-items: center;
 }
 
-/* Cor do texto nos links da Navbar */
-.navbar-nav .nav-link {
-    color: var(--navbar-text) !important;
-    font-weight: 500;
-    margin-left: 15px;
-    transition: var(--transicao-padrao);
+/* Hamburger Toggle (Mobile) */
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
 }
 
-/* Efeito ao passar o mouse */
-.navbar-nav .nav-link:hover {
-    color: var(--cor-primaria) !important;
+.hamburger, .hamburger::before, .hamburger::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-main);
+  transition: all var(--transition);
+  border-radius: 2px;
 }
 
-/* Logo ou Nome do Portfólio */
-.navbar-brand {
-    color: var(--navbar-text) !important;
-    font-weight: 700;
-    font-size: 1.4rem;
-    transition: color var(--transicao-padrao);
+.hamburger::before { transform: translateY(-8px); }
+.hamburger::after { transform: translateY(6px); }
+
+.menu-toggle.is-active .hamburger { background: transparent; }
+.menu-toggle.is-active .hamburger::before { transform: rotate(45deg) translate(0, 0); }
+.menu-toggle.is-active .hamburger::after { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* Navigation Links Mobile First */
+.site-nav {
+  position: absolute;
+  top: 100%; left: 0; width: 100%;
+  background: var(--bg-nav);
+  flex-direction: column;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: none;
+  border-bottom: 1px solid var(--border-glass);
+}
+/* Trigger via JS */
+.site-nav.is-active {
+  display: flex;
 }
 
-/* Estilo do botão de alternância (DarkMode) */
-#darkModeToggle {
-    background-color: transparent;
-    border: 1px solid var(--cor-secundaria);
-    color: var(--navbar-text);
-    padding: 6px 12px;
-    border-radius: 8px;
-    transition: var(--transicao-padrao);
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-#darkModeToggle:hover {
-    background-color: var(--cor-secundaria);
-    color: #fff;
+.nav-links li a, .nav-links li button {
+  display: flex;
+  align-items: center;
+  min-height: 44px; /* Touch friendly minimum 44x44px */
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  color: var(--text-main);
+  border-radius: 0.5rem;
+  transition: background var(--transition), color var(--transition);
 }
 
-
-/*==================================
-  3. SEÇÃO DE APRESENTAÇÃO (HERO)
-  ==================================*/
-
-.hero-section {
-    background-color: transparent !important; 
-    color: var(--text-light); 
-    min-height: 100vh;
-    display: flex; 
-    align-items: center;
-    padding-top: 100px !important;
-    transition: background-color var(--transicao-padrao);
+.nav-links li a:hover, .nav-links li button:hover {
+  background: rgba(0,0,0,0.05);
+  color: var(--color-primary);
 }
 
-/* Imagem de Perfil Circular */
-.perfil-img-circle {
-    width: clamp(180px, 16vw, 300px);
-    height: clamp(180px, 16vw, 300px);
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid var(--cor-primaria);
+body.dark-mode .nav-links li a:hover, body.dark-mode .nav-links li button:hover {
+  background: rgba(255,255,255,0.05);
 }
 
-/* Títulos e Parágrafos */
-.hero-section h1 {
-    color: var(--text-heading) !important; 
-    font-size: clamp(2.2rem, 4.5vw, 4rem);
+.nav-links li button {
+  background: transparent;
+  border: 1px solid var(--border-glass);
+  cursor: pointer;
+  justify-content: center;
+  width: 100%;
+}
+.nav-links li button i { pointer-events: none; }
+
+/* Botões Minimum 44x44 e Unidades relativas */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px; /* Regra Touch-friendly */
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  font-family: var(--font-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: 2px solid transparent;
+}
+.btn-lg {
+  min-height: 54px;
+  font-size: 1.1rem;
 }
 
-.hero-section .text-light-alt {
-    color: var(--text-alt-color) !important;
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
-}
-
-
-/* Botões Customizados */
-.custom-btn-outline {
-    border-color: var(--text-light);
-    color: var(--text-light);
-    transition: background-color 0.3s;
-}
-
-.custom-btn-outline:hover {
-    background-color: var(--cor-primaria);
-    color: var(--cor-branco);
-    border-color: var(--cor-primaria);
-}
-
-.custom-btn {
-    background-color: var(--text-light) !important;
-    color: var(--background-dark) !important;
-}
-
-/* Ícones Sociais no Hero */
-.social-icon-hero {
-    color: var(--text-light);
-    transition: color 0.3s;
-}
-
-.social-icon-hero:hover {
-    color: var(--cor-primaria);
-}
-
-
-/*==================================
-  4. ESTILO DE COMPONENTES/AÇÕES
-  ==================================*/
-
-/* Estilo Customizado de Botão Primário */
 .btn-primary {
-    background-color: var(--cor-primaria);
-    border-color: var(--cor-primaria);
-    padding: 10px 25px;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: var(--transicao-padrao);
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
 }
 
 .btn-primary:hover {
-    background-color: var(--cor-primaria-hover);
-    border-color: var(--cor-primaria-hover);
-    transform: translateY(-2px); 
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  transform: translateY(-2px);
 }
 
-/* Fundo alternado: #habilidades */
-#habilidades {
-    background-color: transparent !important;
-    transition: background-color var(--transicao-padrao);
+.btn-outline {
+  border-color: var(--text-main);
+  color: var(--text-main);
+  background: transparent;
 }
 
-/* Fundo alternado: #contato */
-#contato {
-    background-color: transparent !important;
-    transition: background-color var(--transicao-padrao);
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
 }
 
-/* Seção Sobre Mim */
-#sobre {
-    background-color: transparent !important;
-    transition: background-color var(--transicao-padrao);
+.btn-solid {
+  background: var(--text-main);
+  color: var(--bg-body);
+  border-color: var(--text-main);
 }
 
-/* Estilo para os parágrafos dentro da seção Sobre Mim */
-#sobre p {
-    font-size: 1.3rem; 
-    line-height: 1.8; 
-    color: var(--cor-texto);
-    margin-bottom: 30px; 
+.btn-solid:hover {
+  background: transparent;
+  color: var(--text-main);
 }
 
-/* Estilo para listas em "Sobre Mim" */
-#sobre ul {
-    list-style: disc;
-    padding-left: 20px;
-    margin-bottom: 20px;
-    font-size: 1.3rem;
+.btn-outline-dark {
+  border-color: var(--text-main);
+  color: var(--text-main);
+  background: transparent;
+  font-size: 0.95rem;
+  padding: 0.3rem 1rem;
+  border-radius: 0.5rem;
+}
+.btn-outline-dark:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+body.dark-mode .btn-outline-dark:hover { color: #121212; }
+
+/* Hero */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 6rem; /* space for navbar */
+  position: relative;
 }
 
-
-/*==================================
-  5. SEÇÃO DE PROJETOS (CARDS)
-  ==================================*/
-
-.projeto-card {
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    overflow: hidden; 
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-    background-color: var(--card-bg);
-    color: var(--cor-texto);
-    transition: all 0.4s ease-out;
-    height: 100%; 
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
 }
 
-/* Garante que os textos do card acompanhem o tema escuro (o Bootstrap costuma fixar a cor) */
-.projeto-card h5, 
-.projeto-card .card-text {
-    color: var(--cor-texto) !important;
+.relative-z { position: relative; z-index: 10; }
+.z-up { z-index: 2; }
+
+.perfil-img-circle {
+  width: clamp(12rem, 40vw, 18rem);
+  height: clamp(12rem, 40vw, 18rem);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-primary);
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.2);
 }
 
-/* Corrige o botão "Código" que é dark por padrão no Bootstrap */
-body.dark-mode .projeto-card .btn-outline-dark {
-    color: var(--cor-texto);
-    border-color: var(--cor-texto);
+.hero-text {
+  padding: 2rem;
+  gap: 1.5rem;
+  max-width: 40rem;
 }
 
-body.dark-mode .projeto-card .btn-outline-dark:hover {
-    background-color: var(--cor-primaria);
-    border-color: var(--cor-primaria);
-    color: #121212;
+.hero-text .subtitle {
+  font-size: 1.25rem;
+  color: var(--text-alt);
 }
 
-.projeto-card:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 20px 40px var(--shadow-color-hover);
-    border-color: var(--cor-primaria);
+.social-icons {
+  gap: 1rem;
+}
+.social-icon-hero, .social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px; /* Touch-friendly rule */
+  min-height: 44px;
+  color: var(--text-main);
+  transition: all var(--transition);
+}
+.social-icon-hero:hover, .social-icon:hover {
+  color: var(--color-primary);
+  transform: translateY(-0.25rem);
 }
 
-.projeto-card .card-img-top {
-    transition: var(--transicao-padrao);
-    height: 450px;
-    object-fit: cover;
+/* Lists and Content Details */
+.content-text p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+.content-text ul {
+  list-style: disc;
+  padding-left: 2rem;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem; /* using gap mostly! */
 }
 
-.projeto-card:hover .card-img-top {
-    transform: scale(1.08); 
-}
-
-/* Ajuste para as cores das Badges (Tecnologias) */
-.tecnologias .badge {
-    background-color: #e9ecef !important; 
-    color: #495057 !important; 
-    margin-right: 5px;
-    margin-bottom: 5px;
-    padding: 6px 10px;
-    font-size: 0.85rem;
-    transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
-}
-
-/* Destaque primário */
-.tecnologias .badge.bg-primary {
-    background-color: var(--cor-primaria) !important;
-    color: var(--cor-branco) !important;
-}
-
-
-/*==================================
-  6. SEÇÃO DE HABILIDADES/TECNOLOGIAS
-  ==================================*/
-
+/* Skills */
 .skill-item {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem; /* fallback slightly */
 }
 
-.skill-item i {
-    margin-right: 8px;
-    color: var(--cor-primaria);
-    transition: color var(--transicao-padrao);
+.skill-column {
+  gap: 1.5rem;
 }
 
-/* Estilo da Barra de Progresso do Bootstrap */
 .progress {
-    height: 10px;
-    border-radius: 5px;
-    background-color: #e9ecef;
+  height: 0.6rem;
+  border-radius: 0.3rem;
+  background: var(--border-glass);
+  width: 100%;
+  overflow: hidden;
 }
 
 .progress-bar {
-    transition: width 1.5s ease-in-out; 
+  height: 100%;
+  background: var(--color-primary);
+  transition: width 1.5s ease;
+}
+.bg-secondary { background: var(--color-secondary); }
+
+/* Projetos Card */
+.projeto-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.05);
+  transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s;
+  height: 100%; 
+}
+.projeto-card:hover {
+  transform: translateY(-0.75rem);
+  box-shadow: 0 1.25rem 2.5rem rgba(0,102,204, 0.2);
+  border-color: var(--color-primary);
+}
+.card-img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  object-position: top;
+  transition: transform var(--transition);
+  display: block;
+}
+.projeto-card a { display: block; overflow: hidden; }
+.projeto-card:hover .card-img { transform: scale(1.08); }
+
+.card-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
+}
+.card-title { font-size: 1.25rem; }
+.card-text { color: var(--text-main); font-size: 1rem; line-height: 1.5; flex-grow: 1; }
+
+.tecnologias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.badge {
+  padding: 0.35rem 0.75rem;
+  border-radius: 1.5rem;
+  font-size: 0.85rem;
+  background: var(--border-glass);
+  color: var(--text-main);
+  border: 1px solid transparent;
+}
+.badge.bg-primary { background: var(--color-primary); color: #fff; }
+
+.w-auto { width: fit-content; }
+i.no-gap { margin-right: 0.4rem; }
+
+/* Contact Forms e Itens */
+.contact-grid {
+  gap: 3rem; /* Spacing via Gap */
 }
 
-
-/*==================================
-  7. SEÇÃO DE CONTATO
-  ==================================*/
-
-.contact-item {
-    padding: 20px;
-    margin-bottom: 20px;
+.contact-info { gap: 1.5rem; }
+.contact-item { 
+  gap: 1rem; 
+  padding: 1rem;
+  border-radius: 1rem;
+  transition: background var(--transition);
+}
+.contact-item:hover {
+  background: rgba(0,102,204, 0.05);
+}
+body.dark-mode .contact-item:hover {
+  background: rgba(255,255,255, 0.05);
 }
 
-.contact-item i {
-    font-size: 2.5rem;
-    color: var(--cor-primaria);
-    margin-bottom: 10px;
-    display: block; 
-    transition: color var(--transicao-padrao);
+.contact-item i { font-size: 2.5rem; color: var(--color-primary); width: 44px; text-align: center; }
+.contact-item h5 { margin-bottom: 0.25rem; }
+.contact-link { color: var(--color-secondary); }
+
+.contact-form-container form {
+  padding: 2rem;
+  gap: 1.5rem;
+}
+.form-flex {
+  display: flex;
+  flex-direction: column;
 }
 
-.contact-item p {
-    font-weight: 600;
-    color: var(--cor-texto);
-}
-
-.contact-item a {
-    color: var(--cor-secundaria);
-    transition: var(--transicao-padrao);
-    text-decoration: none; 
-}
-
-.contact-item a:hover {
-    color: var(--cor-primaria);
-    text-decoration: underline;
-}
-
-
-/*==================================
-  8. RODAPÉ (FOOTER)
-  ==================================*/
-
-footer {
-    background-color: var(--footer-bg) !important;
-    color: var(--footer-text) !important;
-    padding: 30px 0;
-    position: relative;
-    z-index: 1;
-    transition: background-color var(--transicao-padrao), color var(--transicao-padrao);
-}
-
-/* Links sociais no rodapé */
-.social-icon {
-    color: var(--footer-text);
-    font-size: 1.5rem;
-    margin: 0 10px;
-    transition: all var(--transicao-padrao);
-    display: inline-block;
-}
-
-.social-icon:hover {
-    color: var(--cor-primaria);
-    transform: translateY(-5px);
-}
-
-/*==================================
-  9. RESPONSIVIDADE (MEDIA QUERIES)
-  ==================================*/
-
-@media (max-width: 992px) {
-    :root {
-        --padding-secao: 60px 0;
-    }
-
-    .hero-section h1 {
-        font-size: 3rem;
-    }
-}
-
-@media (max-width: 767.98px) {
-    .hero-section .d-flex {
-        flex-direction: column;
-    }
-    .hero-section .justify-content-md-start {
-        justify-content: center !important; 
-    }
-
-    .hero-section {
-        padding-top: 100px !important;
-        min-height: auto;
-    }
-    
-    .hero-section h1 {
-        font-size: 2.8rem !important;
-    }
-    
-    .hero-section .text-light-alt {
-        font-size: 1.4rem !important;
-    }
-
-    .perfil-img-circle {
-        width: 180px !important;
-        height: 180px !important;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-    }
-}
-
-/*==================================
-  10. EFEITOS VISUAIS
-  ==================================*/
-
-/* Cursor Piscante para Efeito Máquina de Escrever */
-.typewriter {
-    display: inline-block; 
-    border-right-color: var(--text-alt-color) !important; 
-    animation: blink-caret 0.75s step-end infinite;
-}
-
-/* Animação Keyframes */
-@keyframes blink-caret {
-    from, to { border-right-color: transparent }
-    50% { border-right-color: inherit; }
-}
-
-/*==================================
-  11. SCROLL ANIMATIONS
-  ==================================*/
-.fade-in-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.fade-in-up.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ==================================
-   13. BENTO BOX GRID (SENIOR LAYOUT)
-   ================================== */
-.bento-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
-    margin-top: 20px;
-}
-
-.bento-item {
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid var(--glass-border) !important;
-}
-
-.bento-item h5 {
-    letter-spacing: -0.5px;
-}
-
-.bento-item:hover {
-    transform: translateY(-8px) scale(1.03);
-    background: var(--card-bg);
-    border-color: var(--cor-primaria) !important;
-    box-shadow: 0 20px 40px var(--shadow-color-hover);
-}
-
-/* Status Pulse Badge */
-.pulse-dot {
-    width: 10px;
-    height: 10px;
-    background-color: #2ecc71;
-    border-radius: 50%;
-    display: inline-block;
-    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7);
-    animation: pulse-green 2s infinite;
-}
-
-@keyframes pulse-green {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
-}
-
-/* Formulário de Contato */
+.form-group label { font-weight: 500; margin-bottom: 0.5rem; display: block; }
 .custom-input {
-    background-color: var(--card-bg) !important;
-    border: 1px solid var(--glass-border) !important;
-    color: var(--cor-texto) !important;
-    padding: 12px 15px;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+  width: 100%;
+  min-height: 44px; /* Touch rule */
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-glass);
+  background: var(--bg-body);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all var(--transition);
 }
-
 .custom-input:focus {
-    background-color: var(--card-bg) !important;
-    color: var(--cor-texto) !important;
-    border-color: var(--cor-primaria) !important;
-    box-shadow: 0 0 0 4px var(--shadow-color-hover) !important;
-    outline: none;
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(0,102,204, 0.2);
+}
+textarea.custom-input { min-height: 8rem; resize: vertical; }
+
+.site-footer {
+  padding: 2rem 1rem;
+  background: var(--bg-footer);
 }
 
-.custom-input::placeholder {
-    color: var(--text-alt-color);
-}
-
-/* ==================================
-   14. CUSTOM MAGNETIC CURSOR
-   ================================== */
-.cursor-dot,
-.cursor-outline {
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 9999;
-    pointer-events: none;
-}
-
-.cursor-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--cor-primaria);
-}
-
-.cursor-outline {
-    width: 30px;
-    height: 30px;
-    border: 2px solid var(--cor-secundaria);
-    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s;
-}
-
-/* Efeito sensorial no hover */
-.cursor-outline.hover-active {
-    width: 60px;
-    height: 60px;
-    background-color: rgba(77, 208, 225, 0.2); /* Cor primária com opacidade */
-    border-color: transparent;
-    backdrop-filter: blur(2px);
-    mix-blend-mode: difference;
-}
-
-/* Ocultar cursor padrão nativo em dispositivos com mouse (não-touch) */
-@media (pointer: fine) {
-    body, a, button, .projeto-card, .btn, .nav-link, .custom-input {
-        cursor: none !important;
-    }
-}
-
-/* ==================================
-   15. 3D TILT EFFECT & HARDWARE ACCEL
-   ================================== */
-.projeto-card, .bento-item {
-    transform-style: preserve-3d;
-    will-change: transform;
-}
-
-/* ==================================
-   16. RESPONSIVE THEME BUTTONS
-   ================================== */
-.btn-theme-outline {
-    color: var(--cor-texto) !important;
-    background-color: transparent !important;
-    border: 2px solid var(--cor-texto) !important;
-    transition: all var(--transicao-padrao) !important;
-}
-
-.btn-theme-outline:hover {
-    background-color: var(--cor-texto) !important;
-    color: var(--card-bg) !important;
-}
-
-.btn-theme-solid {
-    color: var(--card-bg) !important;
-    background-color: var(--cor-texto) !important;
-    border: 2px solid var(--cor-texto) !important;
-    transition: all var(--transicao-padrao) !important;
-}
-
-.btn-theme-solid:hover {
-    background-color: transparent !important;
-    color: var(--cor-texto) !important;
-}
-
-/* ==================================
-   17. PARALLAX HARDWARE ACCEL
-   ================================== */
-section .container, #tsparticles {
-    will-change: transform, opacity;
-}
-
-/*==================================
-  12. ADVANCED EFFECTS
-  ==================================*/
+/* Componentes Genéricos e CSS Hooks em JS */
 #tsparticles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
 }
 
-.glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+.typewriter {
+  border-right: 2px solid var(--text-alt);
+  white-space: pre-wrap;
+  display: inline-block;
+  animation: blink-caret 0.75s step-end infinite;
+  min-height: 1.8rem;
+}
+
+@keyframes blink-caret { 50% { border-color: transparent; } }
+
+/* Fade Scroll Animations */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-up.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Custom Cursor Tracker Padrão */
+.cursor-dot, .cursor-outline {
+  position: fixed; top: 0; left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%; pointer-events: none; z-index: 9999;
+}
+.cursor-dot { width: 6px; height: 6px; background: var(--color-primary); }
+.cursor-outline { width: 30px; height: 30px; border: 2px solid var(--color-secondary); transition: width 0.2s, height 0.2s, background-color 0.2s; }
+.cursor-outline.hover-active { width: 60px; height: 60px; background: rgba(0,102,204,0.1); border-color: transparent; mix-blend-mode: difference; }
+
+@media (pointer: fine) {
+  body, a, button, input, textarea { cursor: none !important; }
+}
+
+
+/* =======================================
+   MEDIA QUERIES - MOBILE-FIRST EXPANSION
+   ======================================= */
+
+/* TABLET (640px e Acima) */
+@media (min-width: 640px) {
+  .padding-section { padding: 6rem 2rem; }
+  h1 { font-size: 3.5rem; }
+  
+  /* Flex/Grid expansions */
+  .grid-2-col { grid-template-columns: repeat(2, 1fr); }
+  .grid-3-col { grid-template-columns: repeat(2, 1fr); }
+  
+  .hero-content {
+      flex-direction: row;
+      text-align: left;
+      justify-content: center; /* centraliza o bloco */
+  }
+  .hero-text { align-items: flex-start; }
+  .social-icons { justify-content: flex-start; }
+  .hero-actions { justify-content: flex-start; }
+  .text-center h2::after { left: 50%; transform: translateX(-50%); } 
+
+  .contact-grid { align-items: flex-start; }
+}
+
+/* DESKTOP (1024px e Acima) */
+@media (min-width: 1024px) {
+  .padding-section { padding: 8rem 2rem; }
+  h1 { font-size: 4.5rem; }
+  
+  /* Nav behavior for desktop: Remove hambúrguer e exibe a barra reta */
+  .menu-toggle { display: none; }
+  .site-nav {
+      position: static;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+      width: auto;
+      border: none;
+  }
+  .nav-links {
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+  }
+  .nav-links li button {
+      width: auto;
+  }
+  
+  .grid-3-col { grid-template-columns: repeat(3, 1fr); }
 }
