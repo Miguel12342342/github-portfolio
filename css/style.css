@@ -3,12 +3,11 @@
   --color-primary-hover: #0056b3;
   --color-secondary: #5a6268;
   --color-bg-light: #e9ecef;
-  --color-bg-dark: #343a40;
   --color-text-dark: #1a1a1a;
-  --color-text-light: #f4f6f9;
+  --color-bg-page: #f4f6f9;   /* cor de fundo da página no modo claro */
   --color-text-alt: #555555;
-  
-  --bg-body: var(--color-text-light);
+
+  --bg-body: var(--color-bg-page);
   --text-main: var(--color-text-dark);
   --text-heading: var(--color-text-dark);
   --text-alt: var(--color-text-alt);
@@ -54,7 +53,11 @@ body.dark-mode {
 
 html {
   font-size: 100%; /* Permite que o browser (usuário) dite o 'rem' base. Não use px */
-  scroll-behavior: smooth;
+}
+
+/* Scroll suave apenas para quem não pediu para reduzir movimento (WCAG 2.3.3) */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 body {
@@ -141,14 +144,21 @@ h5 { font-size: 1.25rem; font-weight: 600; }
   grid-template-columns: 1fr; 
 }
 
-/* Glassmorphism */
+/* Glassmorphism — fallback sólido para browsers sem backdrop-filter */
 .glass-panel {
   background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-glass);
   border-radius: 1.25rem;
   box-shadow: 0 1rem 2rem rgba(0,0,0,0.05);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass-panel {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    /* Com blur ativo, podemos reduzir a opacidade do fundo */
+    background: var(--bg-glass);
+  }
 }
 
 /* Header & Nav */
@@ -161,7 +171,7 @@ h5 { font-size: 1.25rem; font-weight: 600; }
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-glass);
   z-index: 100;
-  transition: all var(--transition);
+  transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .logo {
@@ -194,7 +204,7 @@ h5 { font-size: 1.25rem; font-weight: 600; }
   width: 24px;
   height: 2px;
   background: var(--text-main);
-  transition: all var(--transition);
+  transition: transform var(--transition), background-color var(--transition), opacity var(--transition);
   border-radius: 2px;
 }
 
@@ -267,7 +277,7 @@ body.dark-mode .nav-links li a:hover, body.dark-mode .nav-links li button:hover 
   font-family: var(--font-base);
   font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition);
+  transition: background-color var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
   border: 2px solid transparent;
 }
 .btn-lg {
@@ -323,7 +333,7 @@ body.dark-mode .nav-links li a:hover, body.dark-mode .nav-links li button:hover 
   border-color: var(--color-primary);
   color: #fff;
 }
-body.dark-mode .btn-outline-dark:hover { color: #121212; }
+body.dark-mode .btn-outline-dark:hover { color: var(--bg-body); }
 
 /* Hero */
 .hero-section {
@@ -375,7 +385,7 @@ body.dark-mode .btn-outline-dark:hover { color: #121212; }
   min-width: 44px; /* Touch-friendly rule */
   min-height: 44px;
   color: var(--text-main);
-  transition: all var(--transition);
+  transition: color var(--transition), transform var(--transition);
 }
 .social-icon-hero:hover, .social-icon:hover {
   color: var(--color-primary);
@@ -420,8 +430,11 @@ body.dark-mode .btn-outline-dark:hover { color: #121212; }
 
 .progress-bar {
   height: 100%;
+  width: 100%; /* ocupa 100% e escala via transform */
   background: var(--color-primary);
-  transition: width 1.5s ease;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.5s ease;
 }
 .bg-secondary { background: var(--color-secondary); }
 
@@ -439,7 +452,7 @@ body.dark-mode .btn-outline-dark:hover { color: #121212; }
 }
 .projeto-card:hover {
   transform: translateY(-0.75rem);
-  box-shadow: 0 1.25rem 2.5rem rgba(0,102,204, 0.2);
+  box-shadow: 0 1.25rem 2.5rem color-mix(in srgb, var(--color-primary) 20%, transparent);
   border-color: var(--color-primary);
 }
 .card-img {
@@ -494,7 +507,7 @@ i.no-gap { margin-right: 0.4rem; }
   transition: background var(--transition);
 }
 .contact-item:hover {
-  background: rgba(0,102,204, 0.05);
+  background: color-mix(in srgb, var(--color-primary) 5%, transparent);
 }
 body.dark-mode .contact-item:hover {
   background: rgba(255,255,255, 0.05);
@@ -524,12 +537,12 @@ body.dark-mode .contact-item:hover {
   color: var(--text-main);
   font-family: inherit;
   font-size: 1rem;
-  transition: all var(--transition);
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 .custom-input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(0,102,204, 0.2);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 20%, transparent);
 }
 textarea.custom-input { min-height: 8rem; resize: vertical; }
 
@@ -569,10 +582,33 @@ textarea.custom-input { min-height: 8rem; resize: vertical; }
 }
 .cursor-dot { width: 6px; height: 6px; background: var(--color-primary); }
 .cursor-outline { width: 30px; height: 30px; border: 2px solid var(--color-secondary); transition: width 0.2s, height 0.2s, background-color 0.2s; }
-.cursor-outline.hover-active { width: 60px; height: 60px; background: rgba(0,102,204,0.1); border-color: transparent; mix-blend-mode: difference; }
+.cursor-outline.hover-active { width: 60px; height: 60px; background: color-mix(in srgb, var(--color-primary) 10%, transparent); border-color: transparent; mix-blend-mode: difference; }
 
 @media (pointer: fine) {
   body, a, button, input, textarea { cursor: none !important; }
+}
+
+/* =======================================
+   FOCUS VISIBLE — Navegação por Teclado
+   Obrigatório: WCAG 2.4.7 (Focus Visible)
+   Usar :focus-visible em vez de :focus para
+   não mostrar o anel em cliques com mouse.
+   ======================================= */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Remove o outline padrão apenas onde temos :focus-visible */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Inputs já têm box-shadow — mantemos o outline para High Contrast Mode */
+.custom-input:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 0;
 }
 
 
@@ -600,6 +636,38 @@ textarea.custom-input { min-height: 8rem; resize: vertical; }
   .text-center h2::after { left: 50%; transform: translateX(-50%); } 
 
   .contact-grid { align-items: flex-start; }
+}
+
+/* Form Feedback */
+.form-feedback {
+    padding: 0.875rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: none;
+    text-align: center;
+}
+.form-feedback.success {
+    display: block;
+    background: rgba(22, 163, 74, 0.1);
+    color: #16a34a;
+    border: 1px solid rgba(22, 163, 74, 0.3);
+}
+.form-feedback.error {
+    display: block;
+    background: rgba(220, 38, 38, 0.1);
+    color: #dc2626;
+    border: 1px solid rgba(220, 38, 38, 0.3);
+}
+body.dark-mode .form-feedback.success {
+    background: rgba(22, 163, 74, 0.15);
+    color: #4ade80;
+    border-color: rgba(74, 222, 128, 0.3);
+}
+body.dark-mode .form-feedback.error {
+    background: rgba(220, 38, 38, 0.15);
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.3);
 }
 
 /* DESKTOP (1024px e Acima) */
@@ -630,4 +698,295 @@ textarea.custom-input { min-height: 8rem; resize: vertical; }
   }
   
   .grid-3-col { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* =======================================
+   PREFERS-REDUCED-MOTION (WCAG 2.3.3)
+   Desliga todas as animações para usuários
+   que configuraram o SO para menos movimento.
+   ======================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .fade-in-up {
+    opacity: 1;
+    transform: none;
+  }
+
+  .progress-bar {
+    transition: none;
+  }
+
+  .cursor-dot, .cursor-outline {
+    display: none;
+  }
+  .pulse-dot { animation: none; }
+  .back-to-top { transition: none; }
+  .cmd-overlay, .cmd-palette { transition: none; }
+}
+
+/* =======================================
+   SCROLL PROGRESS BAR
+   ======================================= */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  z-index: 9999;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* =======================================
+   BACK TO TOP BUTTON
+   ======================================= */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity var(--transition), transform var(--transition), background-color var(--transition), box-shadow var(--transition);
+  pointer-events: none;
+  z-index: 998;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* =======================================
+   AVAILABLE FOR WORK BADGE
+   ======================================= */
+.available-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(22, 163, 74, 0.1);
+  border: 1px solid rgba(22, 163, 74, 0.3);
+  color: #16a34a;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  border-radius: 2rem;
+  margin-bottom: 0.25rem;
+  align-self: center;
+}
+@media (min-width: 640px) {
+  .available-badge { align-self: flex-start; }
+}
+body.dark-mode .available-badge {
+  background: rgba(74, 222, 128, 0.1);
+  border-color: rgba(74, 222, 128, 0.3);
+  color: #4ade80;
+}
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16a34a;
+  flex-shrink: 0;
+  animation: pulse-green 1.8s ease-in-out infinite;
+}
+body.dark-mode .pulse-dot { background: #4ade80; }
+
+@keyframes pulse-green {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.6; }
+}
+
+/* =======================================
+   SKILL LABEL ROW + PERCENT COUNTER
+   ======================================= */
+.skill-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.skill-percent {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  min-width: 2.5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* =======================================
+   ACTIVE NAV LINK (SCROLL-SPY)
+   ======================================= */
+.nav-links li a.active {
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+/* =======================================
+   COPY EMAIL TOOLTIP
+   ======================================= */
+.contact-item[data-copy] {
+  position: relative;
+  cursor: pointer;
+}
+.copy-tooltip {
+  position: absolute;
+  top: -2.8rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(0.4rem);
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.4rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+}
+.copy-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--color-primary);
+}
+.contact-item[data-copy].copied .copy-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* =======================================
+   COMMAND PALETTE
+   ======================================= */
+.cmd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+@supports (backdrop-filter: blur(1px)) {
+  .cmd-overlay { backdrop-filter: blur(4px); }
+}
+.cmd-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.cmd-palette {
+  width: min(560px, 90vw);
+  border-radius: 1rem;
+  overflow: hidden;
+  transform: translateY(-1rem);
+  transition: transform 0.2s ease;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+}
+.cmd-overlay.is-open .cmd-palette {
+  transform: translateY(0);
+}
+.cmd-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-glass);
+}
+.cmd-input {
+  flex: 1;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 1rem;
+  color: var(--text-main);
+  outline: none !important;
+  padding: 0;
+}
+.cmd-input::placeholder { color: var(--text-alt); }
+.cmd-list {
+  list-style: none;
+  padding: 0.5rem;
+  margin: 0;
+  max-height: 280px;
+  overflow-y: auto;
+}
+.cmd-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: background var(--transition), color var(--transition);
+  font-size: 0.95rem;
+}
+.cmd-item i { color: var(--color-primary); width: 1.2rem; text-align: center; }
+.cmd-tag {
+  margin-left: auto;
+  opacity: 0.45;
+  font-size: 0.75rem;
+}
+.cmd-item:hover, .cmd-item.is-selected {
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  color: var(--color-primary);
+}
+.cmd-item.is-hidden { display: none; }
+.cmd-footer {
+  display: flex;
+  gap: 1rem;
+  padding: 0.65rem 1.25rem;
+  border-top: 1px solid var(--border-glass);
+  font-size: 0.72rem;
+  color: var(--text-alt);
+}
+.cmd-footer span { display: flex; align-items: center; gap: 0.3rem; }
+.cmd-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.12rem 0.4rem;
+  border-radius: 0.3rem;
+  font-size: 0.7rem;
+  font-family: var(--font-base);
+  font-weight: 600;
+  background: var(--color-bg-light);
+  color: var(--text-alt);
+  border: 1px solid var(--border-card);
+}
+body.dark-mode .cmd-kbd {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
 }

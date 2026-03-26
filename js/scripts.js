@@ -61,10 +61,19 @@ document.addEventListener('DOMContentLoaded', function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     document.querySelectorAll('#habilidades .progress-bar').forEach(bar => {
-                        // Resgata o valor do valuenow salvo no wrapper
-                        const skillLevel = bar.parentElement.getAttribute('aria-valuenow');
-                        if(skillLevel) {
-                            bar.style.width = skillLevel + '%';
+                        const skillLevel = parseInt(bar.parentElement.getAttribute('aria-valuenow'));
+                        if (skillLevel) {
+                            bar.style.transform = `scaleX(${skillLevel / 100})`;
+                            const percentEl = bar.closest('.skill-item')?.querySelector('.skill-percent');
+                            if (percentEl) {
+                                let current = 0;
+                                const intervalMs = Math.round(1500 / skillLevel);
+                                const timer = setInterval(() => {
+                                    current = Math.min(current + 1, skillLevel);
+                                    percentEl.textContent = `${current}%`;
+                                    if (current >= skillLevel) clearInterval(timer);
+                                }, intervalMs);
+                            }
                         }
                     });
                     observer.unobserve(skillsSection);
@@ -141,24 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
         fadeElements.forEach(el => fadeObserver.observe(el));
     }
-
-    // ======================================================
-    // 7. PREVIEWS ANIMADOS (GIF HOVER NO CARD)
-    // ======================================================
-    const projectCards = document.querySelectorAll('.projeto-card');
-    projectCards.forEach(card => {
-        const img = card.querySelector('.card-img');
-        if (img) {
-            const originalSrc = img.src;
-            const gifSrc = originalSrc.replace(/\.(webp|png|jpg)$/, '.gif');
-            const tempImg = new Image();
-            tempImg.onload = () => {
-                card.addEventListener('mouseenter', () => img.src = gifSrc);
-                card.addEventListener('mouseleave', () => img.src = originalSrc);
-            };
-            tempImg.src = gifSrc;
-        }
-    });
 
     // ======================================================
     // 8. CUSTOM MAGNETIC CURSOR (Pointer Fine)
@@ -272,27 +263,225 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ======================================================
-    // 11. CONTACT FORM HANDLER (MAILTO NATIVO)
+    // 11. CONTACT FORM HANDLER (FORMSPREE)
+    // SETUP: crie uma conta gratuita em https://formspree.io,
+    //        crie um form e substitua YOUR_FORMSPREE_ID pelo ID gerado.
     // ======================================================
+    const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+
     const contactForm = document.getElementById('contactForm');
+    const formFeedback = document.getElementById('form-feedback');
+
+    function showFeedback(type) {
+        const lang = localStorage.getItem('lang') || 'pt';
+        const t = window.formMessages || {
+            pt: { success: 'Mensagem enviada! Em breve entrarei em contato.', error: 'Erro ao enviar. Tente novamente ou envie direto para miguelpagy@gmail.com.' },
+            en: { success: "Message sent! I'll get back to you soon.", error: 'Error sending. Try again or reach me directly at miguelpagy@gmail.com.' }
+        };
+        formFeedback.textContent = t[lang][type];
+        formFeedback.className = `form-feedback ${type}`;
+        setTimeout(() => { formFeedback.className = 'form-feedback'; }, 6000);
+    }
+
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            const subject = encodeURIComponent(`Novo Contato do Portfólio (via Site): ${name}`);
-            const body = encodeURIComponent(`Olá Miguel,\n\nMeu nome é ${name} (${email}).\n\n${message}`);
-            
-            window.location.href = `mailto:miguelpagy@gmail.com?subject=${subject}&body=${body}`;
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+
+            const data = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
+                // Fallback: abre cliente de email enquanto FORMSPREE_ID não está configurado
+                const subject = encodeURIComponent(`Contato do Portfólio: ${data.name}`);
+                const body = encodeURIComponent(`Olá Miguel,\n\nMeu nome é ${data.name} (${data.email}).\n\n${data.message}`);
+                window.location.href = `mailto:miguelpagy@gmail.com?subject=${subject}&body=${body}`;
+                submitBtn.disabled = false;
+                return;
+            }
+
+            fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(res => {
+                if (res.ok) {
+                    contactForm.reset();
+                    showFeedback('success');
+                } else {
+                    showFeedback('error');
+                }
+            })
+            .catch(() => showFeedback('error'))
+            .finally(() => { submitBtn.disabled = false; });
         });
     }
 
     // ======================================================
-    // 12. TSPARTICLES LOAD NO FINAL P/ EVITAR BLOQUEIO
+    // 13. SCROLL PROGRESS BAR
     // ======================================================
-    if (typeof tsParticles !== 'undefined') {
+    const scrollProgressBar = document.getElementById('scroll-progress');
+    if (scrollProgressBar) {
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            scrollProgressBar.style.width = `${Math.min(pct, 100)}%`;
+            scrollProgressBar.setAttribute('aria-valuenow', Math.round(pct));
+        }, { passive: true });
+    }
+
+    // ======================================================
+    // 14. BACK TO TOP BUTTON
+    // ======================================================
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            backToTopBtn.classList.toggle('is-visible', window.scrollY > 300);
+        }, { passive: true });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // ======================================================
+    // 15. SCROLL-SPY NAVBAR (IntersectionObserver)
+    // ======================================================
+    const allSections = document.querySelectorAll('section[id]');
+    const allNavLinks = document.querySelectorAll('.nav-links li a[href^="#"]');
+
+    if (allSections.length && allNavLinks.length) {
+        const spyObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const activeId = entry.target.getAttribute('id');
+                    allNavLinks.forEach(link => {
+                        const isActive = link.getAttribute('href') === `#${activeId}`;
+                        link.classList.toggle('active', isActive);
+                        if (isActive) {
+                            link.setAttribute('aria-current', 'page');
+                        } else {
+                            link.removeAttribute('aria-current');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+        allSections.forEach(section => spyObserver.observe(section));
+    }
+
+    // ======================================================
+    // 16. COPY EMAIL TO CLIPBOARD
+    // ======================================================
+    document.querySelectorAll('.contact-item[data-copy]').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const text = this.dataset.copy;
+            navigator.clipboard.writeText(text).then(() => {
+                this.classList.add('copied');
+                setTimeout(() => this.classList.remove('copied'), 2200);
+            }).catch(() => {
+                window.location.href = `mailto:${text}`;
+            });
+        });
+    });
+
+    // ======================================================
+    // 17. COMMAND PALETTE (Ctrl/Cmd + K)
+    // ======================================================
+    const cmdOverlay  = document.getElementById('cmd-overlay');
+    const cmdInput    = document.getElementById('cmd-input');
+    const cmdItemEls  = document.querySelectorAll('.cmd-item');
+    let cmdSelectedIdx = -1;
+
+    function openCmd() {
+        if (!cmdOverlay) return;
+        cmdOverlay.classList.add('is-open');
+        cmdOverlay.setAttribute('aria-hidden', 'false');
+        if (cmdInput) {
+            cmdInput.value = '';
+            cmdItemEls.forEach(i => i.classList.remove('is-hidden', 'is-selected'));
+        }
+        cmdSelectedIdx = -1;
+        setTimeout(() => cmdInput?.focus(), 50);
+    }
+
+    function closeCmd() {
+        if (!cmdOverlay) return;
+        cmdOverlay.classList.remove('is-open');
+        cmdOverlay.setAttribute('aria-hidden', 'true');
+    }
+
+    function execCmd(item) {
+        const href = item.dataset.href;
+        if (!href) return;
+        closeCmd();
+        const target = document.querySelector(href);
+        if (target) {
+            const offset = mainNav ? mainNav.offsetHeight : 80;
+            window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+            if (history.pushState) history.pushState(null, null, href);
+        }
+    }
+
+    if (cmdOverlay && cmdInput) {
+        document.addEventListener('keydown', e => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                cmdOverlay.classList.contains('is-open') ? closeCmd() : openCmd();
+            }
+            if (e.key === 'Escape' && cmdOverlay.classList.contains('is-open')) closeCmd();
+        });
+
+        cmdOverlay.addEventListener('click', e => { if (e.target === cmdOverlay) closeCmd(); });
+
+        cmdInput.addEventListener('input', () => {
+            const q = cmdInput.value.toLowerCase().trim();
+            cmdSelectedIdx = -1;
+            cmdItemEls.forEach(item => {
+                item.classList.toggle('is-hidden', q.length > 0 && !item.textContent.toLowerCase().includes(q));
+                item.classList.remove('is-selected');
+            });
+        });
+
+        cmdInput.addEventListener('keydown', e => {
+            const visible = [...cmdItemEls].filter(i => !i.classList.contains('is-hidden'));
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                cmdSelectedIdx = Math.min(cmdSelectedIdx + 1, visible.length - 1);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                cmdSelectedIdx = Math.max(cmdSelectedIdx - 1, 0);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                const target = cmdSelectedIdx >= 0 ? visible[cmdSelectedIdx] : visible[0];
+                if (target) execCmd(target);
+                return;
+            }
+            visible.forEach((item, i) => item.classList.toggle('is-selected', i === cmdSelectedIdx));
+            if (cmdSelectedIdx >= 0) visible[cmdSelectedIdx]?.scrollIntoView({ block: 'nearest' });
+        });
+
+        cmdItemEls.forEach(item => item.addEventListener('click', () => execCmd(item)));
+    }
+
+    const cmdHintBtn = document.getElementById('cmdPaletteHint');
+    if (cmdHintBtn) cmdHintBtn.addEventListener('click', openCmd);
+
+    // ======================================================
+    // 12. TSPARTICLES LOAD NO FINAL P/ EVITAR BLOQUEIO
+    // Desabilitado em mobile: impacto de performance em dispositivos fracos
+    // ======================================================
+    const isMobile = window.matchMedia('(max-width: 640px)').matches;
+
+    if (!isMobile && typeof tsParticles !== 'undefined') {
         tsParticles.load({
             id: "tsparticles",
             options: {
