@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/webp" href="img/miguel.webp">
-    <meta name="description" content="Portfólio de Miguel Angelo, Desenvolvedor Flutter Mobile com 3 anos de experiência em Android e iOS. Especialista em BLoC, Provider, Firebase e API REST.">
+    <meta name="description"
+        content="Portfólio de Miguel Angelo, Desenvolvedor Flutter Mobile com 4 de experiência em Android e iOS. Especialista em BLoC, Provider, Firebase e API REST.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://miguel12342342.github.io/">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Meu Portfólio | Miguel Angelo">
-    <meta property="og:description" content="Desenvolvedor Flutter Mobile construindo apps nativos de alta performance para Android e iOS.">
+    <meta property="og:description"
+        content="Desenvolvedor Flutter Mobile construindo apps nativos de alta performance para Android e iOS.">
     <meta property="og:image" content="https://miguel12342342.github.io/img/miguel.webp">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://miguel12342342.github.io/">
@@ -34,12 +37,16 @@
     </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Meu Portfólio | Miguel Angelo</title>
 </head>
+
 <body>
 
-    <div id="scroll-progress" role="progressbar" aria-label="Progresso de leitura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+    <div id="scroll-progress" role="progressbar" aria-label="Progresso de leitura" aria-valuemin="0" aria-valuemax="100"
+        aria-valuenow="0"></div>
 
     <header class="site-header" id="mainNav">
         <div class="wrapper flex-between align-center">
@@ -54,6 +61,7 @@
                     <li><a href="#apresentacao" aria-current="page" data-i18n="nav_home">Início</a></li>
                     <li><a href="#sobre" data-i18n="nav_about">Sobre</a></li>
                     <li><a href="#habilidades" data-i18n="nav_skills">Habilidades</a></li>
+                    <li><a href="#codigo" data-i18n="nav_code">Código</a></li>
                     <li><a href="#projetos" data-i18n="nav_projects">Projetos</a></li>
                     <li><a href="#contato" data-i18n="nav_contact">Contato</a></li>
                     <li>
@@ -62,13 +70,15 @@
                         </button>
                     </li>
                     <li>
-                        <button id="cmdPaletteHint" class="btn btn-outline-dark" aria-label="Paleta de Comandos (Ctrl+K)" title="Ctrl+K">
+                        <button id="cmdPaletteHint" class="btn btn-outline-dark"
+                            aria-label="Paleta de Comandos (Ctrl+K)" title="Ctrl+K">
                             <i class="fas fa-search" aria-hidden="true"></i>
                         </button>
                     </li>
                     <li>
-                        <button id="darkModeToggle" class="btn btn-outline-dark" aria-label="Alternar tema claro e escuro">
-                             <i class="fas fa-moon" aria-hidden="true"></i>
+                        <button id="darkModeToggle" class="btn btn-outline-dark"
+                            aria-label="Alternar tema claro e escuro">
+                            <i class="fas fa-moon" aria-hidden="true"></i>
                         </button>
                     </li>
                 </ul>
@@ -82,7 +92,8 @@
         <div class="wrapper hero-content relative-z">
 
             <div class="hero-image z-up">
-                <img src="img/miguel.webp" class="perfil-img-circle shadow-lg" alt="Foto de Perfil de Miguel Angelo" loading="lazy">
+                <img src="img/miguel.webp" class="perfil-img-circle shadow-lg" alt="Foto de Perfil de Miguel Angelo"
+                    loading="lazy">
             </div>
 
             <div class="hero-text glass-panel fade-in-up flex-column z-up">
@@ -96,7 +107,8 @@
                 </div>
 
                 <div class="hero-actions flex-row justify-center fade-in-up">
-                    <a href="docs/FlutterDeveloper_MiguelAngelo_br.pdf" class="btn btn-outline" target="_blank" rel="noopener noreferrer" download>
+                    <a href="docs/FlutterDeveloper_MiguelAngelo_br.pdf" class="btn btn-outline" target="_blank"
+                        rel="noopener noreferrer" download>
                         <span data-i18n="hero_cv">Download CV</span>
                     </a>
                     <a href="#contato" class="btn btn-solid">
@@ -105,8 +117,12 @@
                 </div>
 
                 <div class="social-icons flex-row justify-center mt-2 fade-in-up">
-                    <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="social-icon-hero" aria-label="LinkedIn"><i class="fab fa-linkedin fa-2x" aria-hidden="true"></i></a>
-                    <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="social-icon-hero" aria-label="GitHub"><i class="fab fa-github fa-2x" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer"
+                        class="social-icon-hero" aria-label="LinkedIn"><i class="fab fa-linkedin fa-2x"
+                            aria-hidden="true"></i></a>
+                    <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer"
+                        class="social-icon-hero" aria-label="GitHub"><i class="fab fa-github fa-2x"
+                            aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -114,11 +130,16 @@
 
     <section id="sobre" class="padding-section">
         <div class="wrapper flex-column text-center">
-            <h2 class="section-title"><i class="fas fa-user-circle text-primary"></i> <span data-i18n="about_title">Sobre Mim</span></h2>
+            <h2 class="section-title"><i class="fas fa-user-circle text-primary"></i> <span
+                    data-i18n="about_title">Sobre Mim</span></h2>
 
             <div class="content-text text-start fade-in-up w-100 max-w-content">
                 <p data-i18n="about_p1" data-i18n-html>
-                    Sou <strong>Miguel Angelo</strong>, <strong>Desenvolvedor Flutter Mobile</strong>, com <strong>3 anos de experiência</strong> focada na construção de <strong>soluções móveis nativas de alta performance</strong> (Android/iOS). Minha paixão é <strong>transformar requisitos complexos em interfaces envolventes</strong> e arquiteturas escaláveis. Domino o ciclo de vida completo: do design de UX/UI até a implantação e manutenção contínua nas lojas de aplicativos.
+                    Sou <strong>Miguel Angelo</strong>, <strong>Desenvolvedor Flutter Mobile</strong>, com <strong>4
+                        anos de experiência</strong> focada na construção de <strong>soluções móveis nativas de alta
+                        performance</strong> (Android/iOS). Minha paixão é <strong>transformar requisitos complexos em
+                        interfaces envolventes</strong> e arquiteturas escaláveis. Domino o ciclo de vida completo: do
+                    design de UX/UI até a implantação e manutenção contínua nas lojas de aplicativos.
                 </p>
 
                 <p data-i18n="about_p2" data-i18n-html>
@@ -126,15 +147,51 @@
                 </p>
 
                 <ul class="mb-4">
-                    <li data-i18n="about_li1" data-i18n-html><strong>Integração de APIs REST:</strong> Conexão eficiente com backends complexos, reduzindo a latência no consumo de grandes volumes de dados via JSON e garantindo performance fluida.</li>
-                    <li data-i18n="about_li2" data-i18n-html><strong>Arquitetura Escalonável:</strong> Proficiência sólida em <strong>BLoC e Provider</strong>, entregando código altamente modular, sustentável e fácil de testar.</li>
-                    <li data-i18n="about_li3" data-i18n-html><strong>Soluções em Tempo Real:</strong> Implementação ágil de infraestruturas cloud com <strong>Firebase (Firestore e Authentication)</strong> para acelerar o lançamento de funcionalidades chave.</li>
-                    <li data-i18n="about_li4" data-i18n-html><strong>Qualidade de Código:</strong> Práticas rigorosas de CI/CD, versionamento eficiente via Git/GitHub e colaboração assíncrona, focando num app estável (crash-free).</li>
+                    <li data-i18n="about_li1" data-i18n-html><strong>Integração de APIs REST:</strong> Conexão eficiente
+                        com backends complexos, reduzindo a latência no consumo de grandes volumes de dados via JSON e
+                        garantindo performance fluida.</li>
+                    <li data-i18n="about_li2" data-i18n-html><strong>Arquitetura Escalonável:</strong> Proficiência
+                        sólida em <strong>BLoC e Provider</strong>, entregando código altamente modular, sustentável e
+                        fácil de testar.</li>
+                    <li data-i18n="about_li3" data-i18n-html><strong>Soluções em Tempo Real:</strong> Implementação ágil
+                        de infraestruturas cloud com <strong>Firebase (Firestore e Authentication)</strong> para
+                        acelerar o lançamento de funcionalidades chave.</li>
+                    <li data-i18n="about_li4" data-i18n-html><strong>Qualidade de Código:</strong> Práticas rigorosas de
+                        CI/CD, versionamento eficiente via Git/GitHub e colaboração assíncrona, focando num app estável
+                        (crash-free).</li>
                 </ul>
 
                 <p data-i18n="about_p3" data-i18n-html>
-                    Busco desafios imersivos onde eu possa projetar soluções robustas. O meu objetivo é <strong>entregar aplicativos que não apenas funcionem perfeitamente, mas que encantem usuários e alavanquem resultados de negócio reais</strong>.
+                    Busco desafios imersivos onde eu possa projetar soluções robustas. O meu objetivo é <strong>entregar
+                        aplicativos que não apenas funcionem perfeitamente, mas que encantem usuários e alavanquem
+                        resultados de negócio reais</strong>.
                 </p>
+            </div>
+
+            <div class="github-stats fade-in-up" id="github-stats">
+                <div class="github-stats-header">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <span data-i18n="github_live">GitHub — dados em tempo real</span>
+                    <span class="live-indicator" aria-hidden="true"></span>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <span class="stat-number" id="stat-repos">—</span>
+                        <span class="stat-label" data-i18n="stat_repos">Repositórios</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="stat-stars">—</span>
+                        <span class="stat-label" data-i18n="stat_stars">Stars</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="stat-followers">—</span>
+                        <span class="stat-label" data-i18n="stat_followers">Seguidores</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="stat-activity">—</span>
+                        <span class="stat-label" data-i18n="stat_activity">Última atividade</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -160,7 +217,8 @@
 
                     <div class="skill-item">
                         <div class="skill-label-row">
-                            <span><i class="fas fa-code"></i> <span data-i18n="skills_api">Consumo de API REST/JSON</span></span>
+                            <span><i class="fas fa-code"></i> <span data-i18n="skills_api">Consumo de API
+                                    REST/JSON</span></span>
                             <span class="skill-percent" aria-hidden="true">0%</span>
                         </div>
                         <div class="progress" aria-valuenow="85">
@@ -170,7 +228,8 @@
 
                     <div class="skill-item">
                         <div class="skill-label-row">
-                            <span><i class="fas fa-layer-group"></i> <span data-i18n="skills_state">Gerenciamento de Estado (BLoC/Provider)</span></span>
+                            <span><i class="fas fa-layer-group"></i> <span data-i18n="skills_state">Gerenciamento de
+                                    Estado (BLoC/Provider)</span></span>
                             <span class="skill-percent" aria-hidden="true">0%</span>
                         </div>
                         <div class="progress" aria-valuenow="80">
@@ -215,8 +274,236 @@
 
             </div>
             <p class="mt-4 bold-text fade-in-up" data-i18n="skills_extra">
-                Estou sempre aprendendo novas ferramentas e busco aprimorar meu conhecimento em arquitetura de software e testes unitários.
+                Estou sempre aprendendo novas ferramentas e busco aprimorar meu conhecimento em arquitetura de software
+                e testes unitários.
             </p>
+        </div>
+    </section>
+
+    <!-- ================================================== -->
+    <!-- CODE SHOWCASE                                       -->
+    <!-- ================================================== -->
+    <section id="codigo" class="padding-section">
+        <div class="wrapper flex-column text-center">
+            <h2 class="section-title fade-in-up"><i class="fas fa-code text-primary"></i> <span
+                    data-i18n="code_title">Código em Ação</span></h2>
+            <p class="section-subtitle fade-in-up" data-i18n="code_subtitle">Trechos reais de projetos — arquitetura,
+                padrões e boas práticas em Dart &amp; Flutter.</p>
+
+            <div class="code-showcase fade-in-up">
+                <!-- Window chrome -->
+                <div class="code-window-bar">
+                    <span class="wdot wdot--red"></span>
+                    <span class="wdot wdot--yellow"></span>
+                    <span class="wdot wdot--green"></span>
+                    <div class="code-tabs" role="tablist">
+                        <button class="code-tab is-active" role="tab" data-tab="bloc" aria-selected="true"
+                            data-i18n="code_tab_bloc">BLoC</button>
+                        <button class="code-tab" role="tab" data-tab="api" aria-selected="false"
+                            data-i18n="code_tab_api">API REST</button>
+                        <button class="code-tab" role="tab" data-tab="widget" aria-selected="false"
+                            data-i18n="code_tab_widget">Widget</button>
+                        <button class="code-tab" role="tab" data-tab="firebase" aria-selected="false"
+                            data-i18n="code_tab_firebase">Firebase</button>
+                    </div>
+                </div>
+
+                <!-- Panels -->
+                <div class="code-panels">
+
+                    <!-- BLoC -->
+                    <div class="code-panel is-active" data-panel="bloc">
+                        <div class="code-header">
+                            <span class="code-filename"><i class="fas fa-file-code" aria-hidden="true"></i>
+                                video_search_bloc.dart</span>
+                            <button class="code-copy-btn" aria-label="Copiar código"><i class="fas fa-copy"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                        <pre><code class="language-dart">import 'package:flutter_bloc/flutter_bloc.dart';
+import '../repositories/video_repository.dart';
+
+// ── Events ───────────────────────────────────────────────
+abstract class VideoEvent {}
+
+class VideoFetched extends VideoEvent {
+  final String query;
+  VideoFetched(this.query);
+}
+
+// ── States ───────────────────────────────────────────────
+abstract class VideoState {}
+
+class VideoInitial extends VideoState {}
+class VideoLoading extends VideoState {}
+
+class VideoSuccess extends VideoState {
+  final List&lt;VideoModel&gt; videos;
+  VideoSuccess(this.videos);
+}
+
+class VideoFailure extends VideoState {
+  final String error;
+  VideoFailure(this.error);
+}
+
+// ── BLoC ─────────────────────────────────────────────────
+class VideoBloc extends Bloc&lt;VideoEvent, VideoState&gt; {
+  final VideoRepository _repo;
+
+  VideoBloc(this._repo) : super(VideoInitial()) {
+    on&lt;VideoFetched&gt;(_onFetched);
+  }
+
+  Future&lt;void&gt; _onFetched(
+    VideoFetched event,
+    Emitter&lt;VideoState&gt; emit,
+  ) async {
+    emit(VideoLoading());
+    try {
+      final videos = await _repo.searchVideos(event.query);
+      emit(VideoSuccess(videos));
+    } catch (e) {
+      emit(VideoFailure(e.toString()));
+    }
+  }
+}</code></pre>
+                    </div>
+
+                    <!-- API REST -->
+                    <div class="code-panel" data-panel="api">
+                        <div class="code-header">
+                            <span class="code-filename"><i class="fas fa-file-code" aria-hidden="true"></i>
+                                video_repository.dart</span>
+                            <button class="code-copy-btn" aria-label="Copiar código"><i class="fas fa-copy"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                        <pre><code class="language-dart">import 'package:dio/dio.dart';
+import '../models/video_model.dart';
+import '../core/env.dart';
+
+class VideoRepository {
+  final Dio _dio;
+  static const _base = 'https://www.googleapis.com/youtube/v3';
+
+  VideoRepository({Dio? dio}) : _dio = dio ?? Dio();
+
+  Future&lt;List&lt;VideoModel&gt;&gt; searchVideos(String query) async {
+    try {
+      final res = await _dio.get(
+        '$_base/search',
+        queryParameters: {
+          'part': 'snippet',
+          'q': query,
+          'maxResults': 20,
+          'type': 'video',
+          'key': Env.youtubeApiKey,
+        },
+      );
+
+      return (res.data['items'] as List)
+          .map(VideoModel.fromJson)
+          .toList();
+
+    } on DioException catch (e) {
+      throw Exception('API Error: ${e.message}');
+    }
+  }
+}</code></pre>
+                    </div>
+
+                    <!-- Widget -->
+                    <div class="code-panel" data-panel="widget">
+                        <div class="code-header">
+                            <span class="code-filename"><i class="fas fa-file-code" aria-hidden="true"></i>
+                                animated_counter.dart</span>
+                            <button class="code-copy-btn" aria-label="Copiar código"><i class="fas fa-copy"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                        <pre><code class="language-dart">import 'package:flutter/material.dart';
+
+class AnimatedCounter extends StatefulWidget {
+  final int value;
+  final TextStyle? style;
+
+  const AnimatedCounter({super.key, required this.value, this.style});
+
+  @override
+  State&lt;AnimatedCounter&gt; createState() =&gt; _AnimatedCounterState();
+}
+
+class _AnimatedCounterState extends State&lt;AnimatedCounter&gt;
+    with SingleTickerProviderStateMixin {
+
+  late AnimationController _ctrl;
+  late Animation&lt;double&gt; _anim;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
+    _anim = Tween&lt;double&gt;(begin: 0, end: widget.value.toDouble())
+        .animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeOut));
+    _ctrl.forward();
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) =&gt; AnimatedBuilder(
+    animation: _anim,
+    builder: (_, __) =&gt; Text(
+      _anim.value.round().toString(),
+      style: widget.style,
+    ),
+  );
+}</code></pre>
+                    </div>
+
+                    <!-- Firebase -->
+                    <div class="code-panel" data-panel="firebase">
+                        <div class="code-header">
+                            <span class="code-filename"><i class="fas fa-file-code" aria-hidden="true"></i>
+                                auth_repository.dart</span>
+                            <button class="code-copy-btn" aria-label="Copiar código"><i class="fas fa-copy"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                        <pre><code class="language-dart">import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class AuthRepository {
+  final _auth = FirebaseAuth.instance;
+  final _db   = FirebaseFirestore.instance;
+
+  // Stream reativo: UI reconstrói automaticamente ao mudar estado de auth
+  Stream&lt;User?&gt; get authStateChanges =&gt; _auth.authStateChanges();
+
+  Future&lt;void&gt; signIn(String email, String password) =&gt;
+      _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+  Future&lt;void&gt; createProfile(User user, String name) =&gt;
+      _db.collection('users').doc(user.uid).set({
+        'name':      name,
+        'email':     user.email,
+        'createdAt': FieldValue.serverTimestamp(),
+        'uid':       user.uid,
+      });
+
+  Future&lt;void&gt; signOut() =&gt; _auth.signOut();
+}</code></pre>
+                    </div>
+
+                </div><!-- /.code-panels -->
+            </div><!-- /.code-showcase -->
         </div>
     </section>
 
@@ -224,85 +511,130 @@
 
         <div class="wrapper flex-column text-center">
             <h2 class="section-title" data-i18n="proj_title">📂 Meus Projetos</h2>
-            <p class="section-subtitle fade-in-up" data-i18n="proj_subtitle">Confira abaixo os principais aplicativos e projetos de código aberto que desenvolvi com Flutter e Dart.</p>
+            <p class="section-subtitle fade-in-up" data-i18n="proj_subtitle">Confira abaixo os principais aplicativos e
+                projetos de código aberto que desenvolvi com Flutter e Dart.</p>
+
+            <div class="phone-showcase fade-in-up">
+                <span class="phone-label" data-i18n="phone_label">Apps desenvolvidos</span>
+                <div class="phone-frame" aria-label="Carrossel de apps Flutter" role="img">
+                    <div class="phone-speaker" aria-hidden="true"></div>
+                    <div class="phone-screen">
+                        <img src="img/youtube.webp" class="phone-slide active" alt="Youtube Clone Flutter"
+                            loading="lazy">
+                        <img src="img/alcool_ou_gasolina.webp" class="phone-slide" alt="Álcool ou Gasolina Flutter"
+                            loading="lazy">
+                        <img src="img/jonken.webp" class="phone-slide" alt="Jokenpô Flutter" loading="lazy">
+                        <img src="img/frases_do_dia.webp" class="phone-slide" alt="Frases do Dia Flutter"
+                            loading="lazy">
+                    </div>
+                    <div class="phone-home-bar" aria-hidden="true"></div>
+                </div>
+                <div class="phone-dots" role="tablist" aria-label="Selecionar app">
+                    <span class="phone-dot active" role="tab" aria-selected="true" aria-label="App 1"
+                        tabindex="0"></span>
+                    <span class="phone-dot" role="tab" aria-selected="false" aria-label="App 2" tabindex="0"></span>
+                    <span class="phone-dot" role="tab" aria-selected="false" aria-label="App 3" tabindex="0"></span>
+                    <span class="phone-dot" role="tab" aria-selected="false" aria-label="App 4" tabindex="0"></span>
+                </div>
+            </div>
 
             <div class="grid-3-col w-100 mt-4">
 
                 <div class="projeto-card fade-in-up">
-                    <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub" aria-label="Link para projeto Youtube Clone no Github">
-                        <img src="img/youtube.webp" class="card-img" alt="Captura de tela do aplicativo Youtube Clone em Flutter" loading="lazy">
+                    <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer"
+                        title="Ver código no GitHub" aria-label="Link para projeto Youtube Clone no Github">
+                        <img src="img/youtube.webp" class="card-img"
+                            alt="Captura de tela do aplicativo Youtube Clone em Flutter" loading="lazy">
                     </a>
                     <div class="card-body text-start">
                         <h5 class="card-title">Youtube</h5>
                         <p class="card-text" data-i18n="proj_yt_desc">
-                            Desenvolvimento de uma plataforma de streaming de vídeo inspirada no YouTube, focada em uma experiência de usuário fluida e interface responsiva utilizando o framework Flutter. O projeto consome dados reais via API do YouTube, permitindo a busca e visualização de vídeos em tempo real.
+                            Desenvolvimento de uma plataforma de streaming de vídeo inspirada no YouTube, focada em uma
+                            experiência de usuário fluida e interface responsiva utilizando o framework Flutter. O
+                            projeto consome dados reais via API do YouTube, permitindo a busca e visualização de vídeos
+                            em tempo real.
                         </p>
                         <div class="tecnologias">
                             <span class="badge bg-primary">Flutter</span>
                             <span class="badge">Dart</span>
                             <span class="badge">API</span>
                         </div>
-                        <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark mt-2 w-auto">
+                        <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-outline-dark mt-2 w-auto">
                             <i class="fab fa-github no-gap"></i> <span data-i18n="btn_code">Código</span>
                         </a>
                     </div>
                 </div>
 
                 <div class="projeto-card fade-in-up">
-                    <a href="https://github.com/Miguel12342342/alcool_Gasolina" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub" aria-label="Link para projeto Alcool ou Gasolina no Github">
-                    <img src="img/alcool_ou_gasolina.webp" class="card-img" alt="Captura de tela do aplicativo Álcool ou Gasolina" loading="lazy">
+                    <a href="https://github.com/Miguel12342342/alcool_Gasolina" target="_blank"
+                        rel="noopener noreferrer" title="Ver código no GitHub"
+                        aria-label="Link para projeto Alcool ou Gasolina no Github">
+                        <img src="img/alcool_ou_gasolina.webp" class="card-img"
+                            alt="Captura de tela do aplicativo Álcool ou Gasolina" loading="lazy">
                     </a>
                     <div class="card-body text-start">
                         <h5 class="card-title">Álcool ou Gasolina?</h5>
                         <p class="card-text" data-i18n="proj_gas_desc">
-                            Aplicativo utilitário que calcula e compara o custo-benefício entre álcool e gasolina, auxiliando o usuário a tomar a melhor decisão na hora de abastecer.
+                            Aplicativo utilitário que calcula e compara o custo-benefício entre álcool e gasolina,
+                            auxiliando o usuário a tomar a melhor decisão na hora de abastecer.
                         </p>
                         <div class="tecnologias">
                             <span class="badge bg-primary">Flutter</span>
                             <span class="badge">Dart</span>
                             <span class="badge">Cálculo</span>
                         </div>
-                        <a href="https://github.com/Miguel12342342/alcool_Gasolina" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark mt-2 w-auto">
+                        <a href="https://github.com/Miguel12342342/alcool_Gasolina" target="_blank"
+                            rel="noopener noreferrer" class="btn btn-outline-dark mt-2 w-auto">
                             <i class="fab fa-github no-gap"></i> <span data-i18n="btn_code">Código</span>
                         </a>
                     </div>
                 </div>
 
                 <div class="projeto-card fade-in-up">
-                     <a href="https://github.com/Miguel12342342/Joken_po" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub" aria-label="Link para projeto Joken_po no Github">
-                    <img src="img/jonken.webp" class="card-img" alt="Captura de tela do Jogo Jokenpô" loading="lazy">
+                    <a href="https://github.com/Miguel12342342/Joken_po" target="_blank" rel="noopener noreferrer"
+                        title="Ver código no GitHub" aria-label="Link para projeto Joken_po no Github">
+                        <img src="img/jonken.webp" class="card-img" alt="Captura de tela do Jogo Jokenpô"
+                            loading="lazy">
                     </a>
                     <div class="card-body text-start">
                         <h5 class="card-title">Jokenpô</h5>
                         <p class="card-text" data-i18n="proj_joken_desc">
-                            Implementação do clássico jogo Jokenpô (Pedra, Papel e Tesoura). Focado na lógica de jogo e na atualização de placares, demonstrando o uso de gerenciamento de estado simples no Flutter.
+                            Implementação do clássico jogo Jokenpô (Pedra, Papel e Tesoura). Focado na lógica de jogo e
+                            na atualização de placares, demonstrando o uso de gerenciamento de estado simples no
+                            Flutter.
                         </p>
                         <div class="tecnologias">
                             <span class="badge bg-primary">Flutter</span>
                             <span class="badge">Dart</span>
                             <span class="badge">Lógica</span>
                         </div>
-                        <a href="https://github.com/Miguel12342342/Joken_po" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark mt-2 w-auto">
+                        <a href="https://github.com/Miguel12342342/Joken_po" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-outline-dark mt-2 w-auto">
                             <i class="fab fa-github no-gap"></i> <span data-i18n="btn_code">Código</span>
                         </a>
                     </div>
                 </div>
 
                 <div class="projeto-card fade-in-up">
-                    <a href="https://github.com/Miguel12342342/frases_do_dia" target="_blank" rel="noopener noreferrer" title="Ver código no GitHub" aria-label="Link para projeto frases do dia no Github">
-                    <img src="img/frases_do_dia.webp" class="card-img" alt="Captura de tela do aplicativo Frases do Dia" loading="lazy">
+                    <a href="https://github.com/Miguel12342342/frases_do_dia" target="_blank" rel="noopener noreferrer"
+                        title="Ver código no GitHub" aria-label="Link para projeto frases do dia no Github">
+                        <img src="img/frases_do_dia.webp" class="card-img"
+                            alt="Captura de tela do aplicativo Frases do Dia" loading="lazy">
                     </a>
                     <div class="card-body text-start">
                         <h5 class="card-title">Frases do Dia</h5>
                         <p class="card-text" data-i18n="proj_frases_desc">
-                            Aplicativo que exibe frases motivacionais aleatórias. Demonstra o uso de listas, manipulação de texto e atualização de UI (User Interface) em tempo real.
+                            Aplicativo que exibe frases motivacionais aleatórias. Demonstra o uso de listas, manipulação
+                            de texto e atualização de UI (User Interface) em tempo real.
                         </p>
                         <div class="tecnologias">
                             <span class="badge bg-primary">Flutter</span>
                             <span class="badge">Listas</span>
                             <span class="badge">Randomização</span>
                         </div>
-                        <a href="https://github.com/Miguel12342342/frases_do_dia" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark mt-2 w-auto">
+                        <a href="https://github.com/Miguel12342342/frases_do_dia" target="_blank"
+                            rel="noopener noreferrer" class="btn btn-outline-dark mt-2 w-auto">
                             <i class="fab fa-github no-gap"></i> <span data-i18n="btn_code">Código</span>
                         </a>
                     </div>
@@ -323,7 +655,8 @@
 
                 <div class="contact-info flex-column fade-in-up">
 
-                    <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="contact-item flex-row align-center">
+                    <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer"
+                        class="contact-item flex-row align-center">
                         <i class="fab fa-github" aria-hidden="true"></i>
                         <div class="contact-details flex-column">
                             <h5>GitHub</h5>
@@ -331,7 +664,8 @@
                         </div>
                     </a>
 
-                    <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="contact-item flex-row align-center">
+                    <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer"
+                        class="contact-item flex-row align-center">
                         <i class="fab fa-linkedin" aria-hidden="true"></i>
                         <div class="contact-details flex-column">
                             <h5>LinkedIn</h5>
@@ -339,7 +673,8 @@
                         </div>
                     </a>
 
-                    <a href="mailto:miguelpagy@gmail.com" class="contact-item flex-row align-center" data-copy="miguelpagy@gmail.com">
+                    <a href="mailto:miguelpagy@gmail.com" class="contact-item flex-row align-center"
+                        data-copy="miguelpagy@gmail.com">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                         <div class="contact-details flex-column">
                             <h5>Email</h5>
@@ -365,7 +700,8 @@
                             <textarea class="custom-input" id="message" name="message" required></textarea>
                         </div>
                         <div id="form-feedback" class="form-feedback" aria-live="polite"></div>
-                        <button type="submit" class="btn btn-primary w-100 btn-lg" data-i18n="form_send">Enviar Mensagem</button>
+                        <button type="submit" class="btn btn-primary w-100 btn-lg" data-i18n="form_send">Enviar
+                            Mensagem</button>
                     </form>
                 </div>
             </div>
@@ -375,11 +711,15 @@
 
     <footer class="site-footer text-center">
         <div class="wrapper flex-column">
-            <p><span data-i18n="footer_text">Desenvolvido com paixão por Miguel Angelo | </span><span id="footer-year"></span></p>
+            <p><span data-i18n="footer_text">Desenvolvido com paixão por Miguel Angelo | </span><span
+                    id="footer-year"></span></p>
             <div class="footer-socials flex-row justify-center mt-2">
-                <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
-                <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-                <a href="mailto:miguelpagy@gmail.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                <a href="https://github.com/Miguel12342342" target="_blank" rel="noopener noreferrer"
+                    class="social-icon" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/in/miguelpagys/" target="_blank" rel="noopener noreferrer"
+                    class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                <a href="mailto:miguelpagy@gmail.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope"
+                        aria-hidden="true"></i></a>
             </div>
         </div>
     </footer>
@@ -390,19 +730,13 @@
     </button>
 
     <!-- Command Palette -->
-    <div id="cmd-overlay" class="cmd-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Paleta de Comandos">
+    <div id="cmd-overlay" class="cmd-overlay" aria-hidden="true" role="dialog" aria-modal="true"
+        aria-label="Paleta de Comandos">
         <div class="cmd-palette glass-panel">
             <div class="cmd-header">
                 <i class="fas fa-search text-primary" aria-hidden="true"></i>
-                <input
-                    type="text"
-                    id="cmd-input"
-                    class="cmd-input"
-                    data-i18n-placeholder="cmd_placeholder"
-                    placeholder="Navegar para..."
-                    autocomplete="off"
-                    spellcheck="false"
-                    aria-label="Busca de comandos">
+                <input type="text" id="cmd-input" class="cmd-input" data-i18n-placeholder="cmd_placeholder"
+                    placeholder="Navegar para..." autocomplete="off" spellcheck="false" aria-label="Busca de comandos">
                 <span class="cmd-kbd">Esc</span>
             </div>
             <ul class="cmd-list" id="cmd-list" role="listbox" aria-label="Seções de Navegação">
@@ -420,6 +754,11 @@
                     <i class="fas fa-tools" aria-hidden="true"></i>
                     <span data-i18n="nav_skills">Habilidades</span>
                     <span class="cmd-tag">#skills</span>
+                </li>
+                <li class="cmd-item" data-href="#codigo" role="option" tabindex="-1">
+                    <i class="fas fa-code" aria-hidden="true"></i>
+                    <span data-i18n="code_title">Código em Ação</span>
+                    <span class="cmd-tag">#código</span>
                 </li>
                 <li class="cmd-item" data-href="#projetos" role="option" tabindex="-1">
                     <i class="fas fa-folder-open" aria-hidden="true"></i>
@@ -444,6 +783,10 @@
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
 
+    <!-- highlight.js (syntax highlighting para code showcase) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/dart.min.js"></script>
+
     <!-- tsParticles -->
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/tsparticles.engine.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/basic@3.1.0/tsparticles.basic.min.js"></script>
@@ -455,4 +798,5 @@
     <script src="js/scripts.js"></script>
 
 </body>
+
 </html>

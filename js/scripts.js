@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
+
+    // Definido aqui para ser acessível em todos os sections abaixo
+    const isMobile = window.matchMedia('(max-width: 640px)').matches;
+
     // ======================================================
     // 1. MENU HAMBÚRGUER (Versão Customizada Mobile)
     // ======================================================
     const menuToggle = document.getElementById('menu-toggle');
-    const navbarNav = document.getElementById('navbarNav');
+    const navbarNav  = document.getElementById('navbarNav');
 
     if (menuToggle && navbarNav) {
         menuToggle.addEventListener('click', () => {
@@ -12,6 +15,19 @@ document.addEventListener('DOMContentLoaded', function() {
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             menuToggle.classList.toggle('is-active');
             navbarNav.classList.toggle('is-active');
+        });
+
+        // Fecha ao tocar fora do menu no mobile
+        document.addEventListener('click', e => {
+            if (
+                navbarNav.classList.contains('is-active') &&
+                !navbarNav.contains(e.target) &&
+                !menuToggle.contains(e.target)
+            ) {
+                navbarNav.classList.remove('is-active');
+                menuToggle.classList.remove('is-active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
         });
     }
 
@@ -79,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     observer.unobserve(skillsSection);
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: isMobile ? 0.1 : 0.25 });
         observer.observe(skillsSection);
     }
 
@@ -138,16 +154,65 @@ document.addEventListener('DOMContentLoaded', function() {
     // ======================================================
     // 6. SCROLL ANIMATIONS (FADE-IN-UP)
     // ======================================================
-    const fadeElements = document.querySelectorAll('.fade-in-up');
+
+    // ── Passo 1: corrige opacity composta no hero ─────────────────────────
+    // hero-text tem fade-in-up E seus filhos também.
+    // CSS multiplica opacity pai × filho → filhos invisíveis até pai completar.
+    // Fix: forçar o container visível sem animação antes de qualquer outra coisa.
+    const heroContainer = document.querySelector('.hero-text.fade-in-up');
+    if (heroContainer) {
+        heroContainer.style.transition = 'none';
+        heroContainer.classList.add('is-visible');
+        // Limpa o inline style depois de um frame para não suprimir transições futuras
+        requestAnimationFrame(() => { heroContainer.style.transition = ''; });
+    }
+
+    // ── Passo 2: stagger por grupo de irmãos ─────────────────────────────
+    // Intervalo adaptativo: grupos grandes (≥5, ex: hero children) usam 55ms
+    // para uma cascata rápida; grupos menores (cards, halves) usam 90ms para
+    // tornar cada elemento claramente distinto.
+    const fadeElements = document.querySelectorAll('.fade-in-up:not(.is-visible)');
+
     if (fadeElements.length > 0) {
-        const fadeObserver = new IntersectionObserver((entries, observer) => {
+        const seenParents = new Set();
+
+        fadeElements.forEach(el => {
+            const parent = el.parentElement;
+            if (seenParents.has(parent)) return;
+            seenParents.add(parent);
+
+            const siblings = [...parent.querySelectorAll(':scope > .fade-in-up:not(.is-visible)')];
+            if (siblings.length > 1) {
+                const interval = siblings.length >= 5 ? 55 : 90;
+                siblings.forEach((sib, idx) => {
+                    sib.style.transitionDelay = `${idx * interval}ms`;
+                });
+            }
+        });
+
+        // ── Passo 3: observer com will-change gerenciado ──────────────────
+        // will-change adicionado ANTES da animação e removido DEPOIS.
+        // Evita ter todas as layers GPU vivas permanentemente (bug anterior).
+        // rootMargin em % escala com o viewport; threshold baixo = responsivo.
+        const fadeObserver = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
+                if (!entry.isIntersecting) return;
+
+                const el = entry.target;
+                el.style.willChange = 'opacity, transform';
+                el.classList.add('is-visible');
+                obs.unobserve(el);
+
+                // Libera a layer GPU logo que a transição termina
+                el.addEventListener('transitionend', () => {
+                    el.style.willChange = 'auto';
+                }, { once: true });
             });
-        }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+        }, {
+            threshold: 0.08,
+            rootMargin: '0px 0px -8% 0px'
+        });
+
         fadeElements.forEach(el => fadeObserver.observe(el));
     }
 
@@ -201,66 +266,94 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ======================================================
-    // 10. SCROLL PARALLAX SYSTEM
+    // 10. SCROLL MANAGER — parallax, progress bar, back-to-top
+    //     Um único listener + RAF para evitar múltiplos triggers
+    //     por frame. passive:true nunca bloqueou scroll no iOS/Android.
     // ======================================================
-    const parallaxSections = document.querySelectorAll('.padding-section');
+    const parallaxSections   = document.querySelectorAll('.padding-section');
     const particlesContainer = document.querySelector('#tsparticles');
+    const scrollProgressBar  = document.getElementById('scroll-progress');
+    const backToTopBtn       = document.getElementById('back-to-top');
     let lastKnownScrollPosition = 0;
     let ticking = false;
 
     window.addEventListener('scroll', () => {
         lastKnownScrollPosition = window.scrollY;
-        
+
         if (!ticking) {
             window.requestAnimationFrame(() => {
-                parallaxSections.forEach(sec => {
-                    const rect = sec.getBoundingClientRect();
-                    const innerWrapper = sec.querySelector('.wrapper');
-                    
-                    if(innerWrapper) {
+
+                // ── Progress bar ──────────────────────────────────────
+                if (scrollProgressBar) {
+                    const docH = document.documentElement.scrollHeight - window.innerHeight;
+                    const pct  = docH > 0 ? (lastKnownScrollPosition / docH) * 100 : 0;
+                    scrollProgressBar.style.width = `${Math.min(pct, 100)}%`;
+                    scrollProgressBar.setAttribute('aria-valuenow', Math.round(pct));
+                }
+
+                // ── Back to top visibility ────────────────────────────
+                if (backToTopBtn) {
+                    backToTopBtn.classList.toggle('is-visible', lastKnownScrollPosition > 300);
+                }
+
+                // ── Parallax (desktop apenas) ─────────────────────────
+                // Em mobile o viewport é pequeno demais: o fade de opacity
+                // tornava conteúdo ilegível antes de sair da tela.
+                if (!isMobile) {
+                    parallaxSections.forEach(sec => {
+                        const rect        = sec.getBoundingClientRect();
+                        const innerWrapper = sec.querySelector('.wrapper');
+                        if (!innerWrapper) return;
+
                         if (rect.top <= 0 && rect.bottom > 0) {
                             const scrolledPast = Math.abs(rect.top);
-                            const isProjetos = sec.id === 'projetos';
-                            const isContato = sec.id === 'contato';
-                            
+                            const isProjetos   = sec.id === 'projetos';
+                            const isContato    = sec.id === 'contato';
+
                             if (!isContato) {
-                                let currentOpacity = 1;
-                                let currentTranslate = 0;
+                                let opacity   = 1;
+                                let translate = 0;
 
                                 if (isProjetos) {
-                                    currentTranslate = 0; // Fixa a seção na posição normal
-                                    
-                                    // Começa a sumir apenas quando a base da sessão chega perto do fim da tela (Contato aparecendo)
+                                    // Fade somente quando a seção seguinte começa a entrar
                                     const triggerPoint = Math.max(0, rect.height - window.innerHeight);
-                                    
                                     if (scrolledPast > triggerPoint) {
-                                        const amountPast = scrolledPast - triggerPoint;
-                                        // Fade suave baseado na subida da próxima sessão
-                                        currentOpacity = 1 - (amountPast / (window.innerHeight * 0.8));
+                                        opacity = 1 - ((scrolledPast - triggerPoint) / (window.innerHeight * 0.8));
                                     }
                                 } else {
-                                    currentTranslate = scrolledPast * 0.4;
-                                    currentOpacity = 1 - (scrolledPast / (rect.height * 0.4));
+                                    translate = scrolledPast * 0.4;
+                                    // 0.6 em vez de 0.4: fade menos agressivo, conteúdo legível por mais tempo
+                                    opacity = 1 - (scrolledPast / (rect.height * 0.6));
                                 }
-                                
-                                innerWrapper.style.transform = `translateY(${currentTranslate}px)`;
-                                innerWrapper.style.opacity = Math.max(0, currentOpacity);
+
+                                innerWrapper.style.transform = `translateY(${translate}px)`;
+                                innerWrapper.style.opacity   = String(Math.max(0, Math.min(1, opacity)));
                             }
                         } else if (rect.top > 0) {
-                            innerWrapper.style.transform = `translateY(0px)`;
-                            innerWrapper.style.opacity = 1;
+                            // Seção voltou para baixo do viewport: reset
+                            innerWrapper.style.transform = 'translateY(0px)';
+                            innerWrapper.style.opacity   = '1';
                         }
+                    });
+
+                    if (particlesContainer) {
+                        particlesContainer.style.transform =
+                            `translateY(${lastKnownScrollPosition * 0.05}px)`;
                     }
-                });
-                
-                if (particlesContainer) {
-                    particlesContainer.style.transform = `translateY(${lastKnownScrollPosition * 0.05}px)`;
                 }
+
                 ticking = false;
             });
             ticking = true;
         }
-    });
+    }, { passive: true }); // passive:true — libera o thread de scroll no iOS/Android
+
+    // Back to top — apenas o click (visibilidade gerenciada acima)
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
     // ======================================================
     // 11. CONTACT FORM HANDLER (FORMSPREE)
@@ -319,34 +412,6 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(() => showFeedback('error'))
             .finally(() => { submitBtn.disabled = false; });
-        });
-    }
-
-    // ======================================================
-    // 13. SCROLL PROGRESS BAR
-    // ======================================================
-    const scrollProgressBar = document.getElementById('scroll-progress');
-    if (scrollProgressBar) {
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            scrollProgressBar.style.width = `${Math.min(pct, 100)}%`;
-            scrollProgressBar.setAttribute('aria-valuenow', Math.round(pct));
-        }, { passive: true });
-    }
-
-    // ======================================================
-    // 14. BACK TO TOP BUTTON
-    // ======================================================
-    const backToTopBtn = document.getElementById('back-to-top');
-    if (backToTopBtn) {
-        window.addEventListener('scroll', () => {
-            backToTopBtn.classList.toggle('is-visible', window.scrollY > 300);
-        }, { passive: true });
-
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
@@ -476,11 +541,118 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cmdHintBtn) cmdHintBtn.addEventListener('click', openCmd);
 
     // ======================================================
+    // 18. GITHUB LIVE STATS
+    // ======================================================
+    const GITHUB_USER = 'Miguel12342342';
+    const GH_CACHE_KEY = 'gh_stats_v1';
+    const GH_CACHE_TTL = 30 * 60 * 1000; // 30 min
+
+    function animateStatCounter(el, target) {
+        let current = 0;
+        const steps = Math.min(target, 60);
+        const stepVal = Math.ceil(target / steps);
+        const intervalMs = Math.floor(900 / steps);
+        const timer = setInterval(() => {
+            current = Math.min(current + stepVal, target);
+            el.textContent = current;
+            if (current >= target) clearInterval(timer);
+        }, intervalMs);
+    }
+
+    function renderGitHubStats(data) {
+        const lang = localStorage.getItem('lang') || 'pt';
+        const rtf = new Intl.RelativeTimeFormat(lang, { numeric: 'auto' });
+        const daysAgo = Math.floor((Date.now() - new Date(data.lastPush)) / 86400000);
+
+        const reposEl     = document.getElementById('stat-repos');
+        const starsEl     = document.getElementById('stat-stars');
+        const followersEl = document.getElementById('stat-followers');
+        const activityEl  = document.getElementById('stat-activity');
+
+        if (reposEl)     animateStatCounter(reposEl, data.repos);
+        if (starsEl)     animateStatCounter(starsEl, data.stars);
+        if (followersEl) animateStatCounter(followersEl, data.followers);
+        if (activityEl)  activityEl.textContent = rtf.format(-daysAgo, 'day');
+    }
+
+    async function loadGitHubStats() {
+        const cached = sessionStorage.getItem(GH_CACHE_KEY);
+        if (cached) {
+            try {
+                const { data, ts } = JSON.parse(cached);
+                if (Date.now() - ts < GH_CACHE_TTL) { renderGitHubStats(data); return; }
+            } catch (_) { /* stale cache */ }
+        }
+
+        try {
+            const [userRes, reposRes] = await Promise.all([
+                fetch(`https://api.github.com/users/${GITHUB_USER}`),
+                fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=pushed`)
+            ]);
+            if (!userRes.ok || !reposRes.ok) return;
+
+            const [user, repos] = await Promise.all([userRes.json(), reposRes.json()]);
+
+            const data = {
+                repos:     user.public_repos,
+                stars:     repos.reduce((s, r) => s + r.stargazers_count, 0),
+                followers: user.followers,
+                lastPush:  repos[0]?.pushed_at ?? user.updated_at
+            };
+
+            sessionStorage.setItem(GH_CACHE_KEY, JSON.stringify({ data, ts: Date.now() }));
+            renderGitHubStats(data);
+        } catch (_) { /* API unavailable — stays as placeholder */ }
+    }
+
+    if (document.getElementById('stat-repos')) loadGitHubStats();
+
+    // ======================================================
+    // 19. PHONE MOCKUP CAROUSEL + 3D TILT
+    // ======================================================
+    const phoneSlides  = document.querySelectorAll('.phone-slide');
+    const phoneDotEls  = document.querySelectorAll('.phone-dot');
+    const phoneFrameEl = document.querySelector('.phone-frame');
+    let phoneIdx = 0;
+    let phoneTick;
+
+    function goToPhoneSlide(idx) {
+        phoneSlides[phoneIdx].classList.remove('active');
+        phoneDotEls[phoneIdx].classList.remove('active');
+        phoneIdx = idx;
+        phoneSlides[phoneIdx].classList.add('active');
+        phoneDotEls[phoneIdx].classList.add('active');
+    }
+
+    if (phoneSlides.length) {
+        phoneTick = setInterval(() => goToPhoneSlide((phoneIdx + 1) % phoneSlides.length), 3200);
+
+        phoneDotEls.forEach((dot, i) => dot.addEventListener('click', () => {
+            clearInterval(phoneTick);
+            goToPhoneSlide(i);
+            phoneTick = setInterval(() => goToPhoneSlide((phoneIdx + 1) % phoneSlides.length), 3200);
+        }));
+
+        if (phoneFrameEl) {
+            phoneFrameEl.addEventListener('mouseenter', () => clearInterval(phoneTick));
+            phoneFrameEl.addEventListener('mouseleave', () => {
+                phoneFrameEl.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) scale(1)';
+                phoneTick = setInterval(() => goToPhoneSlide((phoneIdx + 1) % phoneSlides.length), 3200);
+            });
+            phoneFrameEl.addEventListener('mousemove', e => {
+                const r = phoneFrameEl.getBoundingClientRect();
+                const x = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+                const y = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+                phoneFrameEl.style.transform =
+                    `perspective(900px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) scale(1.03)`;
+            });
+        }
+    }
+
+    // ======================================================
     // 12. TSPARTICLES LOAD NO FINAL P/ EVITAR BLOQUEIO
     // Desabilitado em mobile: impacto de performance em dispositivos fracos
     // ======================================================
-    const isMobile = window.matchMedia('(max-width: 640px)').matches;
-
     if (!isMobile && typeof tsParticles !== 'undefined') {
         tsParticles.load({
             id: "tsparticles",
@@ -501,6 +673,56 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 detectRetina: true
             }
+        });
+    }
+
+    // ======================================================
+    // 20. CODE SHOWCASE — tabs + syntax highlight + copy
+    // ======================================================
+    const codeShowcase = document.querySelector('.code-showcase');
+
+    if (codeShowcase && typeof hljs !== 'undefined') {
+        // Highlight all code blocks once on load
+        codeShowcase.querySelectorAll('pre code').forEach(block => {
+            hljs.highlightElement(block);
+        });
+
+        // Tab switching
+        const codeTabs   = codeShowcase.querySelectorAll('.code-tab');
+        const codePanels = codeShowcase.querySelectorAll('.code-panel');
+
+        codeTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.tab;
+
+                codeTabs.forEach(t => {
+                    t.classList.remove('is-active');
+                    t.setAttribute('aria-selected', 'false');
+                });
+                codePanels.forEach(p => p.classList.remove('is-active'));
+
+                tab.classList.add('is-active');
+                tab.setAttribute('aria-selected', 'true');
+                codeShowcase.querySelector(`.code-panel[data-panel="${target}"]`)
+                    ?.classList.add('is-active');
+            });
+        });
+
+        // Copy button — reads textContent (strips hljs spans, gets raw Dart)
+        codeShowcase.querySelectorAll('.code-copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const codeEl = btn.closest('.code-panel').querySelector('code');
+                const text   = codeEl ? codeEl.textContent : '';
+
+                navigator.clipboard.writeText(text).then(() => {
+                    btn.classList.add('copied');
+                    btn.querySelector('i').className = 'fas fa-check';
+                    setTimeout(() => {
+                        btn.classList.remove('copied');
+                        btn.querySelector('i').className = 'fas fa-copy';
+                    }, 2000);
+                }).catch(() => {});
+            });
         });
     }
 

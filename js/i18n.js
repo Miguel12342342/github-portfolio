@@ -3,6 +3,7 @@ const translations = {
         nav_home: "Início",
         nav_about: "Sobre",
         nav_skills: "Habilidades",
+        nav_code: "Código",
         nav_projects: "Projetos",
         nav_contact: "Contato",
 
@@ -17,7 +18,7 @@ const translations = {
         ],
 
         about_title: "Sobre Mim",
-        about_p1: "Sou <strong>Miguel Angelo</strong>, <strong>Desenvolvedor Flutter Mobile</strong>, com <strong>3 anos de experiência</strong> focada na construção de <strong>soluções móveis nativas de alta performance</strong> (Android/iOS). Minha paixão é <strong>transformar requisitos complexos em interfaces envolventes</strong> e arquiteturas escaláveis. Domino o ciclo de vida completo: do design de UX/UI até a implantação e manutenção contínua nas lojas de aplicativos.",
+        about_p1: "Sou <strong>Miguel Angelo</strong>, <strong>Desenvolvedor Flutter Mobile</strong>, com <strong>4 anos de experiência</strong> focada na construção de <strong>soluções móveis nativas de alta performance</strong> (Android/iOS). Minha paixão é <strong>transformar requisitos complexos em interfaces envolventes</strong> e arquiteturas escaláveis. Domino o ciclo de vida completo: do design de UX/UI até a implantação e manutenção contínua nas lojas de aplicativos.",
         about_p2: "<strong>Destaques da minha atuação e impacto técnico:</strong>",
         about_li1: "<strong>Integração de APIs REST:</strong> Conexão eficiente com backends complexos, reduzindo a latência no consumo de grandes volumes de dados via JSON e garantindo performance fluida.",
         about_li2: "<strong>Arquitetura Escalonável:</strong> Proficiência sólida em <strong>BLoC e Provider</strong>, entregando código altamente modular, sustentável e fácil de testar.",
@@ -54,12 +55,26 @@ const translations = {
         cmd_placeholder: "Navegar para...",
         cmd_navigate: "navegar",
         cmd_go: "ir",
-        cmd_close: "fechar"
+        cmd_close: "fechar",
+        github_live: "GitHub — dados em tempo real",
+        stat_repos: "Repositórios",
+        stat_stars: "Stars",
+        stat_followers: "Seguidores",
+        stat_activity: "Última atividade",
+        phone_label: "Apps desenvolvidos",
+
+        code_title: "Código em Ação",
+        code_subtitle: "Trechos reais de projetos — arquitetura, padrões e boas práticas em Dart & Flutter.",
+        code_tab_bloc: "BLoC",
+        code_tab_api: "API REST",
+        code_tab_widget: "Widget",
+        code_tab_firebase: "Firebase"
     },
     en: {
         nav_home: "Home",
         nav_about: "About",
         nav_skills: "Skills",
+        nav_code: "Code",
         nav_projects: "Projects",
         nav_contact: "Contact",
 
@@ -74,7 +89,7 @@ const translations = {
         ],
 
         about_title: "About Me",
-        about_p1: "I am <strong>Miguel Angelo</strong>, a <strong>Flutter Mobile Developer</strong> with <strong>3 years of experience</strong> focused on building <strong>high-performance native mobile solutions</strong> (Android/iOS). My passion lies in <strong>transforming complex requirements into immersive interfaces</strong> and scalable architectures. I master the complete lifecycle: from UX/UI design to deployment and continuous maintenance in app stores.",
+        about_p1: "I am <strong>Miguel Angelo</strong>, a <strong>Flutter Mobile Developer</strong> with <strong>4 years of experience</strong> focused on building <strong>high-performance native mobile solutions</strong> (Android/iOS). My passion lies in <strong>transforming complex requirements into immersive interfaces</strong> and scalable architectures. I master the complete lifecycle: from UX/UI design to deployment and continuous maintenance in app stores.",
         about_p2: "<strong>Highlights of my work and technical impact:</strong>",
         about_li1: "<strong>REST API Integration:</strong> Efficient connection with complex backends, reducing latency in large-volume JSON data consumption and ensuring smooth performance.",
         about_li2: "<strong>Scalable Architecture:</strong> Solid proficiency in <strong>BLoC and Provider</strong>, delivering highly modular, sustainable, and easily testable code.",
@@ -111,7 +126,20 @@ const translations = {
         cmd_placeholder: "Go to section...",
         cmd_navigate: "navigate",
         cmd_go: "go",
-        cmd_close: "close"
+        cmd_close: "close",
+        github_live: "GitHub — live data",
+        stat_repos: "Repositories",
+        stat_stars: "Stars",
+        stat_followers: "Followers",
+        stat_activity: "Last activity",
+        phone_label: "Developed apps",
+
+        code_title: "Code in Action",
+        code_subtitle: "Real project snippets — architecture, patterns and best practices in Dart & Flutter.",
+        code_tab_bloc: "BLoC",
+        code_tab_api: "REST API",
+        code_tab_widget: "Widget",
+        code_tab_firebase: "Firebase"
     }
 };
 
